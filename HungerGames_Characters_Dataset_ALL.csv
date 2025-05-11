@@ -1,274 +1,274 @@
-Columna 1,Name,District,Gender,Tribute,Game_Year,Winner,Mentor,Mentoree,Appearance,Alliance,Killed by,Profession
-,Agrippina Sickle,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Professor
-,Androcles Anderson,0,M,"No, Mentor",10,No,,Sheaf,The Ballad of Songbirds and Snakes,Academy,Rebels,Student
-,Apollo Ring,0,M,"No, Mentor",10,No,,Otto,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
-,Arachne Crane,0,F,"No, Mentor",10,No,,Brandy,The Ballad of Songbirds and Snakes,Academy,Brandy,Student
-,Atala,0,F,No,,,,,Trilogy,,,Head trainer
-,Caesar Flickerman,0,M,No,,,,,"Trilogy, Sunrise on the Reaping",,,Commentator
-,Casca Highbottom,0,M,No,,,,,The Ballad of Songbirds and Snakes,Academy,Snow,Creator of the Hunger Games
-,Cassia,0,F,No,,,,,Sunrise on the Reaping,,,Camera crew
-,Cinna,0,M,No,,,,,"The Hunger Games, Catching Fire, Mentioned","Katniss, Rebels",Capitol,Katniss' stylist
-,Claudius Templesmith,0,M,No,,,,,"The Hunger Games, Catching Fire, Mentioned",,,Announcer
-,Clemensia Dovecote,0,F,"No, Mentor",10,No,,Reaper Ash,The Ballad of Songbirds and Snakes,Academy,Volumnia Gaul,Student
-,Coriolanus Snow,0,M,"No, Mentor",10,Yes,,Lucy Gray Baird,"Sunrise on the Reaping, Trilogy, The Ballad of Songbirds and Snakes","Peacekeepers, Academy",Crowd,President of Panem
-,Crassus Snow,0,M,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",,Dark Days,"Father of Corionalus Snow, businessman"
-,Cressida,0,F,No,,,,,Mockingjay,Rebels,,Film director
-,Crispus Demigloss,0,M,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Professor
-,Cyrus,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Musician, Pluribus' partner"
-,Dennis Fling,0,M,"No, Mentor",10,No,,Hy,The Ballad of Songbirds and Snakes,Academy,,Student
-,Diana Ring,0,F,"No, Mentor",10,No,,Ginnee,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
-,Domitia Whimsiwick,0,F,"No, Mentor",10,No,,Tanner,The Ballad of Songbirds and Snakes,Academy,,Student
-,Dr. Aurelius,0,M,No,,,,,Mockingjay,Rebels,,Doctor
-,Dr. Kay,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Biologist
-,Dr. Wane,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Doctor
-,Drusilla Sickle,0,F,No,,,,,Sunrise on the Reaping,,,Escort
-,Effie Trinket,0,F,No,,,,,"Trilogy, Sunrise on the Reaping",Katniss,,Escort
-,Fabricia Whatnot,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Fashion designer
-,Faustina Gripper,0,F,No,,,,,Sunrise on the Reaping,,,Head Gamemaker
-,Felix Ravinstill,0,M,"No, Mentor",10,No,,Dill,The Ballad of Songbirds and Snakes,Academy,Bombing,"Student, President Ravinstill's nephew"
-,Festus Creed,0,M,"No, Mentor",10,No,,Coral,The Ballad of Songbirds and Snakes,Academy,,Student
-,Flavius,0,M,No,,,,,Trilogy,,,Katniss' stylist
-,Florus Friend,0,M,"No, Mentor",10,No,,Sabyn,The Ballad of Songbirds and Snakes,Academy,,Student
-,Fulvia Cardew,0,F,No,,,,,Mockingjay,Rebels,,Plutarch's Assistant
-,Gaius Breen,0,M,"No, Mentor",10,No,,Panlo,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
-,Grandma'am,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Grandmother of Snow
-,Hersilia,0,F,No,,,,,Sunrise on the Reaping,,,Trainer
-,Hilarius Heavensbee,0,M,"No, Mentor",10,No,,Wovey,The Ballad of Songbirds and Snakes,Academy,,Student
-,Incitatus Loomy,0,M,No,,,,,Sunrise on the Reaping,,Snow,Parade master
-,Io Jasper,0,F,"No, Mentor",10,No,,Circ,The Ballad of Songbirds and Snakes,Academy,,Student
-,Iphigenia Moss,0,F,"No, Mentor",10,No,,Sol,The Ballad of Songbirds and Snakes,Academy,,Student
-,Jubilee,0,M,No,,,,,The Ballad of Songbirds and Snakes,,Depression,Depressed parrot
-,Junius,0,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
-,Juno Phipps,0,F,"No, Mentor",10,No,,Bobbin,The Ballad of Songbirds and Snakes,Academy,,Student
-,Juvenia,0,F,No,,,,,Sunrise on the Reaping,,,Escort
-,Lavinia,0,F,No,,,,,"The Hunger Games, Catching Fire, Mentioned",Katniss,Capitol,Avox
-,Lepidus Malmsey,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,News Reporter
-,Livia Cardew,0,F,"No, Mentor",10,No,,Facet,The Ballad of Songbirds and Snakes,Academy,,Student
-,"Lucretius ""Lucky"" Flickerman",0,M,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",,,"Weathercaster, commentator"
-,Lysistrata Vickers,0,F,"No, Mentor",10,No,,Jessup Diggs,The Ballad of Songbirds and Snakes,Academy,,Student
-,Magno Stift,0,M,No,,,,,Sunrise on the Reaping,,,Stylist
-,Messalla,0,M,No,,,,,Mockingjay,Rebels,Capitol,Film assistant
-,Mrs. Plinth,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Ma
-,Nero Price,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Railway tycoon, cannibal"
-,Octavia,0,F,No,,,,,Trilogy,,,Katniss' stylist
-,Palmyra Monty,0,F,"No, Mentor",10,No,,Velvereen,The Ballad of Songbirds and Snakes,Academy,,Student
-,Persephone Price,0,F,"No, Mentor",10,No,,Mizzen,The Ballad of Songbirds and Snakes,Academy,,Student
-,Pliny Harrington,0,M,"No, Mentor",10,No,,Lamina,The Ballad of Songbirds and Snakes,Academy,,Student
-,Pluribus Bell,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Musician, Cyrus' partner"
-,Plutarch Heavensbee,0,M,No,,,,,"Trilogy, Sunrise on the Reaping",Rebels,,Head Gamemaker
-,Pollux,0,M,No,,,,,Mockingjay,Rebels,Capitol,Cameraman
-,Portia,0,F,No,,,,,"The Hunger Games, Catching Fire, Mentioned",,Capitol,Peeta's stylist
-,President Ravinstill,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,President of Panem
-,Proserpina Trinket,0,F,No,,,,,Sunrise on the Reaping,Academy,,Student
-,Remus Dolittle,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Gamemaker
-,Satyria Click,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Communications professor
-,Seneca Crane,0,M,No,,,,,"The Hunger Games, Mentioned",,Snow,Head Gamemaker
-,Strabo Plinth,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Munitions manufacturer
-,Tax,0,M,No,,,,,Catching Fire,,,Trainer
-,Tibby,0,M,No,,,,,Sunrise on the Reaping,,,Attendant
-,Tigris,0,F,No,,,,,"Mockingjay, The Ballad of Songbirds and Snakes",Rebels,,Stylist
-,Trajan Heavensbee,0,M,No,,,,,Mentioned,,,Father of Panem
-,Urban Canville,0,M,"No, Mentor",10,No,,Teslee,The Ballad of Songbirds and Snakes,Academy,,Student
-,Venia,0,F,No,,,,,Trilogy,,,Katniss' stylist
-,Venus,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Smart child
-,Vipsania Sickle,0,F,"No, Mentor",10,No,,Treech,The Ballad of Songbirds and Snakes,Academy,,Student
-,Vitus,0,M,No,,,,,Sunrise on the Reaping,Academy,,Student
-,Volumnia Gaul,0,F,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",Academy,,"Head Gamemaker, crazy scientist, professor"
-34,Augustus Braun,1,M,Reaped,67,Yes,,,Mentioned,Careers,War,
-,Carat,1,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-30,Cashmere,1,F,Volunteer,"64, 75",Yes,,,Catching Fire,Careers,Johanna,
-,Facet,1,M,Reaped,10,No,Livia Cardew,,The Ballad of Songbirds and Snakes,,Peacekeepers,
-,Glimmer,1,F,Volunteer,74,No,,,The Hunger Games,Careers,Katniss,
-29,Gloss,1,M,Volunteer,"63, 75",Yes,,,Catching Fire,Careers,Katniss,
-,Loupe,1,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Maysilee Donner,
-,Marvel,1,M,Volunteer,74,No,,,"The Hunger Games, Mentioned",Careers,Katniss,
-,Palladium Barker,1,M,Volunteer,46,Yes,,,Mentioned,Careers,War,
-,Panache Barker,1,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Maysilee Donner,
-,Silka Sharp,1,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Haymitch,
-,Velvereen,1,F,Reaped,10,No,Palmyra Monty,,The Ballad of Songbirds and Snakes,,Peacekeepers,
-,Alpheus,2,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-17,Brutus,2,M,Volunteer,75,Yes,,,Catching Fire,Careers,Peeta,
-,Camilla,2,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Cato,2,M,Volunteer,74,No,,,"The Hunger Games, Mentioned",Careers,Katniss,
-,Clove,2,F,Volunteer,74,No,,,"The Hunger Games, Mentioned",Careers,Thresh,
-28,Enobaria,2,F,Volunteer,"62, 75",Yes,,,"Catching Fire, Mockingjay",Careers,,Survivor
-10,Female Victor D2,2,F,Reaped,,Yes,,,Mentioned,Careers,War,
-11,Female Victor D2,2,F,Reaped,,Yes,,,Mentioned,Careers,War,
-15,Female Victor D2,2,F,Reaped,,Yes,,,Mentioned,Careers,War,
-,Janus,2,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Lyme,2,F,Volunteer,,Yes,,,Mockingjay,Rebels,War,Commander 
-8,Male Victor D2,2,M,Reaped,,Yes,,,Mentioned,Careers,War,
-37,Male Victor D2,2,M,Reaped,73,Yes,,,Mentioned,Careers,War,
-,Marcus,2,M,Rigged,10,No,Sejanus Plinth,,The Ballad of Songbirds and Snakes,,Capitol,
-,Nona,2,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Sabyn,2,F,Reaped,10,No,Florus Friend,,The Ballad of Songbirds and Snakes,,Peacekeepers,
-,Sejanus Plinth,2,M,"No, Mentor",10,No,,Marcus,The Ballad of Songbirds and Snakes,Academy,Snow,"Student, Snow's best friend"
-,Ampert Latier,3,M,Rigged,50,No,Beetee Latier,,Sunrise on the Reaping,"Newcomers, Haymitch",Capitol,
-7,Beetee Latier,3,M,"Reaped, Mentor","34, 75",Yes,,Ampert Latier,"Trilogy, Sunrise on the Reaping",Rebels,,Inventor
-,Bomb child,3,M,Reaped,74,No,,,The Hunger Games,Careers,Careers,
-,Circ,3,M,Reaped,10,No,Io Jasper,,The Ballad of Songbirds and Snakes,,Volumnia Gaul,
-,Coil,3,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Dio,3,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Lect,3,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Teslee,3,F,Reaped,10,No,Urban Canville,,The Ballad of Songbirds and Snakes,,Treech,
-19,Wiress,3,F,"Reaped, Mentor","49, 75",Yes,,Haymitch Abernathy,"Sunrise on the Reaping, Catching Fire",Rebels,Careers,
-,Angler,4,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Haymitch,
-35,Annie Cresta,4,F,Reaped,70,Yes,Mags Flanagan,,"Catching Fire, Mockingjay",Katniss,,Finnick's wife
-,Baby Odair Cresta,4,,No,,,,,Mockingjay,,,Annie and Finnick's child
-,Barba,4,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Haymitch,
-,Coral,4,F,Reaped,10,No,Festus Creed,,The Ballad of Songbirds and Snakes,,Volumnia Gaul,
-31,Finnick Odair,4,M,"Reaped,Reaped","75, 65",Yes,Mags Flanagan,Annie Cresta,"Catching Fire, Mockingjay","Rebels, Katniss",Capitol,
-2,Mags Flanagan,4,F,"Reaped,Volunteer, Mentor","11, 75",Yes,,"Haymitch Abernathy, Annie Cresta, Finnick Odair","Catching Fire, Sunrise on the Reaping",Rebels,Capitol,Wonderful lady
-4,Male Victor D4,4,M,Reaped,,Yes,,,Mentioned,Careers,Teslee,
-16,Male Victor D4,4,M,Reaped,,Yes,,,Mentioned,Careers,War,
-22,Male Victor D4,4,M,Reaped,,Yes,,,Mentioned,Careers,War,
-,Maritte,4,F,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Mizzen,4,M,Reaped,10,No,Persephone Price,,The Ballad of Songbirds and Snakes,,Teslee,
-,Urchin,4,M,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Anion,5,F,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-23,Female Victor D5,5,F,Reaped,,Yes,,,Mentioned,,War,
-,Fisser,5,M,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Foxface,5,F,Reaped,74,No,,,"The Hunger Games, Mentioned",,Nightlock,
-,Hy,5,M,Reaped,10,No,Dennis Fling,,The Ballad of Songbirds and Snakes,,Asthma,
-,Hychel,5,M,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-13,Male Victor D5,5,M,Reaped,,Yes,,,Mentioned,,War,
-12,Porter Millicent Tripp,5,F,Reaped,38,Yes,,,Mockingjay,,War,
-,Potena,5,F,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
-,Sol,5,F,Reaped,10,No,Iphigenia Moss,,The Ballad of Songbirds and Snakes,,Coral,
-,Atread,6,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-25,Female Victor D6,6,F,Reaped,75,Yes,,,Mentioned,Rebels,Capitol,Peeta's saviour
-24,Female Victor D6,6,F,Reaped,,Yes,,,Mentioned,,War,
-,Ginnee,6,F,Reaped,10,No,Diana Ring,,The Ballad of Songbirds and Snakes,,Bombing,
-32,Male Victor D6,6,M,Reaped,"66,75",Yes,,,Mentioned,Rebels,Capitol,
-5,Male Victor D6,6,M,Reaped,,Yes,,,Mentioned,,War,
-,Miles,6,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Otto,6,M,Reaped,10,No,Apollo Ring,,The Ballad of Songbirds and Snakes,,Bombing,
-,Titus,6,M,Reaped,,No,,,Mentioned,,Capitol,Cannibal 
-,Velo,6,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Wellie,6,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Autumn,7,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Bircher,7,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-21,Blight,7,M,Reaped,75,Yes,,,Catching Fire,Rebels,Capitol,
-,Heartwood,7,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-36,Johanna Mason,7,F,Reaped,"71, 75",Yes,,,"Catching Fire, Mockingjay",,,Survivor
-,Lamina,7,F,Reaped,10,No,Pliny Harrington,,The Ballad of Songbirds and Snakes,,Coral,
-,Ringina,7,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Treech,7,M,Reaped,10,No,Vipsania Sickle,,The Ballad of Songbirds and Snakes,,Lucy Gray Baird,
-,Alawna,8,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Bobbin,8,M,Reaped,10,No,Juno Phipps,,The Ballad of Songbirds and Snakes,,Snow,
-,Bonnie,8,F,No,,,,,Catching Fire,Rebels,Capitol,Factory worker
-26,Cecelia,8,F,Reaped,75,Yes,,,Catching Fire,,Careers,Mother
-,Eddy,8,M,No,,,,,Mockingjay,,Bombing,Patient
-,Eddy's sister,8,F,No,,,,,Mockingjay,,Bombing,Patient
-,Notion,8,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Paylor,8,F,No,,,,,Mockingjay,,,"Commander, New President of Panem"
-,Ripman,8,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Smiley,8,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
-,Twill,8,F,No,,,,,Catching Fire,Rebels,Capitol,Factory worker
-,Wefton,8,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-3,Woof,8,M,Reaped,"15, 75",Yes,,,Mentioned,Rebels,Careers,
-,Wovey,8,F,Reaped,10,No,Hilarius Heavensbee,,The Ballad of Songbirds and Snakes,,Lucy Gray Baird,
-,Clayton,9,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-9,Female Victor D9,9,F,Reaped,,Yes,,,Mentioned,,War,
-,Kerna,9,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-14,Male Victor D9,9,M,Reaped,,Yes,,,Mentioned,,War,
-,Midge,9,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Panlo,9,M,Reaped,10,No,Gaius Breen,,The Ballad of Songbirds and Snakes,,Coral,
-,Ryan,9,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Sheaf,9,F,Reaped,10,No,Androcles Anderson,,The Ballad of Songbirds and Snakes,,Bombing,
-,Brandy,10,F,Reaped,10,No,Arachne Crane,,The Ballad of Songbirds and Snakes,,Peacekeepers,
-,Buck,10,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-27,Female Victor D10,10,F,Reaped,,Yes,,,Mentioned,,War,
-,Lannie,10,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-33,Male Victor D10,10,M,Reaped,68,Yes,,,Mentioned,,War,
-,Peeler,10,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Stamp,10,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Tanner,10,M,Reaped,10,No,Domitia Whimsiwick,,The Ballad of Songbirds and Snakes,,Coral,
-,Blossom,11,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Bug,11,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
-18,Chaff,11,M,Reaped,"45, 75",Yes,,,Catching Fire,Rebels,Careers,
-,Chicory,11,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Dill,11,F,Reaped,10,No,Felix Ravinstill,,The Ballad of Songbirds and Snakes,,Tuberculosis,
-,Hull,11,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
-,Lou Lou,11,F,Reaped,50,No,"Wiress, Mags Flanagan",,Sunrise on the Reaping,Newcomers,Capitol,Substitute of Luella McCoy
-,Martin,11,M,No,,,,,Mentioned,,,Harvester
-,Reaper Ash,11,M,Reaped,10,No,Clemensia Dovecote,,The Ballad of Songbirds and Snakes,,Lucy Gray Baird,
-,Rue,11,F,Reaped,74,No,,,"The Hunger Games, Mentioned",Katniss,Careers,
-6,Seeder,11,F,Reaped,75,Yes,,,Mentioned,Rebels,Careers,
-,Thresh,11,M,Reaped,74,No,,,"The Hunger Games, Mentioned",,Capitol,
-,Tile,11,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
-,Arlo Chance,12,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,Capitol,Coal miner
-,Asterid Everdeen,12,F,No,,,,,"Trilogy, Sunrise on the Reaping",,,Healer
-,Babyboy Mellark Everdeen,12,M,No,,,,,Mockingjay,Katniss,,Katniss and Peeta Mellark's son
-,Babygirl Mellark Everdeen,12,F,No,,,,,Mockingjay,Katniss,,Katniss and Peeta Mellark's daughter
-,Barb Azure Baird,12,F,No,,,,,"Sunrise on the Reaping, The Ballad of Songbirds and Snakes",Covey,,Musician
-,Bascom Pie,12,M,No,,,,,Sunrise on the Reaping,,,Bootlegger
-,Billy Taupe,12,M,No,,,,,The Ballad of Songbirds and Snakes,Covey,Snow,Musician
-,Binnie Chance,12,M,No,,,,,Sunrise on the Reaping,,Peacekeepers,
-,Blair,12,M,No,,,,,Sunrise on the Reaping,Haymitch,,Haymitch's friend
-,Bristel,12,M,No,,,,,Catching Fire,Rebels,Capitol,Coal miner
-,Burdock Everdeen,12,M,No,,,,,"Trilogy, Sunrise on the Reaping",Covey,Mine explosion,"Coal miner, hunter"
-,Buster,12,M,No,,,,,Mentioned,,,Louella's bullfrog
-,Buttercup,12,M,No,,,Primrose Everdeen,,Trilogy,Katniss,,Prim's cat
-,Cayson McCoy,12,M,No,,,,,Sunrise on the Reaping,,,"Coal miner, Louella's brother"
-,Clay Chance,12,M,No,,,,,Sunrise on the Reaping,,Peacekeepers,
-,Clerk Carmine,12,M,No,,,,,"Mockingjay, The Ballad of Songbirds and Snakes, Sunrise on the Reaping",Covey,,"Musician, gay"
-,Commander Hoff,12,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper commander
-,Cookie,12,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
-,Cray,12,M,No,,,,,Mockingjay,Peacekeepers,Snow,Cool head peacekeeper
-,Darius,12,M,No,,,,,"Catching Fire, Mentioned",Peacekeepers,Capitol,Peacekeeper
-,Delly Cartwright,12,F,No,,,,,Trilogy,,,Merchant
-,Gale Hawthorne,12,M,No,,,,,Trilogy,Rebels,,"Coal miner, hunter"
-,Greasy Sae,12,F,No,,,,,Trilogy,Katniss,,Cooker
-,Hattie Meeney,12,F,No,,,,,Sunrise on the Reaping,Haymitch,,Bootlegger
-20,Haymitch Abernathy,12,M,"Rigged, Mentor",50,Yes,"Wiress, Mags Flanagan","Katniss Everdeen, Peeta Mellark","Trilogy, Sunrise on the Reaping",Haymitch,,Geesee alcoholic
-,Hazelle Hawthorne,12,F,No,,,,,"Trilogy, Sunrise on the Reaping",,,Mother
-,Ima McCoy,12,F,No,,,,,Mentioned,,,Louella's sister
-,Jessup Diggs,12,M,Reaped,10,No,Lysistrata Vickers,,The Ballad of Songbirds and Snakes,,Rabies,
-,Jethro Callow,12,M,No,,,,,Sunrise on the Reaping,,Suicide,"Booker boy, coal miner, Wyatt's father"
-38,Katniss Everdeen,12,F,"Volunteer,Reaped","75, 74",Yes,Haymitch Abernathy,,"Trilogy, Mentioned",Katniss,,"Hunter, mockingjay"
-,Lady,12,F,No,,,Primrose Everdeen,,Trilogy,Katniss,Bombing,Prim's goat
-,Leevy,12,F,No,,,,,"Catching Fire, Mockingjay",,,Survivor
-,Lenore Dove Baird,12,F,No,,,,,Sunrise on the Reaping,Covey,Snow,Musician
-,Lil,12,F,No,,,,,The Ballad of Songbirds and Snakes,Rebels,Peacekeepers,Rebel
-,Louella McCoy,12,F,Reaped,50,No,"Wiress, Mags Flanagan",,Sunrise on the Reaping,Newcomers,Capitol,
-1,Lucy Gray Baird,12,F,Rigged,10,Yes,Coriolanus Snow,,The Ballad of Songbirds and Snakes,Covey,Unknown,"Musician, performer"
-,Lyle Whitcomb,12,M,No,,,,,Sunrise on the Reaping,,Black lung,"Coal miner, father of Sarshee"
-,Madge Undersee,12,F,No,,,,,Trilogy,,Capitol,Mayor's daughter
-,Maude Ivory,12,F,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",Covey,Birth labor,Musician
-,Mayfair Lipp,12,F,No,,,,,The Ballad of Songbirds and Snakes,,Snow,
-,Mayor Allister,12,F,No,,,,,Sunrise on the Reaping,,,Mayor
-,Mayor Lipp,12,M,No,,,,,The Ballad of Songbirds and Snakes,,,Mayor
-,Mayor Undersee,12,M,No,,,,,"Catching Fire, Mentioned",,Bombing,Mayor
-,Maysilee Donner,12,F,Reaped,50,No,"Wiress, Mags Flanagan",,"Sunrise on the Reaping, Mentioned",Newcomers,Capitol,Donner twin
-,Merrilee Undersee,12,F,No,,,,,"Sunrise on the Reaping, Mentioned",,Capitol,Donner twin
-,Mrs. Mellark,12,F,No,,,,,The Hunger Games,,Bombing,Baker
-,Otho Mellark,12,M,No,,,,,"Trilogy, Sunrise on the Reaping",,Capitol,Baker
-39,Peeta Mellark,12,M,"Reaped,Volunteer","74, 75",Yes,Haymitch Abernathy,,"Trilogy, Mentioned",Katniss,,"Baker, artist, lover"
-,Posy Hawthorne,12,F,No,,,,,Trilogy,,Bombing,
-,Primrose Everdeen,12,F,No,,,,,Trilogy,,Bombing,Healer
-,Purnia,12,F,No,,,,,Catching Fire,Peacekeepers,Bombing,Peacekeeper
-,Ripper,12,F,No,,,,,"Catching Fire, Mentioned",,Bombing,Bootlegger
-,Romulus Thread,12,M,No,,,,,Catching Fire,Peacekeepers,Horrible death I hope,Head peacekeeper
-,Rooba,12,M,No,,,,,Mentioned,,Bombing,Butcher
-,Rory Hawthorne,12,M,No,,,,,Trilogy,,Bombing,
-,Sarshee Whitcomb,12,F,Reaped,,No,,,Sunrise on the Reaping,,Capitol,
-,Shamus,12,F,No,,,,,The Ballad of Songbirds and Snakes,Covey,,Covey's goat
-,Sid Abernathy,12,M,No,,,,,Sunrise on the Reaping,,Snow,Haymitch's lil bro
-,Spruce,12,M,No,,,,,The Ballad of Songbirds and Snakes,Rebels,Peacekeepers,Rebel
-,Tam Amber,12,M,No,,,,,"The Ballad of Songbirds and Snakes, Sunrise on the Reaping",Covey,Bombing,"Musician, goat man"
-,Thom,12,M,No,,,,,"Catching Fire, Mockingjay",,,Coal miner
-,Vick Hawthorne,12,M,No,,,,,Trilogy,,Bombing,
-,Willamae Abernathy,12,F,No,,,,,"Sunrise on the Reaping, Mentioned",Haymitch,Capitol,Mother
-,Woodbine Chance,12,M,Reaped,50,No,,,Sunrise on the Reaping,,Capitol,
-,Wyatt Callow,12,M,Reaped,50,No,"Wiress, Mags Flanagan",,Sunrise on the Reaping,Newcomers,Careers,Analyst of the Games
-,Boggs,13,M,No,,,,,Mockingjay,Rebels,Capitol,Commander
-,Castor,13,M,No,,,,,Mockingjay,Rebels,Capitol,Cameraman
-,Dalton,13,M,No,,,,,Mockingjay,Rebels,,Maintain Genetic Diversity on Beef Ranch
-,Homes,13,M,No,,,,,Mockingjay,Rebels,Capitol,Soldier
-,Jackson,13,F,No,,,,,Mockingjay,Rebels,Capitol,Lieutenant
-,Leeg 1,13,F,No,,,,,Mockingjay,Rebels,Capitol,Soldier
-,Leeg 2,13,F,No,,,,,Mockingjay,Rebels,Capitol,Soldier
-,Mitchell,13,M,No,,,,,Mockingjay,Rebels,Hijacked Peeta,Soldier
-,President Alma Coin,13,F,No,,,,,Mockingjay,Rebels,Katniss,President of District 13
-,York,13,F,No,,,,,Mentioned,Rebels,,"Soldier, Head of Security of District 13"
+Name,District,Gender,Tribute,Game_Year,Winner,Mentor,Mentoree,Appearance,Alliance,Killed by,Profession
+Agrippina Sickle,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Professor
+Androcles Anderson,0,M,"No, Mentor",10,No,,Sheaf,The Ballad of Songbirds and Snakes,Academy,Rebels,Student
+Apollo Ring,0,M,"No, Mentor",10,No,,Otto,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
+Arachne Crane,0,F,"No, Mentor",10,No,,Brandy,The Ballad of Songbirds and Snakes,Academy,Brandy,Student
+Atala,0,F,No,,,,,Trilogy,,,Head trainer
+Caesar Flickerman,0,M,No,,,,,"Trilogy, Sunrise on the Reaping",,,Commentator
+Casca Highbottom,0,M,No,,,,,The Ballad of Songbirds and Snakes,Academy,Coriolanus Snow,Creator of the Hunger Games
+Cassia,0,F,No,,,,,Sunrise on the Reaping,,,Camera crew
+Cinna,0,M,No,,,,,"The Hunger Games, Catching Fire, Mentioned","Katniss, Rebels",Capitol,Katniss' stylist
+Claudius Templesmith,0,M,No,,,,,"The Hunger Games, Catching Fire, Mentioned",,,Announcer
+Clemensia Dovecote,0,F,"No, Mentor",10,No,,Reaper Ash,The Ballad of Songbirds and Snakes,Academy,Volumnia Gaul,Student
+Coriolanus Snow,0,M,"No, Mentor",10,Yes,,Lucy Gray Baird,"Sunrise on the Reaping, Trilogy, The Ballad of Songbirds and Snakes","Peacekeepers, Academy",Crowd,President of Panem
+Crassus Snow,0,M,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",,Dark Days,"Father of Corionalus Snow, businessman"
+Cressida,0,F,No,,,,,Mockingjay,Rebels,,Film director
+Crispus Demigloss,0,M,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Professor
+Cyrus,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Musician, Pluribus' partner"
+Dennis Fling,0,M,"No, Mentor",10,No,,Hy,The Ballad of Songbirds and Snakes,Academy,,Student
+Diana Ring,0,F,"No, Mentor",10,No,,Ginnee,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
+Domitia Whimsiwick,0,F,"No, Mentor",10,No,,Tanner,The Ballad of Songbirds and Snakes,Academy,,Student
+Dr. Aurelius,0,M,No,,,,,Mockingjay,Rebels,,Doctor
+Dr. Kay,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Biologist
+Dr. Wane,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Doctor
+Drusilla Sickle,0,F,No,,,,,Sunrise on the Reaping,,,Escort
+Effie Trinket,0,F,No,,,,,"Trilogy, Sunrise on the Reaping",Katniss,,Escort
+Fabricia Whatnot,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Fashion designer
+Faustina Gripper,0,F,No,,,,,Sunrise on the Reaping,,,Head Gamemaker
+Felix Ravinstill,0,M,"No, Mentor",10,No,,Dill,The Ballad of Songbirds and Snakes,Academy,Bombing,"Student, President Ravinstill's nephew"
+Festus Creed,0,M,"No, Mentor",10,No,,Coral,The Ballad of Songbirds and Snakes,Academy,,Student
+Flavius,0,M,No,,,,,Trilogy,,,Katniss' stylist
+Florus Friend,0,M,"No, Mentor",10,No,,Sabyn,The Ballad of Songbirds and Snakes,Academy,,Student
+Fulvia Cardew,0,F,No,,,,,Mockingjay,Rebels,,Plutarch's Assistant
+Gaius Breen,0,M,"No, Mentor",10,No,,Panlo,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
+Grandma'am,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Grandmother of Snow
+Hersilia,0,F,No,,,,,Sunrise on the Reaping,,,Trainer
+Hilarius Heavensbee,0,M,"No, Mentor",10,No,,Wovey,The Ballad of Songbirds and Snakes,Academy,,Student
+Incitatus Loomy,0,M,No,,,,,Sunrise on the Reaping,,Coriolanus Snow,Parade master
+Io Jasper,0,F,"No, Mentor",10,No,,Circ,The Ballad of Songbirds and Snakes,Academy,,Student
+Iphigenia Moss,0,F,"No, Mentor",10,No,,Sol,The Ballad of Songbirds and Snakes,Academy,,Student
+Jubilee,0,M,No,,,,,The Ballad of Songbirds and Snakes,,Depression,Depressed parrot
+Junius,0,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
+Juno Phipps,0,F,"No, Mentor",10,No,,Bobbin,The Ballad of Songbirds and Snakes,Academy,,Student
+Juvenia,0,F,No,,,,,Sunrise on the Reaping,,,Escort
+Lavinia,0,F,No,,,,,"The Hunger Games, Catching Fire, Mentioned",Katniss,Capitol,Avox
+Lepidus Malmsey,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,News Reporter
+Livia Cardew,0,F,"No, Mentor",10,No,,Facet,The Ballad of Songbirds and Snakes,Academy,,Student
+"Lucretius ""Lucky"" Flickerman",0,M,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",,,"Weathercaster, commentator"
+Lysistrata Vickers,0,F,"No, Mentor",10,No,,Jessup Diggs,The Ballad of Songbirds and Snakes,Academy,,Student
+Magno Stift,0,M,No,,,,,Sunrise on the Reaping,,,Stylist
+Messalla,0,M,No,,,,,Mockingjay,Rebels,Capitol,Film assistant
+Mrs. Plinth,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Ma
+Nero Price,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Railway tycoon, cannibal"
+Octavia,0,F,No,,,,,Trilogy,,,Katniss' stylist
+Palmyra Monty,0,F,"No, Mentor",10,No,,Velvereen,The Ballad of Songbirds and Snakes,Academy,,Student
+Persephone Price,0,F,"No, Mentor",10,No,,Mizzen,The Ballad of Songbirds and Snakes,Academy,,Student
+Pliny Harrington,0,M,"No, Mentor",10,No,,Lamina,The Ballad of Songbirds and Snakes,Academy,,Student
+Pluribus Bell,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Musician, Cyrus' partner"
+Plutarch Heavensbee,0,M,No,,,,,"Trilogy, Sunrise on the Reaping",Rebels,,Head Gamemaker
+Pollux,0,M,No,,,,,Mockingjay,Rebels,Capitol,Cameraman
+Portia,0,F,No,,,,,"The Hunger Games, Catching Fire, Mentioned",,Capitol,Peeta's stylist
+President Ravinstill,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,President of Panem
+Proserpina Trinket,0,F,No,,,,,Sunrise on the Reaping,Academy,,Student
+Remus Dolittle,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Gamemaker
+Satyria Click,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Communications professor
+Seneca Crane,0,M,No,,,,,"The Hunger Games, Mentioned",,Coriolanus Snow,Head Gamemaker
+Strabo Plinth,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Munitions manufacturer
+Tax,0,M,No,,,,,Catching Fire,,,Trainer
+Tibby,0,M,No,,,,,Sunrise on the Reaping,,,Attendant
+Tigris,0,F,No,,,,,"Mockingjay, The Ballad of Songbirds and Snakes",Rebels,,Stylist
+Trajan Heavensbee,0,M,No,,,,,Mentioned,,,Father of Panem
+Urban Canville,0,M,"No, Mentor",10,No,,Teslee,The Ballad of Songbirds and Snakes,Academy,,Student
+Venia,0,F,No,,,,,Trilogy,,,Katniss' stylist
+Venus,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Smart child
+Vipsania Sickle,0,F,"No, Mentor",10,No,,Treech,The Ballad of Songbirds and Snakes,Academy,,Student
+Vitus,0,M,No,,,,,Sunrise on the Reaping,Academy,,Student
+Volumnia Gaul,0,F,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",Academy,,"Head Gamemaker, crazy scientist, professor"
+Augustus Braun,1,M,Reaped,67,Yes,,,Mentioned,Careers,War,
+Carat,1,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Cashmere,1,F,Volunteer,"64, 75",Yes,,,Catching Fire,Careers,Johanna Mason,
+Facet,1,M,Reaped,10,No,Livia Cardew,,The Ballad of Songbirds and Snakes,,Peacekeepers,
+Glimmer,1,F,Volunteer,74,No,,,The Hunger Games,Careers,Katniss Everdeen,
+Gloss,1,M,Volunteer,"63, 75",Yes,,,Catching Fire,Careers,Katniss Everdeen,
+Loupe,1,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Maysilee Donner,
+Marvel,1,M,Volunteer,74,No,,,"The Hunger Games, Mentioned",Careers,Katniss Everdeen,
+Palladium Barker,1,M,Volunteer,46,Yes,,,Mentioned,Careers,War,
+Panache Barker,1,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Maysilee Donner,
+Silka Sharp,1,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Haymitch Abernathy,
+Velvereen,1,F,Reaped,10,No,Palmyra Monty,,The Ballad of Songbirds and Snakes,,Peacekeepers,
+Alpheus,2,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Brutus,2,M,Volunteer,75,Yes,,,Catching Fire,Careers,Peeta Mellark,
+Camilla,2,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Cato,2,M,Volunteer,74,No,,,"The Hunger Games, Mentioned",Careers,Katniss Everdeen,
+Clove,2,F,Volunteer,74,No,,,"The Hunger Games, Mentioned",Careers,Thresh,
+Enobaria,2,F,Volunteer,"62, 75",Yes,,,"Catching Fire, Mockingjay",Careers,,Survivor
+Female Victor D2,2,F,Reaped,,Yes,,,Mentioned,Careers,War,
+Female Victor D2,2,F,Reaped,,Yes,,,Mentioned,Careers,War,
+Female Victor D2,2,F,Reaped,,Yes,,,Mentioned,Careers,War,
+Janus,2,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Lyme,2,F,Volunteer,,Yes,,,Mockingjay,Rebels,War,Commander 
+Male Victor D2,2,M,Reaped,,Yes,,,Mentioned,Careers,War,
+Male Victor D2,2,M,Reaped,73,Yes,,,Mentioned,Careers,War,
+Marcus,2,M,Rigged,10,No,Sejanus Plinth,,The Ballad of Songbirds and Snakes,,Capitol,
+Nona,2,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Sabyn,2,F,Reaped,10,No,Florus Friend,,The Ballad of Songbirds and Snakes,,Peacekeepers,
+Sejanus Plinth,2,M,"No, Mentor",10,No,,Marcus,The Ballad of Songbirds and Snakes,Academy,Coriolanus Snow,"Student, Snow's best friend"
+Ampert Latier,3,M,Rigged,50,No,Beetee Latier,,Sunrise on the Reaping,"Newcomers, Haymitch",Capitol,
+Beetee Latier,3,M,"Reaped, Mentor","34, 75",Yes,,Ampert Latier,"Trilogy, Sunrise on the Reaping",Rebels,,Inventor
+Bomb child,3,M,Reaped,74,No,,,The Hunger Games,Careers,Careers,
+Circ,3,M,Reaped,10,No,Io Jasper,,The Ballad of Songbirds and Snakes,,Volumnia Gaul,
+Coil,3,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Dio,3,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Lect,3,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Teslee,3,F,Reaped,10,No,Urban Canville,,The Ballad of Songbirds and Snakes,,Treech,
+Wiress,3,F,"Reaped, Mentor","49, 75",Yes,,Haymitch Abernathy,"Sunrise on the Reaping, Catching Fire",Rebels,Careers,
+Angler,4,M,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Haymitch Abernathy,
+Annie Cresta,4,F,Reaped,70,Yes,Mags Flanagan,,"Catching Fire, Mockingjay",Katniss,,Finnick's wife
+Baby Odair Cresta,4,,No,,,,,Mockingjay,,,Annie and Finnick's child
+Barba,4,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,Haymitch Abernathy,
+Coral,4,F,Reaped,10,No,Festus Creed,,The Ballad of Songbirds and Snakes,,Volumnia Gaul,
+Finnick Odair,4,M,"Reaped,Reaped","75, 65",Yes,Mags Flanagan,Annie Cresta,"Catching Fire, Mockingjay","Rebels, Katniss",Capitol,
+Mags Flanagan,4,F,"Reaped,Volunteer, Mentor","11, 75",Yes,,"Haymitch Abernathy, Annie Cresta, Finnick Odair","Catching Fire, Sunrise on the Reaping",Rebels,Capitol,Wonderful lady
+Male Victor D4,4,M,Reaped,,Yes,,,Mentioned,Careers,Teslee,
+Male Victor D4,4,M,Reaped,,Yes,,,Mentioned,Careers,War,
+Male Victor D4,4,M,Reaped,,Yes,,,Mentioned,Careers,War,
+Maritte,4,F,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Mizzen,4,M,Reaped,10,No,Persephone Price,,The Ballad of Songbirds and Snakes,,Teslee,
+Urchin,4,M,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Anion,5,F,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Female Victor D5,5,F,Reaped,,Yes,,,Mentioned,,War,
+Fisser,5,M,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Foxface,5,F,Reaped,74,No,,,"The Hunger Games, Mentioned",,Nightlock,
+Hy,5,M,Reaped,10,No,Dennis Fling,,The Ballad of Songbirds and Snakes,,Asthma,
+Hychel,5,M,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Male Victor D5,5,M,Reaped,,Yes,,,Mentioned,,War,
+Porter Millicent Tripp,5,F,Reaped,38,Yes,,,Mockingjay,,War,
+Potena,5,F,Reaped,50,No,,,Sunrise on the Reaping,Careers,Capitol,
+Sol,5,F,Reaped,10,No,Iphigenia Moss,,The Ballad of Songbirds and Snakes,,Coral,
+Atread,6,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Female Victor D6,6,F,Reaped,75,Yes,,,Mentioned,Rebels,Capitol,Peeta's saviour
+Female Victor D6,6,F,Reaped,,Yes,,,Mentioned,,War,
+Ginnee,6,F,Reaped,10,No,Diana Ring,,The Ballad of Songbirds and Snakes,,Bombing,
+Male Victor D6,6,M,Reaped,"66,75",Yes,,,Mentioned,Rebels,Capitol,
+Male Victor D6,6,M,Reaped,,Yes,,,Mentioned,,War,
+Miles,6,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Otto,6,M,Reaped,10,No,Apollo Ring,,The Ballad of Songbirds and Snakes,,Bombing,
+Titus,6,M,Reaped,,No,,,Mentioned,,Capitol,Cannibal 
+Velo,6,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Wellie,6,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Autumn,7,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Bircher,7,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Blight,7,M,Reaped,75,Yes,,,Catching Fire,Rebels,Capitol,
+Heartwood,7,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Johanna Mason,7,F,Reaped,"71, 75",Yes,,,"Catching Fire, Mockingjay",,,Survivor
+Lamina,7,F,Reaped,10,No,Pliny Harrington,,The Ballad of Songbirds and Snakes,,Coral,
+Ringina,7,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Treech,7,M,Reaped,10,No,Vipsania Sickle,,The Ballad of Songbirds and Snakes,,Lucy Gray Baird,
+Alawna,8,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Bobbin,8,M,Reaped,10,No,Juno Phipps,,The Ballad of Songbirds and Snakes,,Coriolanus Snow,
+Bonnie,8,F,No,,,,,Catching Fire,Rebels,Capitol,Factory worker
+Cecelia,8,F,Reaped,75,Yes,,,Catching Fire,,Careers,Mother
+Eddy,8,M,No,,,,,Mockingjay,,Bombing,Patient
+Eddy's sister,8,F,No,,,,,Mockingjay,,Bombing,Patient
+Notion,8,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Paylor,8,F,No,,,,,Mockingjay,,,"Commander, New President of Panem"
+Ripman,8,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Smiley,8,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
+Twill,8,F,No,,,,,Catching Fire,Rebels,Capitol,Factory worker
+Wefton,8,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Woof,8,M,Reaped,"15, 75",Yes,,,Mentioned,Rebels,Careers,
+Wovey,8,F,Reaped,10,No,Hilarius Heavensbee,,The Ballad of Songbirds and Snakes,,Lucy Gray Baird,
+Clayton,9,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Female Victor D9,9,F,Reaped,,Yes,,,Mentioned,,War,
+Kerna,9,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Male Victor D9,9,M,Reaped,,Yes,,,Mentioned,,War,
+Midge,9,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Panlo,9,M,Reaped,10,No,Gaius Breen,,The Ballad of Songbirds and Snakes,,Coral,
+Ryan,9,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Sheaf,9,F,Reaped,10,No,Androcles Anderson,,The Ballad of Songbirds and Snakes,,Bombing,
+Brandy,10,F,Reaped,10,No,Arachne Crane,,The Ballad of Songbirds and Snakes,,Peacekeepers,
+Buck,10,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Female Victor D10,10,F,Reaped,,Yes,,,Mentioned,,War,
+Lannie,10,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Male Victor D10,10,M,Reaped,68,Yes,,,Mentioned,,War,
+Peeler,10,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Stamp,10,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Tanner,10,M,Reaped,10,No,Domitia Whimsiwick,,The Ballad of Songbirds and Snakes,,Coral,
+Blossom,11,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Bug,11,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
+Chaff,11,M,Reaped,"45, 75",Yes,,,Catching Fire,Rebels,Careers,
+Chicory,11,F,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Dill,11,F,Reaped,10,No,Felix Ravinstill,,The Ballad of Songbirds and Snakes,,Tuberculosis,
+Hull,11,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Capitol,
+Lou Lou,11,F,Reaped,50,No,"Wiress, Mags Flanagan",,Sunrise on the Reaping,Newcomers,Capitol,Substitute of Luella McCoy
+Martin,11,M,No,,,,,Mentioned,,,Harvester
+Reaper Ash,11,M,Reaped,10,No,Clemensia Dovecote,,The Ballad of Songbirds and Snakes,,Lucy Gray Baird,
+Rue,11,F,Reaped,74,No,,,"The Hunger Games, Mentioned",Katniss,Careers,
+Seeder,11,F,Reaped,75,Yes,,,Mentioned,Rebels,Careers,
+Thresh,11,M,Reaped,74,No,,,"The Hunger Games, Mentioned",,Capitol,
+Tile,11,M,Reaped,50,No,,,Sunrise on the Reaping,Newcomers,Careers,
+Arlo Chance,12,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,Capitol,Coal miner
+Asterid Everdeen,12,F,No,,,,,"Trilogy, Sunrise on the Reaping",,,Healer
+Babyboy Mellark Everdeen,12,M,No,,,,,Mockingjay,Katniss,,Katniss and Peeta Mellark's son
+Babygirl Mellark Everdeen,12,F,No,,,,,Mockingjay,Katniss,,Katniss and Peeta Mellark's daughter
+Barb Azure Baird,12,F,No,,,,,"Sunrise on the Reaping, The Ballad of Songbirds and Snakes",Covey,,Musician
+Bascom Pie,12,M,No,,,,,Sunrise on the Reaping,,,Bootlegger
+Billy Taupe,12,M,No,,,,,The Ballad of Songbirds and Snakes,Covey,Coriolanus Snow,Musician
+Binnie Chance,12,M,No,,,,,Sunrise on the Reaping,,Peacekeepers,
+Blair,12,M,No,,,,,Sunrise on the Reaping,Haymitch,,Haymitch's friend
+Bristel,12,M,No,,,,,Catching Fire,Rebels,Capitol,Coal miner
+Burdock Everdeen,12,M,No,,,,,"Trilogy, Sunrise on the Reaping",Covey,Mine explosion,"Coal miner, hunter"
+Buster,12,M,No,,,,,Mentioned,,,Louella's bullfrog
+Buttercup,12,M,No,,,Primrose Everdeen,,Trilogy,Katniss,,Prim's cat
+Cayson McCoy,12,M,No,,,,,Sunrise on the Reaping,,,"Coal miner, Louella's brother"
+Clay Chance,12,M,No,,,,,Sunrise on the Reaping,,Peacekeepers,
+Clerk Carmine,12,M,No,,,,,"Mockingjay, The Ballad of Songbirds and Snakes, Sunrise on the Reaping",Covey,,"Musician, gay"
+Commander Hoff,12,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper commander
+Cookie,12,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
+Cray,12,M,No,,,,,Mockingjay,Peacekeepers,Coriolanus Snow,Cool head peacekeeper
+Darius,12,M,No,,,,,"Catching Fire, Mentioned",Peacekeepers,Capitol,Peacekeeper
+Delly Cartwright,12,F,No,,,,,Trilogy,,,Merchant
+Gale Hawthorne,12,M,No,,,,,Trilogy,Rebels,,"Coal miner, hunter"
+Greasy Sae,12,F,No,,,,,Trilogy,Katniss,,Cooker
+Hattie Meeney,12,F,No,,,,,Sunrise on the Reaping,Haymitch,,Bootlegger
+Haymitch Abernathy,12,M,"Rigged, Mentor",50,Yes,"Wiress, Mags Flanagan","Katniss Everdeen, Peeta Mellark","Trilogy, Sunrise on the Reaping",Haymitch,,Geesee alcoholic
+Hazelle Hawthorne,12,F,No,,,,,"Trilogy, Sunrise on the Reaping",,,Mother
+Ima McCoy,12,F,No,,,,,Mentioned,,,Louella's sister
+Jessup Diggs,12,M,Reaped,10,No,Lysistrata Vickers,,The Ballad of Songbirds and Snakes,,Rabies,
+Jethro Callow,12,M,No,,,,,Sunrise on the Reaping,,Suicide,"Booker boy, coal miner, Wyatt's father"
+Katniss Everdeen,12,F,"Volunteer,Reaped","75, 74",Yes,Haymitch Abernathy,,"Trilogy, Mentioned",Katniss,,"Hunter, mockingjay"
+Lady,12,F,No,,,Primrose Everdeen,,Trilogy,Katniss,Bombing,Prim's goat
+Leevy,12,F,No,,,,,"Catching Fire, Mockingjay",,,Survivor
+Lenore Dove Baird,12,F,No,,,,,Sunrise on the Reaping,Covey,Coriolanus Snow,Musician
+Lil,12,F,No,,,,,The Ballad of Songbirds and Snakes,Rebels,Peacekeepers,Rebel
+Louella McCoy,12,F,Reaped,50,No,"Wiress, Mags Flanagan",,Sunrise on the Reaping,Newcomers,Capitol,
+Lucy Gray Baird,12,F,Rigged,10,Yes,Coriolanus Snow,,The Ballad of Songbirds and Snakes,Covey,Unknown,"Musician, performer"
+Lyle Whitcomb,12,M,No,,,,,Sunrise on the Reaping,,Black lung,"Coal miner, father of Sarshee"
+Madge Undersee,12,F,No,,,,,Trilogy,,Capitol,Mayor's daughter
+Maude Ivory,12,F,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",Covey,Birth labor,Musician
+Mayfair Lipp,12,F,No,,,,,The Ballad of Songbirds and Snakes,,Coriolanus Snow,
+Mayor Allister,12,F,No,,,,,Sunrise on the Reaping,,,Mayor
+Mayor Lipp,12,M,No,,,,,The Ballad of Songbirds and Snakes,,,Mayor
+Mayor Undersee,12,M,No,,,,,"Catching Fire, Mentioned",,Bombing,Mayor
+Maysilee Donner,12,F,Reaped,50,No,"Wiress, Mags Flanagan",,"Sunrise on the Reaping, Mentioned",Newcomers,Capitol,Donner twin
+Merrilee Undersee,12,F,No,,,,,"Sunrise on the Reaping, Mentioned",,Capitol,Donner twin
+Mrs. Mellark,12,F,No,,,,,The Hunger Games,,Bombing,Baker
+Otho Mellark,12,M,No,,,,,"Trilogy, Sunrise on the Reaping",,Capitol,Baker
+Peeta Mellark,12,M,"Reaped,Volunteer","74, 75",Yes,Haymitch Abernathy,,"Trilogy, Mentioned",Katniss,,"Baker, artist, lover"
+Posy Hawthorne,12,F,No,,,,,Trilogy,,Bombing,
+Primrose Everdeen,12,F,No,,,,,Trilogy,,Bombing,Healer
+Purnia,12,F,No,,,,,Catching Fire,Peacekeepers,Bombing,Peacekeeper
+Ripper,12,F,No,,,,,"Catching Fire, Mentioned",,Bombing,Bootlegger
+Romulus Thread,12,M,No,,,,,Catching Fire,Peacekeepers,Horrible death I hope,Head peacekeeper
+Rooba,12,M,No,,,,,Mentioned,,Bombing,Butcher
+Rory Hawthorne,12,M,No,,,,,Trilogy,,Bombing,
+Sarshee Whitcomb,12,F,Reaped,,No,,,Sunrise on the Reaping,,Capitol,
+Shamus,12,F,No,,,,,The Ballad of Songbirds and Snakes,Covey,,Covey's goat
+Sid Abernathy,12,M,No,,,,,Sunrise on the Reaping,,Coriolanus Snow,Haymitch's lil bro
+Spruce,12,M,No,,,,,The Ballad of Songbirds and Snakes,Rebels,Peacekeepers,Rebel
+Tam Amber,12,M,No,,,,,"The Ballad of Songbirds and Snakes, Sunrise on the Reaping",Covey,Bombing,"Musician, goat man"
+Thom,12,M,No,,,,,"Catching Fire, Mockingjay",,,Coal miner
+Vick Hawthorne,12,M,No,,,,,Trilogy,,Bombing,
+Willamae Abernathy,12,F,No,,,,,"Sunrise on the Reaping, Mentioned",Haymitch,Capitol,Mother
+Woodbine Chance,12,M,Reaped,50,No,,,Sunrise on the Reaping,,Capitol,
+Wyatt Callow,12,M,Reaped,50,No,"Wiress, Mags Flanagan",,Sunrise on the Reaping,Newcomers,Careers,Analyst of the Games
+Boggs,13,M,No,,,,,Mockingjay,Rebels,Capitol,Commander
+Castor,13,M,No,,,,,Mockingjay,Rebels,Capitol,Cameraman
+Dalton,13,M,No,,,,,Mockingjay,Rebels,,Maintain Genetic Diversity on Beef Ranch
+Homes,13,M,No,,,,,Mockingjay,Rebels,Capitol,Soldier
+Jackson,13,F,No,,,,,Mockingjay,Rebels,Capitol,Lieutenant
+Leeg 1,13,F,No,,,,,Mockingjay,Rebels,Capitol,Soldier
+Leeg 2,13,F,No,,,,,Mockingjay,Rebels,Capitol,Soldier
+Mitchell,13,M,No,,,,,Mockingjay,Rebels,Hijacked Peeta Mellark,Soldier
+President Alma Coin,13,F,No,,,,,Mockingjay,Rebels,Katniss Everdeen,President of District 13
+York,13,F,No,,,,,Mentioned,Rebels,,"Soldier, Head of Security of District 13"
