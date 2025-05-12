@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Personajes</title>
+</head>
+<body>
+    <h1>Lista de Personajes</h1>
+    <p><a href="/">Volver al menú</a></p>
+
+    {% if characters %}
+        <ul>
+            {% for character in characters %}
+                <li>
+                    <strong>{{ character.name }}</strong> (ID: {{ character.id }})<br>
+                    Género: {{ character.gender }}<br>
+                    Profesión: {{ character.profession }}<br>
+                    Distrito: {{ character.district }}<br>
+                    <a href="/characters/update/{{ character.id }}">Editar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No se encontraron personajes.</p>
+    {% endif %}
+</body>
+</html>

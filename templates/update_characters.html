@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Edición de Personajes</title>
+</head>
+<body>
+    <p><a href="/">Volver al menú de gestión</a></p>
+<!-- Modificar personaje -->
+<div>
+    <h2>Modificar personaje</h2>
+    <form action="/characters/update" method="POST">
+        <label>ID*: 
+            <input name="id_character" required type="text" value="{{ character.id_character }}" readonly>
+        </label><br>
+        <label>Nombre: 
+            <input name="name" type="text" value="{{ character.name }}">
+        </label><br>
+        <label>Género*:
+            <select name="gender" required>
+                <option value="">--Seleccione--</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+                <option value="Other">Other</option>
+            </select>
+        </label><br>
+        <label>Profesión: 
+            <input name="profession" type="text" value="{{ character.profession }}">
+        </label><br>
+        <button type="submit">Modificar</button>
+    </form>
+</div>
+</body>
+</html>
