@@ -1,0 +1,90 @@
+- Obtener todos los personajes que aparecen en Sunrise of the Reaping que han aparecido en otros libros
+
+MATCH (c:Character)-[:APPEARS_IN]->(b:Book {Title: "Sunrise on the Reaping"})
+MATCH (c)-[:APPEARS_IN]->(otherBook:Book)
+WHERE otherBook.Title <> "Sunrise on the Reaping"
+RETURN DISTINCT c, b, collect(DISTINCT otherBook) AS otherBookNodes
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener a todos los personajes asesinados por otros con su causa de muerte
+
+MATCH p=()-[r:KILLED]->() RETURN p
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener todos los mentores que han llevado a la victoria a sus tributos
+
+MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
+WHERE p.victor = true
+RETURN mentor, collect(DISTINCT tribute) AS victoriousTributes, collect(DISTINCT game) AS winningGames, count(DISTINCT tribute) AS victories
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener los personajes que conocen a más personas de distritos diferentes
+
+//TODO
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener el personaje que más muertes ha provocado
+
+MATCH (killer:Character)-[:KILLED]->(victim:Character)
+WITH killer, count(victim) AS kills, collect(victim) AS victims
+ORDER BY kills DESC
+RETURN killer, kills, victims
+LIMIT 1
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener los personajes que más veces han aparecido en los libros
+
+MATCH (c:Character)-[:APPEARS_IN]->(b:Book)
+WITH c, count(b) AS appearances, collect(DISTINCT b) AS books
+ORDER BY appearances DESC
+LIMIT 3
+RETURN c, appearances, books
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener el distrito más poblado
+
+MATCH (c:Character)-[:FROM_DISTRICT]->(d:District)
+WITH d, count(c) AS population
+ORDER BY population DESC
+LIMIT 1
+MATCH (c:Character)-[:FROM_DISTRICT]->(d)
+RETURN d AS mostPopulatedDistrict, collect(c) AS characters
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener la alianza con más aliados
+
+MATCH (c:Character)-[:BELONGS_TO]->(a:Alliance)
+WITH a, count(c) AS population
+ORDER BY population DESC
+LIMIT 1
+MATCH (c:Character)-[:BELONGS_TO]->(a)
+RETURN a AS mostPopularAlliance, collect(c) AS characters
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener el libro con más personajes
+
+MATCH (c:Character)-[:APPEARS_IN]->(b:Book)
+WITH b, count(c) AS population
+ORDER BY population DESC
+LIMIT 1
+MATCH (c:Character)-[:APPEARS_IN]->(b)
+RETURN b AS mostPopulatedBook, collect(c) AS characters
+
+-------------------------------------------------------------------------------------------------------
+
+- Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
+
+
+- Obtener el número de personajes de cada distrito por cada libro
+
+
+- Dados dos personajes, encontrar el camino más corto entre ellos (prioridades: relación directa, mismos juegos, mismo distrito, mismo libro)
+
