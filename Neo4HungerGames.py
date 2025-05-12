@@ -8,9 +8,9 @@ class Neo4HungerGames:
     def close(self):
         self.driver.close()
 
-    def delete_all_database(self):
+    def delete_all_nodes(self):
         with self.driver.session() as session:
-            query = "MATCH (n)-[r]-() DELETE r, n"
+            query = "MATCH (n) DELETE n"
             session.run(query)
 
     def get_next_character_id(self):
@@ -115,37 +115,68 @@ class Neo4HungerGames:
 
     def create_neo4j_character_nodes(self, df):
         allowed_columns = ["ID", "Name", "Gender", "Profession"]
-        for _, row in df.iterrows():
-            props_list = []
-            for col in allowed_columns:
-                if col in df.columns:
-                    value = row[col]
-                    if pd.isna(value) and col == "Profession":
-                        value = "None"
-                    if not pd.isna(value):
-                        safe_value = str(value).replace("'", "`")
-                        props_list.append(f"{col}: '{safe_value}'")
-            props = ", ".join(props_list)
         with self.driver.session() as session:
+            for _, row in df.iterrows():
+                props_list = []
+                for col in allowed_columns:
+                    if col in df.columns:
+                        value = row[col]
+                        if pd.isna(value) and col == "Profession":
+                            value = "None"
+                        if not pd.isna(value):
+                            safe_value = str(value).replace("'", "`")
+                            props_list.append(f"{col}: '{safe_value}'")
+                props = ", ".join(props_list)
                 session.run(f"CREATE (:Character {{{props}}});\n")
 
     def create_neo4j_character_node(self, character_data):
         allowed_columns = ["ID", "Name", "Gender", "Profession"]
         props_list = []
 
-        for col in allowed_columns:
-            if col in character_data:
-                value = character_data[col]
-                if not value and col == "Profession":
-                    value = "None"
-                if value:
-                    safe_value = str(value).replace("'", "`")  # proteger apóstrofes
-                    props_list.append(f"{col}: '{safe_value}'")
-
-        props = ", ".join(props_list)
-
         with self.driver.session() as session:
+            for col in allowed_columns:
+                if col in character_data:
+                    value = character_data[col]
+                    if not value and col == "Profession":
+                        value = "None"
+                    if value:
+                        safe_value = str(value).replace("'", "`")  # proteger apóstrofes
+                        props_list.append(f"{col}: '{safe_value}'")
+
+            props = ", ".join(props_list)
             session.run(f"CREATE (:Character {{{props}}});\n")
+    
+    def update_neo4j_character_node(self, data):
+        with self.driver.session() as session:
+            session.run(
+                """
+                MATCH (c:Character {ID: $ID})
+                SET c.Name = $Name,
+                    c.Gender = $Gender,
+                    c.Profession = $Profession
+                """,
+                data
+            )
+
+    def delete_character_district_links(self, char_id):
+        with self.driver.session() as session:
+            session.run(
+                """
+                MATCH (c:Character {ID: $id})-[r:FROM_DISTRICT]->()
+                DELETE r
+                """,
+                {"id": char_id}
+            )
+
+    def delete_neo4j_character_and_relationships(self, char_id):
+        with self.driver.session() as session:
+            session.run(
+                """
+                MATCH (c:Character {ID: $id})
+                DETACH DELETE c
+                """,
+                {"id": char_id}
+            )
 
     def create_neo4j_death_nodes(self, df):
         unique_deaths = set()
@@ -358,10 +389,36 @@ class Neo4HungerGames:
                     })
                     seen_ids.add(record["id"])
             return characters
-
-    def get_districts(self):
+    
+    def get_character_by_id(self, char_id):
         with self.driver.session() as session:
-            result = session.run("MATCH (d:District) RETURN d.Name AS name, d.Number AS number")
+            result = session.run(
+                """
+                MATCH (c:Character {ID: $id})
+                OPTIONAL MATCH (c)-[:FROM_DISTRICT]->(d:District)
+                RETURN c.ID AS id,
+                    c.Name AS name,
+                    c.Gender AS gender,
+                    c.Profession AS profession,
+                    d.Number AS district_number
+                """,
+                {"id": char_id}
+            )
+            record = result.single()
+            if record:
+                return {
+                    "id": record["id"],
+                    "name": record["name"],
+                    "gender": record["gender"],
+                    "profession": record["profession"],
+                    "district": record["district_number"]  # Puede ser None
+                }
+            else: return None
+
+
+    def get_all_districts(self):
+        with self.driver.session() as session:
+            result = session.run("MATCH (d:District) RETURN DISTINCT d.Name AS name, d.Number AS number")
             return [
                 {
                     "name": record["name"],
@@ -369,3 +426,8 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
+        
+    def get_all_games(self):
+        with self.driver.session() as session:
+            result = session.run("MATCH (g:Game_Year) RETURN DISTINCT g.Year AS year ORDER BY year")
+            return [{"year": record["year"]} for record in result]

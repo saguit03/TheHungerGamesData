@@ -1,0 +1,60 @@
+/* Fondo anaranjado claro y tipografía general */
+body {
+    background-color: #ffe5b4;
+    font-size: 1.1em;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0 2em;
+}
+
+/* Centramos los títulos */
+h1, h2, h3 {
+    text-align: center;
+    margin-top: 1em;
+}
+
+/* Estilo para los enlaces de navegación */
+div > p > a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+div > p {
+    text-align: center;
+}
+
+/* Estilo para la lista en formato grid */
+ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1em;
+    margin-top: 2em;
+}
+
+/* Estilo para cada "caja" de personaje */
+li {
+    background-color: white;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+    padding: 1em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de editar */
+li a {
+    display: inline-block;
+    margin-top: 0.5em;
+    color: white;
+    background-color: #ff9800;
+    padding: 0.3em 0.6em;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+li a:hover {
+    background-color: #e68900;
+}

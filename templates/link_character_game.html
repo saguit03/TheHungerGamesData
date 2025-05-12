@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Relacionar Personajes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <p><a href="/">Volver al menú de gestión</a></p>
+<div>
+    <h2>Relacionar personaje con juegos</h2>
+    <form action="/characters/link_game" method="POST">
+        <label>ID del personaje*: 
+            <input type="text" name="character_id" required>
+        </label><br>
+
+        <label>Año del juego*: 
+            <select name="game_year" required>
+                {% for game in games %}
+                    <option value="{{ game.year }}">{{ game.year }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+
+        <label>¿Ganador?*:
+            <select name="winner" required>
+                <option value="yes">Sí</option>
+                <option value="no">No</option>
+            </select>
+        </label><br>
+
+        <button type="submit">Relacionar</button>
+    </form>
+</div>
+
+</body>
+</html>

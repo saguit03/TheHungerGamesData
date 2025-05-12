@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Gestión de Personajes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 <body>
 <div>
@@ -22,10 +24,10 @@
         {% for character in characters %}
         <li>
             <h3>{{ character.name }}</h3> 
-            ID: {{ character.id_character }},
+            ID: {{ character.character_id }},
             Género: {{ character.gender }},
             Profesión: {{ character.profession }}
-            <a href="/characters/update/{{ character.id_character }}">Editar</a>
+            <a href="/characters/update/{{ character.character_id }}">Editar</a>
         </li>
         {% endfor %}
     </ul>
@@ -49,7 +51,7 @@
             <select name="district" required>
                 <option value="">--Seleccione un distrito--</option>
                 {% for d in districts %}
-                    <option value="{{ d.number }}">Distrito {{ d.number }} (ID: {{ d.id }})</option>
+                    <option value="{{ d.number }}">{{ d.name }}</option>
                 {% endfor %}
             </select>
         </label><br>
@@ -63,7 +65,7 @@
 <div>
     <h2>Eliminar personaje</h2>
     <form action="/characters/delete" method="POST">
-        <label>ID*: <input name="id_character" required type="text"></label><br>
+        <label>ID*: <input name="character_id" required type="text"></label><br>
         <button type="submit">Eliminar</button>
     </form>
 </div>
@@ -72,7 +74,7 @@
 <div>
     <h2>Obtener personaje por ID</h2>
     <form action="/characters" method="GET" onsubmit="event.preventDefault(); getCharacterById();">
-        <label>ID*: <input id="id_character" name="id_character" required type="text"></label><br>
+        <label>ID*: <input id="character_id" name="character_id" required type="text"></label><br>
         <button type="submit">Buscar</button>
     </form>
 </div>
@@ -88,7 +90,7 @@
 
 <script>
     function getCharacterById() {
-        const idCharacter = document.getElementById('id_character').value;
+        const idCharacter = document.getElementById('character_id').value;
         if (idCharacter) {
             window.location.href = `/characters/${idCharacter}`;
         } else {

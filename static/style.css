@@ -1,0 +1,29 @@
+/* Fondo general */
+body {
+    background-color: #ffd0a1; /* anaranjado claro */
+    font-size: 1.4em; /* ligeramente más grande */
+    font-family: Arial, sans-serif;
+    margin: 5;
+    padding: 5;
+}
+
+
+/* Divs centrados en bloque */
+div {
+    display: inline-block;
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, button {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

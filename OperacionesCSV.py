@@ -1,12 +1,12 @@
 import pandas as pd
 import pandas.io.sql as PBD
 
-def importar_CSV(ruta):
+def importar_CSV(ruta, mostrar=False):
     print("--------------------------------------------")
 
     try:
         df=pd.read_csv(ruta, delimiter=",", encoding="ISO-8859-1")
-        print("Se ha importado el archivo CSV correctamente")
+        if (mostrar): print("Se ha importado el archivo CSV correctamente")
 
         return(df)
 
@@ -17,12 +17,12 @@ def importar_CSV(ruta):
     print("--------------------------------------------")
 
 
-def exportar_CSV(ruta,df):
+def exportar_CSV(ruta,df, mostrar=False):
     print("--------------------------------------------")
 
     try:
         df.to_csv(ruta, sep=";", index=False) #index a False para no escribir la columna índice
-        print("Se ha exportado el archivo CSV correctamente")
+        if(mostrar): print("Se ha exportado el archivo CSV correctamente")
 
     except PBD.DatabaseError as error:
         print("Error. No se ha podido exportar a CSV")
