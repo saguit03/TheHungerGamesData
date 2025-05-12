@@ -82,9 +82,16 @@ RETURN b AS mostPopulatedBook, collect(c) AS characters
 
 - Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
 
+-------------------------------------------------------------------------------------------------------
 
 - Obtener el número de personajes de cada distrito por cada libro
 
+MATCH (c:Character)-[:FROM_DISTRICT]->(d:District),
+      (c)-[:APPEARS_IN]->(b:Book)
+RETURN b.Title AS bookTitle, b.Order, d.Name AS districtName, count(DISTINCT c) AS characterCount
+ORDER BY b.Order, districtName
+
+-------------------------------------------------------------------------------------------------------
 
 - Dados dos personajes, encontrar el camino más corto entre ellos (prioridades: relación directa, mismos juegos, mismo distrito, mismo libro)
 

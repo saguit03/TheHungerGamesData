@@ -324,6 +324,13 @@ class Neo4HungerGames:
                         death_name=death_str
                     )
 
+    def create_family_links(self, id1, id2):
+        with self.driver.session() as session:
+                session.run(
+                    f"MATCH (a:Character {{ID: '{id1}'}}), (b:Character {{ID: '{id2}'}})\n"
+                    f"CREATE (a)-[:FAMILY]->(b);\n"
+                )
+
     # -------------------------------------------------------------------------------------
 
     def get_all_characters(self):
