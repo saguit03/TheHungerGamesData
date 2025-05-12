@@ -45,7 +45,16 @@
                 <option value="Other">Other</option>
             </select>
         </label><br>
+        <label>Distrito*:
+            <select name="district" required>
+                <option value="">--Seleccione un distrito--</option>
+                {% for d in districts %}
+                    <option value="{{ d.number }}">Distrito {{ d.number }} (ID: {{ d.id }})</option>
+                {% endfor %}
+            </select>
+        </label><br>
         <label>Profesión: <input name="profession" type="text"></label><br>
+        
         <button type="submit">Añadir</button>
     </form>
 </div>

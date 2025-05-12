@@ -338,20 +338,34 @@ class Neo4HungerGames:
             result = session.run("""
                 MATCH (c:Character)
                 OPTIONAL MATCH (c)-[:FROM_DISTRICT]->(d:District)
-                RETURN c.ID AS id,
-                    c.Name AS name,
-                    c.Gender AS gender,
-                    c.Profession AS profession,
-                    d.Name AS district_name
-                ORDER BY c.Name
+                RETURN DISTINCT c.ID AS id,
+                                c.Name AS name,
+                                c.Gender AS gender,
+                                c.Profession AS profession,
+                                d.Name AS district_name
+                ORDER BY name
             """)
+            characters = []
+            seen_ids = set()
+            for record in result:
+                if record["id"] not in seen_ids:
+                    characters.append({
+                        "id": record["id"],
+                        "name": record["name"],
+                        "gender": record["gender"],
+                        "profession": record["profession"],
+                        "district": record["district_name"] or "Sin distrito"
+                    })
+                    seen_ids.add(record["id"])
+            return characters
+
+    def get_districts(self):
+        with self.driver.session() as session:
+            result = session.run("MATCH (d:District) RETURN d.Name AS name, d.Number AS number")
             return [
                 {
-                    "id": record["id"],
                     "name": record["name"],
-                    "gender": record["gender"],
-                    "profession": record["profession"],
-                    "district": record["district_name"] or "Sin distrito"
+                    "number": record["number"]
                 }
                 for record in result
             ]

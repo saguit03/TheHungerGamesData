@@ -6,8 +6,11 @@
 </head>
 <body>
     <h1>Lista de Personajes</h1>
-    <p><a href="/">Volver al menú</a></p>
-
+    <div>
+        <p><a href="/">Volver al menú de gestión</a></p>
+        <p><a href="/characters">Volver a la gestión de personajes</a></p>
+    </div>
+    
     {% if characters %}
         <ul>
             {% for character in characters %}
