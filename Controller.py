@@ -19,6 +19,7 @@ class Controller:
 
         if district_number:
             connection.create_character_district_link(char_id, district_number)
+        print(character_data)
         return redirect("/characters/all")
     
     @staticmethod
