@@ -15,15 +15,13 @@
 
 <!-- Obtener ALL personajes -->
 <div>
-    <h2>Obtener ALL personajes</h2>
-    <form action="/characters/all" method="GET">
-        <button type="submit">Buscar</button>
-    </form>
-    <h2>Lista de personajes</h2>
+
+    <div>
+        <h2>Algunos personajes</h2>
     <ul>
         {% for character in characters %}
         <li>
-            <h3>{{ character.name }}</h3> 
+            <h3>{{ character.name }}</h3>
             ID: {{ character.character_id }},
             Género: {{ character.gender }},
             Profesión: {{ character.profession }}
@@ -31,8 +29,14 @@
         </li>
         {% endfor %}
     </ul>
+        <form action="/characters/all" method="GET">
+            <button type="submit">Ver todos los personajes</button>
+        </form>
+    </div>
+
 </div>
 
+<div>
 <!-- Añadir personaje -->
 <div>
     <h2>Añadir personaje</h2>
@@ -69,6 +73,9 @@
         <button type="submit">Eliminar</button>
     </form>
 </div>
+</div>
+<div>
+
 
 <!-- Obtener personaje por ID -->
 <div>
@@ -86,6 +93,7 @@
         <label>Nombre*: <input name="name" required type="text"></label><br>
         <button type="submit">Buscar</button>
     </form>
+</div>
 </div>
 
 <script>

@@ -3,8 +3,8 @@ body {
     background-color: #ffd0a1; /* anaranjado claro */
     font-size: 1.4em; /* ligeramente más grande */
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
+    margin: 5%;
+    padding: 1%;
 }
 
 label {
