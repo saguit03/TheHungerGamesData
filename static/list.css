@@ -43,8 +43,8 @@ li {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Botón de editar */
-li a {
+/* Botón de borrado */
+li button{
     display: inline-block;
     margin-top: 0.5em;
     color: white;
@@ -55,6 +55,7 @@ li a {
     font-weight: bold;
 }
 
-li a:hover {
+li button:hover {
     background-color: #e68900;
+    cursor: pointer;
 }

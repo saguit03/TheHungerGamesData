@@ -9,10 +9,51 @@ body {
 
 label {
     font-weight: bold;
+    font-size: medium;
+    display: block;
+    margin-bottom: 0.5%;
 }
 
 input, select, button {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+
+.pretty_div {
+    background-color: white;
+    border: 2px solid #ffa500;
+    border-radius: 10px;
+    padding: 1em;
+    margin-bottom: 2%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button, a {
+    display: inline-block;
+    margin-top: 0.5em;
+    color: white;
+    background-color: #ff9800;
+    padding: 0.3em 0.6em;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #8d723f;
+    font-size: large;
+    text-align: center;
+}
+
+button:hover, a:hover {
+    background-color: #e68900;
+    cursor: pointer;
+}
+
+.button-container {
+    text-align: center;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-top: 1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
