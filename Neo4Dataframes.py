@@ -177,7 +177,7 @@ class Neo4Dataframes:
 
                 session.run(
                     "MATCH (c:Character {ID: $character_id}), (d:District {Number: $district})\n"
-                    "CREATE (c)-[:FROM_DISTRICT {weight: $weight}]->(d)",
+                    "MERGE (c)-[:FROM_DISTRICT {weight: $weight}]->(d)",
                     character_id=character_id,
                     district=int(district),
                     weight=relationship_weights["FROM_DISTRICT"],
@@ -202,7 +202,7 @@ class Neo4Dataframes:
                         session.run(
                             """
                             MATCH (c:Character {ID: $character_id}), (g:Game_Year {Year: $year})
-                            CREATE (c)-[:PARTICIPATED_IN {victor: $winner, weight: $weight}]->(g)
+                            MERGE (c)-[:PARTICIPATED_IN {victor: $winner, weight: $weight}]->(g)
                             """,
                             {
                                 "character_id": character_id,
@@ -239,7 +239,7 @@ class Neo4Dataframes:
                         session.run(
                             """
                             MATCH (c:Character {ID: $character_id}), (b:Book {Title: $title})
-                            CREATE (c)-[:APPEARS_IN {weight: $weight}]->(b)
+                            MERGE (c)-[:APPEARS_IN {weight: $weight}]->(b)
                             """,
                             {
                                 "character_id": character_id,
@@ -260,33 +260,32 @@ class Neo4Dataframes:
                 alliance_list = [a.strip() for a in str(alliances).split(",")]
 
                 for alliance in alliance_list:
-                    for alliance in alliance_list:
-                        if alliance in ["Katniss", "Haymitch"]:
-                            character_name = "Katniss Everdeen" if alliance == "Katniss" else "Haymitch Abernathy"
-                            session.run(
-                                """
-                                MATCH (c:Character {ID: $character_id}), (a:Character {Name: $ally_name})
-                                CREATE (c)-[:ALLY_OF {weight: $weight}]->(a)
-                                """,
-                                {
-                                    "character_id": int(character_id),
-                                    "ally_name": character_name,
-                                    "weight": relationship_weights.get("ALLY_OF", 1)
-                                }
-                            )
-                        else:
-                            safe_alliance = alliance.replace("'", "`")
-                            session.run(
-                                """
-                                MATCH (c:Character {ID: $character_id}), (a:Alliance {Name: $alliance_name})
-                                CREATE (c)-[:BELONGS_TO  {weight: $weight}]->(a)
-                                """,
-                                {
-                                    "character_id": int(character_id),
-                                    "alliance_name": safe_alliance,
-                                    "weight": relationship_weights.get("BELONGS_TO", 1)
-                                }
-                            )
+                    if alliance in ["Katniss", "Haymitch"]:
+                        character_name = "Katniss Everdeen" if alliance == "Katniss" else "Haymitch Abernathy"
+                        session.run(
+                            """
+                            MATCH (c:Character {ID: $character_id}), (a:Character {Name: $ally_name})
+                            MERGE (c)-[:ALLY_OF {weight: $weight}]->(a)
+                            """,
+                            {
+                                "character_id": int(character_id),
+                                "ally_name": character_name,
+                                "weight": relationship_weights.get("ALLY_OF", 1)
+                            }
+                        )
+                    else:
+                        safe_alliance = alliance.replace("'", "`")
+                        session.run(
+                            """
+                            MATCH (c:Character {ID: $character_id}), (a:Alliance {Name: $alliance_name})
+                            MERGE (c)-[:BELONGS_TO  {weight: $weight}]->(a)
+                            """,
+                            {
+                                "character_id": int(character_id),
+                                "alliance_name": safe_alliance,
+                                "weight": relationship_weights.get("BELONGS_TO", 1)
+                            }
+                        )
 
     def create_neo4j_mentor_links(self, df):
         with self.driver.session() as session:
@@ -302,7 +301,7 @@ class Neo4Dataframes:
                     session.run(
                         """
                         MATCH (c:Character {ID: $character_id}), (m:Character {Name: $mentor_name})
-                        CREATE (m)-[:MENTORS {weight: $weight}]->(c)
+                        MERGE (m)-[:MENTORS {weight: $weight}]->(c)
                         """,
                         {
                             "character_id": int(character_id),
@@ -327,7 +326,7 @@ class Neo4Dataframes:
                     session.run(
                         """
                         MATCH (c:Character {ID: $character_id}), (k:Character {Name: $killer_name})
-                        CREATE (k)-[:KILLED {weight: $weight}]->(c)
+                        MERGE (k)-[:KILLED {weight: $weight}]->(c)
                         """,
                         {
                             "character_id": int(character_id),
@@ -339,7 +338,7 @@ class Neo4Dataframes:
                     session.run(
                         """
                         MATCH (c:Character {ID: $character_id}), (d:Death {Name: $death_name})
-                        CREATE (c)-[:DIED_FROM {weight: $weight}]->(d)
+                        MERGE (c)-[:DIED_FROM {weight: $weight}]->(d)
                         """,
                         {
                             "character_id": int(character_id),
