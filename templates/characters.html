@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="pretty_div">
+<div class="white_div">
     <h1>Gestión de personajes</h1>
     <div class="button-container">
         <p><a href="/">Volver al menú de gestión</a></p>
@@ -29,7 +29,7 @@
             </li>
             {% endfor %}
         </ul>
-        <form action="/characters/all" method="GET" class="pretty_div">
+        <form action="/characters/all" method="GET" class="white_div">
             <div class="button-container">
                 <button type="submit">Ver todos los personajes</button>
             </div>
@@ -40,13 +40,15 @@
 <div>
     <div style="display: flex; gap: 40px;">
         <!-- Añadir personaje -->
-        <div style="flex: 1;" class="pretty_div">
-            <h2>Añadir personaje</h2>
+        <div style="flex: 1;" class="white_div">
+            <div class="header_div">
+                <h2>Añadir personaje</h2>
+            </div>
             <form action="/characters/create" method="POST">
-                <p>Nota: Los parámetros con <span style="color: red; font-weight: bold;">*</span> son obligatorios</p>
-                <label>Nombre <span style="color: red; font-weight: bold;">*</span>:
+                <p style="font-style: italic;">Nota: Los parámetros con <span>*</span> son obligatorios</p>
+                <label>Nombre <span>*</span>:
                     <input name="name" required type="text" placeholder="Ej.: Katniss Everdeen"></label><br>
-                <label>Género <span style="color: red; font-weight: bold;">*</span>:
+                <label>Género <span>*</span>:
                     <select name="gender" required>
                         <option value="">--Seleccione un género--</option>
                         <option value="M">Hombre</option>
@@ -54,7 +56,7 @@
                         <option value="Other">Otro</option>
                     </select>
                 </label><br>
-                <label>Distrito <span style="color: red; font-weight: bold;">*</span>:
+                <label>Distrito <span>*</span>:
                     <select name="district" required>
                         <option value="">--Seleccione un distrito--</option>
                         {% for d in districts %}
@@ -71,8 +73,10 @@
         </div>
 
         <!-- Eliminar personaje -->
-        <div style="flex: 1;" class="pretty_div">
-            <h2>Eliminar personaje</h2>
+        <div style="flex: 1;" class="white_div">
+            <div class="header_div">
+                <h2>Eliminar personaje</h2>
+            </div>
             <form action="/characters/delete" method="POST">
                 <label>ID <span style="color: red; font-weight: bold;">*</span>: <input name="character_id" required type="text"></label><br>
                 <div class="button-container">
@@ -84,8 +88,10 @@
 
     <div style="display: flex; gap: 40px; margin-top: 20px;">
         <!-- Obtener personaje por ID -->
-        <div style="flex: 1;" class="pretty_div">
-            <h2>Obtener personaje por ID</h2>
+        <div style="flex: 1;" class="white_div">
+            <div class="header_div">
+                <h2>Obtener personaje por ID</h2>
+            </div>
             <form action="/characters" method="GET" onsubmit="event.preventDefault(); getCharacterById();">
                 <label>ID <span style="color: red; font-weight: bold;">*</span>: <input id="character_id" name="character_id" required type="text"></label><br>
                 <div class="button-container">
@@ -95,8 +101,10 @@
         </div>
 
         <!-- Obtener personaje por nombre -->
-        <div style="flex: 1;" class="pretty_div">
-            <h2>Obtener personaje por nombre</h2>
+        <div style="flex: 1;" class="white_div">
+            <div class="header_div">
+                <h2>Obtener personaje por nombre</h2>
+            </div>
             <form action="/characters/name" method="GET">
                 <label>Nombre <span style="color: red; font-weight: bold;">*</span>: <input name="name" required type="text"></label><br>
                 <div class="button-container">
