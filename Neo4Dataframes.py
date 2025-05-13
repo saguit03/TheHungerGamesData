@@ -128,14 +128,14 @@ class Neo4Dataframes:
         unique_deaths = set()
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                char_id = row.get("ID", None)
+                character_id = row.get("ID", None)
                 death = row.get("Killed by", None)
 
-                # Verifica que char_id no sea NaN y sea convertible a entero
-                if pd.isna(char_id) or pd.isna(death):
+                # Verifica que character_id no sea NaN y sea convertible a entero
+                if pd.isna(character_id) or pd.isna(death):
                     continue
                 try:
-                    char_id = int(char_id)
+                    character_id = int(character_id)
                 except ValueError:
                     continue
 
@@ -151,25 +151,25 @@ class Neo4Dataframes:
     def create_character_district_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                id = row["ID"]
+                character_id = row["ID"]
                 district = row["District"]
 
-                if pd.isna(id) or pd.isna(district):
+                if pd.isna(character_id) or pd.isna(district):
                     continue
 
                 session.run(
-                    f"MATCH (c:Character {{ID: {id}}}), (d:District {{Number: {int(district)}}})\n"
+                    f"MATCH (c:Character {{ID: {character_id}}}), (d:District {{Number: {int(district)}}})\n"
                     f"CREATE (c)-[:FROM_DISTRICT]->(d);\n"
                 )
 
     def create_character_game_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                char_id = row.get("ID", None)
+                character_id = row.get("ID", None)
                 games = row.get("Game_Year", None)
                 winner = str(row.get("Winner", "No")).strip().lower()
 
-                if pd.isna(char_id) or pd.isna(games):
+                if pd.isna(character_id) or pd.isna(games):
                     continue
 
                 winner_flag = "true" if winner == "yes" else "false"
@@ -181,12 +181,12 @@ class Neo4Dataframes:
                         year_int = int(year)
                         if year_int == 75:
                             session.run(
-                                f"MATCH (c:Character {{ID: {char_id}}}), (g:Game_Year {{Year: {year_int}}})\n"
+                                f"MATCH (c:Character {{ID: {character_id}}}), (g:Game_Year {{Year: {year_int}}})\n"
                                 f"CREATE (c)-[:PARTICIPATED_IN {{victor: false}}]->(g);\n"
                             )
                         else:
                             session.run(
-                                f"MATCH (c:Character {{ID: {char_id}}}), (g:Game_Year {{Year: {year_int}}})\n"
+                                f"MATCH (c:Character {{ID: {character_id}}}), (g:Game_Year {{Year: {year_int}}})\n"
                                 f"CREATE (c)-[:PARTICIPATED_IN {{victor: {winner_flag}}}]->(g);\n"
                             )
 
@@ -195,10 +195,10 @@ class Neo4Dataframes:
 
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                char_id = row.get("ID", None)
+                character_id = row.get("ID", None)
                 books = row.get("Appearance", None)
 
-                if pd.isna(char_id) or pd.isna(books):
+                if pd.isna(character_id) or pd.isna(books):
                     continue
 
                 book_list = [b.strip() for b in str(books).split(",")]
@@ -214,17 +214,17 @@ class Neo4Dataframes:
                     for title in expanded_books:
                         safe_book = title.replace("'", "`")
                         session.run(
-                            f"MATCH (c:Character {{ID: {char_id}}}), (b:Book {{Title: '{safe_book}'}})\n"
+                            f"MATCH (c:Character {{ID: {character_id}}}), (b:Book {{Title: '{safe_book}'}})\n"
                             f"CREATE (c)-[:APPEARS_IN]->(b);\n"
                         )
 
     def create_character_alliance_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                char_id = row.get("ID", None)
+                character_id = row.get("ID", None)
                 alliances = row.get("Alliance", None)
 
-                if pd.isna(char_id) or pd.isna(alliances):
+                if pd.isna(character_id) or pd.isna(alliances):
                     continue
 
                 alliance_list = [a.strip() for a in str(alliances).split(",")]
@@ -232,45 +232,45 @@ class Neo4Dataframes:
                 for alliance in alliance_list:
                     if alliance == "Katniss":
                         session.run(
-                            f"MATCH (c:Character {{ID: {char_id}}}), (k:Character {{Name: 'Katniss Everdeen'}})\n"
+                            f"MATCH (c:Character {{ID: {character_id}}}), (k:Character {{Name: 'Katniss Everdeen'}})\n"
                             f"CREATE (c)-[:ALLY_OF]->(k);\n"
                         )
                     elif alliance == "Haymitch":
                         session.run(
-                            f"MATCH (c:Character {{ID: {char_id}}}), (h:Character {{Name: 'Haymitch Abernathy'}})\n"
+                            f"MATCH (c:Character {{ID: {character_id}}}), (h:Character {{Name: 'Haymitch Abernathy'}})\n"
                             f"CREATE (c)-[:ALLY_OF]->(h);\n"
                         )
                     else:
                         safe_alliance = alliance.replace("'", "`")
                         session.run(
-                            f"MATCH (c:Character {{ID: {char_id}}}), (a:Alliance {{Name: '{safe_alliance}'}})\n"
+                            f"MATCH (c:Character {{ID: {character_id}}}), (a:Alliance {{Name: '{safe_alliance}'}})\n"
                             f"CREATE (c)-[:BELONGS_TO]->(a);\n"
                         )
 
     def create_neo4j_mentor_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                char_id = row.get("ID", None)
+                character_id = row.get("ID", None)
                 mentors = row.get("Mentor", None)
 
-                if pd.isna(char_id) or pd.isna(mentors):
+                if pd.isna(character_id) or pd.isna(mentors):
                     continue
 
                 mentor_list = [a.strip() for a in str(mentors).split(",")]
                 for mentor in mentor_list:
                     safe_mentor = mentor.replace("'", "`")
                     session.run(
-                        f"MATCH (c:Character {{ID: {char_id}}}), (m:Character {{Name: '{safe_mentor}'}})\n"
+                        f"MATCH (c:Character {{ID: {character_id}}}), (m:Character {{Name: '{safe_mentor}'}})\n"
                         f"CREATE (m)-[:MENTORS]->(c);\n"
                     )
 
     def create_neo4j_death_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                char_id = row.get("ID", None)
+                character_id = row.get("ID", None)
                 death = row.get("Killed by", None)
 
-                if pd.isna(char_id) or pd.isna(death):
+                if pd.isna(character_id) or pd.isna(death):
                     continue
 
                 death_str = str(death).strip()
@@ -283,16 +283,16 @@ class Neo4Dataframes:
 
                 if killer_node:
                     session.run(
-                        "MATCH (c:Character {ID: $char_id}), (k:Character {Name: $killer_name}) "
+                        "MATCH (c:Character {ID: $character_id}), (k:Character {Name: $killer_name}) "
                         "CREATE (k)-[:KILLED]->(c)",
-                        char_id=char_id,
+                        character_id=character_id,
                         killer_name=death_str
                     )
                 else:
                     session.run(
-                        "MATCH (c:Character {ID: $char_id}), (d:Death {Name: $death_name}) "
+                        "MATCH (c:Character {ID: $character_id}), (d:Death {Name: $death_name}) "
                         "CREATE (c)-[:DIED_FROM]->(d)",
-                        char_id=char_id,
+                        character_id=character_id,
                         death_name=death_str
                     )
 

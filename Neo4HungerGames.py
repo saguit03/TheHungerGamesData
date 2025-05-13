@@ -6,8 +6,10 @@ class Neo4HungerGames:
     def close(self):
         self.driver.close()
 
-    def delete_all_nodes(self):
+    def delete_all_links_and_nodes(self):
         with self.driver.session() as session:
+            query = "MATCH (n)-[r]-() DELETE r, n"
+            session.run(query)
             query = "MATCH (n) DELETE n"
             session.run(query)
 
@@ -51,24 +53,41 @@ class Neo4HungerGames:
                 data
             )
 
-    def delete_character_district_links(self, char_id):
+    def delete_character_district_links(self, character_id):
         with self.driver.session() as session:
             session.run(
                 """
                 MATCH (c:Character {ID: $id})-[r:FROM_DISTRICT]->()
                 DELETE r
                 """,
-                {"id": char_id}
+                {"id": character_id}
             )
 
-    def delete_neo4j_character_and_relationships(self, char_id):
+    def delete_neo4j_character_and_relationships(self, character_id):
         with self.driver.session() as session:
             session.run(
                 """
                 MATCH (c:Character {ID: $id})
                 DETACH DELETE c
                 """,
-                {"id": char_id}
+                {"id": int(character_id)}
+            )
+
+    def update_neo4j_character_node(self, data):
+        with self.driver.session() as session:
+            session.run(
+                """
+                MATCH (c:Character {ID: $ID})
+                SET c.Name = $Name,
+                    c.Gender = $Gender,
+                    c.Profession = $Profession
+                """,
+                {
+                    "ID": int(data["ID"]),
+                    "Name": data["Name"],
+                    "Gender": data["Gender"],
+                    "Profession": data["Profession"]
+                }
             )
 
     def create_character_district_link(self, character_id, district_number):
@@ -87,7 +106,7 @@ class Neo4HungerGames:
     def create_family_links(self, id1, id2):
         with self.driver.session() as session:
                 session.run(
-                    f"MATCH (a:Character {{ID: '{id1}'}}), (b:Character {{ID: '{id2}'}})\n"
+                    f"MATCH (a:Character {{ID: {id1}}}), (b:Character {{ID: {id2}}})\n"
                     f"CREATE (a)-[:FAMILY]->(b);\n"
                 )
 
@@ -119,7 +138,7 @@ class Neo4HungerGames:
                     seen_ids.add(record["id"])
             return characters
     
-    def get_character_by_id(self, char_id):
+    def get_character_by_id(self, character_id):
         with self.driver.session() as session:
             result = session.run(
                 """
@@ -131,7 +150,7 @@ class Neo4HungerGames:
                     c.Profession AS profession,
                     d.Number AS district_number
                 """,
-                {"id": char_id}
+                {"id": character_id}
             )
             record = result.single()
             if record:
