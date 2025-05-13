@@ -3,8 +3,17 @@ body {
     background-color: #ffd0a1; /* anaranjado claro */
     font-size: 1.4em; /* ligeramente más grande */
     font-family: Arial, sans-serif;
-    margin: 5%;
+    margin: 2%;
     padding: 1%;
+}
+
+span {
+    color: red;
+    font-weight: bold;
+}
+
+form {
+    padding-left: 5%;
 }
 
 label {
@@ -20,13 +29,22 @@ input, select, button {
     border: 1px solid #ccc;
 }
 
-.pretty_div {
+.white_div {
     background-color: white;
     border: 2px solid #ffa500;
     border-radius: 10px;
     padding: 1em;
     margin-bottom: 2%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header_div {
+    background-color: #DD8B26; /* anaranjado */
+    color: white;
+    padding: 0.1%;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 5%;
 }
 
 button, a {
