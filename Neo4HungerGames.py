@@ -157,6 +157,34 @@ class Neo4HungerGames:
             )
 
 
+    def get_all_relationships(self):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (a)-[r]->(b)
+                RETURN a.ID AS source_id,  coalesce(a.Name, a.ID) AS source, labels(a)[0] AS source_label,
+                    b.ID AS target_id, coalesce(b.Name, b.ID) AS target, labels(b)[0] AS target_label,
+                    type(r) AS rel_type, coalesce(r.weight, 15.0) AS weight
+                """
+            )
+            return [record.data() for record in result]
+
+    def delete_relationship(self, source_id, source_label, target_id, target_label, rel_type):
+        with self.driver.session() as session:
+            query = f"""
+                MATCH (a:{source_label} {{ID: $source_id}})-[r:{rel_type}]->(b:{target_label} {{ID: $target_id}})
+                DELETE r
+            """
+            print(query)
+            session.run(
+                query,
+                {
+                    "source_id": int(source_id),
+                    "target_id": int(target_id)
+                }
+            )
+
+
 
     # -------------------------------------------------------------------------------------
 

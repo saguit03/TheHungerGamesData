@@ -133,3 +133,20 @@ class Controller:
         connection.delete_family_link(id1, id2, relationship_type)
         return redirect("/characters/family/all")
 
+    @staticmethod
+    def list_links(connection: Neo4HungerGames):
+        links = connection.get_all_relationships()
+        return render_template("links_list.html", links=links)
+
+    @staticmethod
+    def delete_link(connection: Neo4HungerGames, form):
+        source_id = form["source_id"]
+        source_label = form["source_label"]
+        target_id = form["target_id"]
+        target_label = form["target_label"]
+        rel_type = form["rel_type"]
+        print("Eliminando relación:", source_id, source_label, target_id, target_label, rel_type)
+        connection.delete_relationship(source_id, source_label, target_id, target_label, rel_type)
+        return redirect("/links")
+
+

@@ -52,11 +52,11 @@ class Neo4Dataframes:
         with self.driver.session() as session:
             for val in values:
                 if val != 0:
-                    session.run(f"CREATE (:District {{Name: 'District {val}', Number: {val}}});\n")
+                    session.run(f"CREATE (:District {{Name: 'District {val}', Number: {val}, ID: {val}}});\n")
                 elif val == 0:
-                    session.run(f"CREATE (:District {{Name: 'The Capitol', Number: {val}}});\n")
+                    session.run(f"CREATE (:District {{Name: 'The Capitol',  Number: {val}, ID: {val}}});\n")
                 else:
-                    session.run(f"CREATE (:District {{Name: '???', Number: -1}});\n")
+                    session.run(f"CREATE (:District {{Name: '???', Number: {val}, ID: {val}}});\n")
 
     def create_neo4j_game_year_nodes(self, games):
         all_years = set()
@@ -68,7 +68,7 @@ class Neo4Dataframes:
 
         with self.driver.session() as session:
             for year in sorted(all_years):
-                session.run(f"CREATE (:Game_Year {{Year: {year}}});\n")
+                session.run(f"CREATE (:Game_Year {{Year: {year}, ID: {year}}});\n")
 
     def create_neo4j_book_nodes(self, books):
         all_books = set()
@@ -98,7 +98,7 @@ class Neo4Dataframes:
                         order = 6
 
                 if safe_name not in ["Trilogy"]:
-                    session.run(f"CREATE (:Book {{Title: '{safe_name}', Order: '{order}'}});\n")
+                    session.run(f"CREATE (:Book {{Title: '{safe_name}', Order: {order}, ID: {order}}});\n")
 
     def create_neo4j_alliance_nodes(self, alliances):
         all_alliances = set()
@@ -107,12 +107,13 @@ class Neo4Dataframes:
                 continue
             parts = [a.strip() for a in str(val).split(",")]
             all_alliances.update(parts)
-
+        cont = 1
         with self.driver.session() as session:
             for alliance in sorted(all_alliances):
                 safe_name = alliance.replace("'", "`")
                 if safe_name not in ["Katniss", "Haymitch"]:
-                    session.run(f"CREATE (:Alliance {{Name: '{safe_name}'}});\n")
+                    session.run(f"CREATE (:Alliance {{Name: '{safe_name}', ID: {cont}}});\n")
+                    cont += 1
 
     def create_neo4j_character_nodes(self, df):
         allowed_columns = ["ID", "Name", "Gender", "Profession"]
@@ -140,6 +141,7 @@ class Neo4Dataframes:
 
     def create_neo4j_death_nodes(self, df):
         unique_deaths = set()
+        cont = 1
         with self.driver.session() as session:
             for _, row in df.iterrows():
                 character_id = row.get("ID", None)
@@ -157,7 +159,9 @@ class Neo4Dataframes:
                 if death_str not in unique_deaths:
                     unique_deaths.add(death_str)
                     safe_death = death_str.replace("'", "`")
-                    session.run(f"CREATE (:Death {{Name: '{safe_death}'}})")
+                    # Añadir ID y nombre a la creación del nodo
+                    session.run(f"CREATE (:Death {{Name: '{safe_death}', ID: {cont}}});\n")
+                    cont += 1
 
 
     # -------------------------------------------------------------------------------------
@@ -232,10 +236,6 @@ class Neo4Dataframes:
 
                     for title in expanded_books:
                         safe_book = title.replace("'", "`")
-                        # session.run(
-                        #     f"MATCH (c:Character {{ID: {character_id}}}), (b:Book {{Title: '{safe_book}'}})\n"
-                        #     f"CREATE (c)-[:APPEARS_IN]->(b);\n"
-                        # )
                         session.run(
                             """
                             MATCH (c:Character {ID: $character_id}), (b:Book {Title: $title})
@@ -287,22 +287,6 @@ class Neo4Dataframes:
                                     "weight": relationship_weights.get("BELONGS_TO", 1)
                                 }
                             )
-                    # if alliance == "Katniss":
-                    #     session.run(
-                    #         f"MATCH (c:Character {{ID: {character_id}}}), (k:Character {{Name: 'Katniss Everdeen'}})\n"
-                    #         f"CREATE (c)-[:ALLY_OF]->(k);\n"
-                    #     )
-                    # elif alliance == "Haymitch":
-                    #     session.run(
-                    #         f"MATCH (c:Character {{ID: {character_id}}}), (h:Character {{Name: 'Haymitch Abernathy'}})\n"
-                    #         f"CREATE (c)-[:ALLY_OF]->(h);\n"
-                    #     )
-                    # else:
-                    #     safe_alliance = alliance.replace("'", "`")
-                    #     session.run(
-                    #         f"MATCH (c:Character {{ID: {character_id}}}), (a:Alliance {{Name: '{safe_alliance}'}})\n"
-                    #         f"CREATE (c)-[:BELONGS_TO]->(a);\n"
-                    #     )
 
     def create_neo4j_mentor_links(self, df):
         with self.driver.session() as session:

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Relaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Relaciones</h2>
+    <p><a href="/">Volver al menú de gestión</a></p>
+    {% if links %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo Origen</th>
+                    <th>Origen</th>
+                    <th>Tipo Destino</th>
+                    <th>Destino</th>
+                    <th>Tipo</th>
+                    <th>Peso</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in links %}
+                    <tr>
+                        <td>{{ link.source_label }}</td>
+                        <td>{{ link.source }} </td>
+                        <td>{{ link.target_label }}</td>
+                        <td>{{ link.target }}</td>
+                        <td>{{ link.rel_type }}</td>
+                        <td>{{ link.weight }}</td>
+                        <td>
+                            <form method="POST" action="/links/delete">
+                                <input type="hidden" name="source_id" value="{{ link.source_id }}">
+                                <input type="hidden" name="source_label" value="{{ link.source_label }}">
+                                <input type="hidden" name="target_id" value="{{ link.target_id }}">
+                                <input type="hidden" name="target_label" value="{{ link.target_label }}">
+                                <input type="hidden" name="rel_type" value="{{ link.rel_type }}">
+                                <button type="submit">Eliminar</button>
+                            </form>
+
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay relaciones registradas.</p>
+    {% endif %}
+</body>
+</html>
