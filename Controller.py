@@ -115,7 +115,7 @@ class Controller:
 
         try:
             connection.create_family_links(int(id1), int(id2),relationship_type)
-            return redirect("/characters")
+            return redirect("/characters/family/all")
         except Exception as e:
             print("Error creando vínculo familiar:", e)
             return f"Error: {str(e)}", 500
