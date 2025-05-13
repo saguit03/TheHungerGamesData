@@ -120,4 +120,16 @@ class Controller:
             print("Error creando vínculo familiar:", e)
             return f"Error: {str(e)}", 500
 
+    @staticmethod
+    def get_all_family_links(connection: Neo4HungerGames):
+        family_links = connection.get_all_family_links()
+        return render_template("link_family_list.html", family_links=family_links)
+
+    @staticmethod
+    def delete_family_link(connection: Neo4HungerGames, form):
+        id1 = int(form["source_id"])
+        id2 = int(form["target_id"])
+        relationship_type = form["type"]
+        connection.delete_family_link(id1, id2, relationship_type)
+        return redirect("/characters/family/all")
 

@@ -105,14 +105,58 @@ class Neo4HungerGames:
             )
 
     def create_family_links(self, id1, id2, relationship_type):
+        # Diccionario de pesos por tipo de relación
+        weights = {
+            "LOVER": 0.1,
+            "SIBLING": 0.5,
+            "PARENT": 0.5,
+            "CHILD": 0.5,
+            "COUSIN": 1.0,
+            "FRIEND": 0.3,
+            "OTHER": 1.0
+        }
+
+        rel_type = relationship_type.upper()
+        weight = weights.get(rel_type, 1.0)  # Valor por defecto si no se encuentra
+
         with self.driver.session() as session:
             session.run(
                 """
                 MATCH (a:Character {ID: $id1}), (b:Character {ID: $id2})
-                CREATE (a)-[r:FAMILY {type: $type} {weight: $weight}]->(b)
+                CREATE (a)-[r:FAMILY {type: $type, weight: $weight}]->(b)
                 """,
-                {"id1": int(id1), "id2": int(id2), "type": relationship_type.upper(), "weight": relationship_weights["FAMILY"]}
+                {
+                    "id1": int(id1),
+                    "id2": int(id2),
+                    "type": rel_type,
+                    "weight": weight
+                }
             )
+
+    def get_all_family_links(self):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (a:Character)-[r:FAMILY]->(b:Character)
+                RETURN a.ID AS source_id, a.Name AS source_name,
+                    b.ID AS target_id, b.Name AS target_name,
+                    r.type AS type, r.weight AS weight
+                """
+            )
+            return [record.data() for record in result]
+        
+
+    def delete_family_link(self, id1, id2, relationship_type):
+        with self.driver.session() as session:
+            session.run(
+                """
+                MATCH (a:Character {ID: $id1})-[r:FAMILY {type: $type}]->(b:Character {ID: $id2})
+                DELETE r
+                """,
+                {"id1": id1, "id2": id2, "type": relationship_type}
+            )
+
+
 
     # -------------------------------------------------------------------------------------
 

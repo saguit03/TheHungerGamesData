@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Relaciones Familiares</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Relaciones Familiares</h1>
+    <p><a href="/">Volver al menú principal</a></p>
+
+    {% if family_links %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID origen</th>
+                    <th>Nombre origen</th>
+                    <th>ID destino</th>
+                    <th>Nombre destino</th>
+                    <th>Tipo de vínculo</th>
+                    <th>Peso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in family_links %}
+                    <tr>
+                        <td>{{ link.source_id }}</td>
+                        <td>{{ link.source_name }}</td>
+                        <td>{{ link.target_id }}</td>
+                        <td>{{ link.target_name }}</td>
+                        <td>{{ link.type }}</td>
+                        <td>{{ link.weight }}</td>
+                        <td>
+                            <form action="/characters/family/delete" method="post" style="display:inline;">
+                                <input type="hidden" name="source_id" value="{{ link.source_id }}">
+                                <input type="hidden" name="target_id" value="{{ link.target_id }}">
+                                <input type="hidden" name="type" value="{{ link.type }}">
+                                <button type="submit">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay relaciones familiares registradas.</p>
+    {% endif %}
+</body>
+</html>
