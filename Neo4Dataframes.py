@@ -291,7 +291,7 @@ class Neo4Dataframes:
                 else:
                     session.run(
                         "MATCH (c:Character {ID: $char_id}), (d:Death {Name: $death_name}) "
-                        "CREATE (c)-[:DIED_BY]->(d)",
+                        "CREATE (c)-[:DIED_FROM]->(d)",
                         char_id=char_id,
                         death_name=death_str
                     )

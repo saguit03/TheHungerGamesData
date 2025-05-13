@@ -114,6 +114,6 @@ ORDER BY b.Order, districtName
 
 MATCH (a:Character {ID: "1"}), (b:Character {ID: "2"})
 MATCH path = shortestPath(
-  (a)-[:ALLY_OF|MENTORS|FAMILY|PARTICIPATED_IN|FROM_DISTRICT|APPEARS_IN*]-(b)
+  (a)-[:ALLY_OF|MENTORS|FAMILY|KILLED|PARTICIPATED_IN|FROM_DISTRICT|APPEARS_IN*]-(b)
 )
 RETURN path

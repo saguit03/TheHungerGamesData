@@ -11,7 +11,7 @@
         <p><a href="/">Volver al menú de gestión</a></p>
         <p><a href="/characters">Volver a la gestión de personajes</a></p>
     </div>
-    
+
     {% if characters %}
         <ul>
             {% for character in characters %}
@@ -20,7 +20,7 @@
                     Género: {{ character.gender }}<br>
                     Profesión: {{ character.profession }}<br>
                     Distrito: {{ character.district }}<br>
-                    <a href="/characters/update/{{ character.id }}">Editar</a>
+                    <a href="/characters/delete/{{character.id}}">Eliminar</a>
                 </li>
             {% endfor %}
         </ul>
