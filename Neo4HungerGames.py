@@ -1,4 +1,5 @@
 from neo4j import GraphDatabase
+from Neo4Dataframes import relationship_weights
 
 class Neo4HungerGames:
     def __init__(self, uri, user, password):
@@ -103,14 +104,23 @@ class Neo4HungerGames:
                 {"id": character_id, "district": int(district_number)}
             )
 
-    def create_family_links(self, id1, id2):
+    def create_family_links(self, id1, id2, relationship_type):
         with self.driver.session() as session:
-                session.run(
-                    f"MATCH (a:Character {{ID: {id1}}}), (b:Character {{ID: {id2}}})\n"
-                    f"CREATE (a)-[:FAMILY]->(b);\n"
-                )
+            session.run(
+                """
+                MATCH (a:Character {ID: $id1}), (b:Character {ID: $id2})
+                CREATE (a)-[r:FAMILY {type: $type} {weight: $weight}]->(b)
+                """,
+                {"id1": int(id1), "id2": int(id2), "type": relationship_type.upper(), "weight": relationship_weights["FAMILY"]}
+            )
 
     # -------------------------------------------------------------------------------------
+
+    def get_all_characters_id_and_name(self):
+        with self.driver.session() as session:
+            result = session.run("MATCH (c:Character) RETURN c.ID AS id, c.Name AS name ORDER BY c.ID")
+            return [{"id": record["id"], "name": record["name"]} for record in result]
+
 
     def get_all_characters(self):
         with self.driver.session() as session:

@@ -101,4 +101,23 @@ class Controller:
                 )
         return redirect("/characters/all")
 
-    
+    @staticmethod
+    def create_family_link(connection: Neo4HungerGames, request):
+        id1 = request.form.get("id1")
+        id2 = request.form.get("id2")
+        relationship_type = request.form.get("relationship_type")
+
+        if id1 == id2:
+            return "No se puede vincular un personaje consigo mismo.", 400
+        
+        if not id1 or not id2:
+            return "Faltan datos", 400
+
+        try:
+            connection.create_family_links(int(id1), int(id2),relationship_type)
+            return redirect("/characters")
+        except Exception as e:
+            print("Error creando vínculo familiar:", e)
+            return f"Error: {str(e)}", 500
+
+

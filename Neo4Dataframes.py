@@ -1,6 +1,20 @@
 from neo4j import GraphDatabase
 import pandas as pd
 
+# Define los pesos de las relaciones
+relationship_weights = {
+    "ALLY_OF": 2,
+    "APPEARS_IN": 10,
+    "BELONGS_TO": 2,
+    "DIED_FROM": 2,
+    "FROM_DISTRICT": 5,
+    "KILLED": 2,
+    "MENTORS": 1,
+    "MENTORED_BY": 1,
+    "PARTICIPATED_IN": 3,
+    "FAMILY": 0.5,
+}
+
 class Neo4Dataframes:
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
@@ -158,8 +172,11 @@ class Neo4Dataframes:
                     continue
 
                 session.run(
-                    f"MATCH (c:Character {{ID: {character_id}}}), (d:District {{Number: {int(district)}}})\n"
-                    f"CREATE (c)-[:FROM_DISTRICT]->(d);\n"
+                    "MATCH (c:Character {ID: $character_id}), (d:District {Number: $district})\n"
+                    "CREATE (c)-[:FROM_DISTRICT {weight: $weight}]->(d)",
+                    character_id=character_id,
+                    district=int(district),
+                    weight=relationship_weights["FROM_DISTRICT"],
                 )
 
     def create_character_game_links(self, df):
@@ -173,22 +190,24 @@ class Neo4Dataframes:
                     continue
 
                 winner_flag = "true" if winner == "yes" else "false"
-
                 years = [g.strip() for g in str(games).split(",")]
-
+                weight = relationship_weights["PARTICIPATED_IN"] #Gets weight, defaults to 3
                 for year in years:
                     if year.isdigit():
                         year_int = int(year)
-                        if year_int == 75:
-                            session.run(
-                                f"MATCH (c:Character {{ID: {character_id}}}), (g:Game_Year {{Year: {year_int}}})\n"
-                                f"CREATE (c)-[:PARTICIPATED_IN {{victor: false}}]->(g);\n"
-                            )
-                        else:
-                            session.run(
-                                f"MATCH (c:Character {{ID: {character_id}}}), (g:Game_Year {{Year: {year_int}}})\n"
-                                f"CREATE (c)-[:PARTICIPATED_IN {{victor: {winner_flag}}}]->(g);\n"
-                            )
+                        session.run(
+                            """
+                            MATCH (c:Character {ID: $character_id}), (g:Game_Year {Year: $year})
+                            CREATE (c)-[:PARTICIPATED_IN {victor: $winner, weight: $weight}]->(g)
+                            """,
+                            {
+                                "character_id": character_id,
+                                "year": year_int,
+                                "winner": winner_flag,
+                                "weight": weight
+                            },
+                        )
+
 
     def create_character_book_links(self, df):
         trilogy_books = ["The Hunger Games", "Catching Fire", "Mockingjay"]
@@ -213,9 +232,20 @@ class Neo4Dataframes:
 
                     for title in expanded_books:
                         safe_book = title.replace("'", "`")
+                        # session.run(
+                        #     f"MATCH (c:Character {{ID: {character_id}}}), (b:Book {{Title: '{safe_book}'}})\n"
+                        #     f"CREATE (c)-[:APPEARS_IN]->(b);\n"
+                        # )
                         session.run(
-                            f"MATCH (c:Character {{ID: {character_id}}}), (b:Book {{Title: '{safe_book}'}})\n"
-                            f"CREATE (c)-[:APPEARS_IN]->(b);\n"
+                            """
+                            MATCH (c:Character {ID: $character_id}), (b:Book {Title: $title})
+                            CREATE (c)-[:APPEARS_IN {weight: $weight}]->(b)
+                            """,
+                            {
+                                "character_id": character_id,
+                                "title": safe_book,
+                                "weight": relationship_weights["APPEARS_IN"]
+                            },
                         )
 
     def create_character_alliance_links(self, df):
@@ -230,70 +260,109 @@ class Neo4Dataframes:
                 alliance_list = [a.strip() for a in str(alliances).split(",")]
 
                 for alliance in alliance_list:
-                    if alliance == "Katniss":
-                        session.run(
-                            f"MATCH (c:Character {{ID: {character_id}}}), (k:Character {{Name: 'Katniss Everdeen'}})\n"
-                            f"CREATE (c)-[:ALLY_OF]->(k);\n"
-                        )
-                    elif alliance == "Haymitch":
-                        session.run(
-                            f"MATCH (c:Character {{ID: {character_id}}}), (h:Character {{Name: 'Haymitch Abernathy'}})\n"
-                            f"CREATE (c)-[:ALLY_OF]->(h);\n"
-                        )
-                    else:
-                        safe_alliance = alliance.replace("'", "`")
-                        session.run(
-                            f"MATCH (c:Character {{ID: {character_id}}}), (a:Alliance {{Name: '{safe_alliance}'}})\n"
-                            f"CREATE (c)-[:BELONGS_TO]->(a);\n"
-                        )
+                    for alliance in alliance_list:
+                        if alliance in ["Katniss", "Haymitch"]:
+                            character_name = "Katniss Everdeen" if alliance == "Katniss" else "Haymitch Abernathy"
+                            session.run(
+                                """
+                                MATCH (c:Character {ID: $character_id}), (a:Character {Name: $ally_name})
+                                CREATE (c)-[:ALLY_OF {weight: $weight}]->(a)
+                                """,
+                                {
+                                    "character_id": int(character_id),
+                                    "ally_name": character_name,
+                                    "weight": relationship_weights.get("ALLY_OF", 1)
+                                }
+                            )
+                        else:
+                            safe_alliance = alliance.replace("'", "`")
+                            session.run(
+                                """
+                                MATCH (c:Character {ID: $character_id}), (a:Alliance {Name: $alliance_name})
+                                CREATE (c)-[:BELONGS_TO  {weight: $weight}]->(a)
+                                """,
+                                {
+                                    "character_id": int(character_id),
+                                    "alliance_name": safe_alliance,
+                                    "weight": relationship_weights.get("BELONGS_TO", 1)
+                                }
+                            )
+                    # if alliance == "Katniss":
+                    #     session.run(
+                    #         f"MATCH (c:Character {{ID: {character_id}}}), (k:Character {{Name: 'Katniss Everdeen'}})\n"
+                    #         f"CREATE (c)-[:ALLY_OF]->(k);\n"
+                    #     )
+                    # elif alliance == "Haymitch":
+                    #     session.run(
+                    #         f"MATCH (c:Character {{ID: {character_id}}}), (h:Character {{Name: 'Haymitch Abernathy'}})\n"
+                    #         f"CREATE (c)-[:ALLY_OF]->(h);\n"
+                    #     )
+                    # else:
+                    #     safe_alliance = alliance.replace("'", "`")
+                    #     session.run(
+                    #         f"MATCH (c:Character {{ID: {character_id}}}), (a:Alliance {{Name: '{safe_alliance}'}})\n"
+                    #         f"CREATE (c)-[:BELONGS_TO]->(a);\n"
+                    #     )
 
     def create_neo4j_mentor_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                character_id = row.get("ID", None)
-                mentors = row.get("Mentor", None)
+                character_id = row.get("ID")
+                mentors = row.get("Mentor")
 
                 if pd.isna(character_id) or pd.isna(mentors):
                     continue
 
-                mentor_list = [a.strip() for a in str(mentors).split(",")]
-                for mentor in mentor_list:
-                    safe_mentor = mentor.replace("'", "`")
+                mentor_list = [m.strip().replace("'", "`") for m in str(mentors).split(",")]
+                for mentor_name in mentor_list:
                     session.run(
-                        f"MATCH (c:Character {{ID: {character_id}}}), (m:Character {{Name: '{safe_mentor}'}})\n"
-                        f"CREATE (m)-[:MENTORS]->(c);\n"
+                        """
+                        MATCH (c:Character {ID: $character_id}), (m:Character {Name: $mentor_name})
+                        CREATE (m)-[:MENTORS {weight: $weight}]->(c)
+                        """,
+                        {
+                            "character_id": int(character_id),
+                            "mentor_name": mentor_name,
+                            "weight": relationship_weights["MENTORS"]
+                        }
                     )
 
     def create_neo4j_death_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
-                character_id = row.get("ID", None)
-                death = row.get("Killed by", None)
-
+                character_id = row.get("ID")
+                death = row.get("Killed by")
                 if pd.isna(character_id) or pd.isna(death):
                     continue
-
-                death_str = str(death).strip()
-
+                death_name = str(death).strip().replace("'", "`")
                 result = session.run(
                     "MATCH (killer:Character {Name: $name}) RETURN killer LIMIT 1",
-                    name=death_str
-                )
-                killer_node = result.single()
-
-                if killer_node:
+                    {"name": death_name}
+                ).single()
+                if result:
                     session.run(
-                        "MATCH (c:Character {ID: $character_id}), (k:Character {Name: $killer_name}) "
-                        "CREATE (k)-[:KILLED]->(c)",
-                        character_id=character_id,
-                        killer_name=death_str
+                        """
+                        MATCH (c:Character {ID: $character_id}), (k:Character {Name: $killer_name})
+                        CREATE (k)-[:KILLED {weight: $weight}]->(c)
+                        """,
+                        {
+                            "character_id": int(character_id),
+                            "killer_name": death_name,
+                            "weight": relationship_weights["KILLED"]
+                        }
                     )
                 else:
                     session.run(
-                        "MATCH (c:Character {ID: $character_id}), (d:Death {Name: $death_name}) "
-                        "CREATE (c)-[:DIED_FROM]->(d)",
-                        character_id=character_id,
-                        death_name=death_str
+                        """
+                        MATCH (c:Character {ID: $character_id}), (d:Death {Name: $death_name})
+                        CREATE (c)-[:DIED_FROM {weight: $weight}]->(d)
+                        """,
+                        {
+                            "character_id": int(character_id),
+                            "death_name": death_name,
+                            "weight": relationship_weights["DIED_FROM"]
+                        }
                     )
 
-    # -------------------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------------------
