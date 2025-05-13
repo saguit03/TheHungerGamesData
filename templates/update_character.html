@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Edición de Personajes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <p><a href="/">Volver al menú de gestión</a></p>
+
+    <!-- Modificar personaje -->
+    <div>
+        <h2>Modificar personaje</h2>
+        <form action="/characters/update/{{character_id}}" method="POST">
+            <label>ID: 
+                <input name="character_id" required type="text" value="{{ character.id }}" readonly>
+            </label><br>
+            <label>Nombre: 
+                <input name="name" type="text" value="{{ character.name }}">
+            </label><br>
+            <label>Género*:
+                <select name="gender" required>
+                    <option value="">--Seleccione--</option>
+                    <option value="M" {% if character.gender == "M" %}selected{% endif %}>M</option>
+                    <option value="F" {% if character.gender == "F" %}selected{% endif %}>F</option>
+                    <option value="Other" {% if character.gender == "Other" %}selected{% endif %}>Other</option>
+                </select>
+            </label><br>
+            <label>Profesión: 
+                <input name="profession" type="text" value="{{ character.profession }}">
+            </label><br>
+            <button type="submit">Modificar</button>
+        </form>
+    </div>
+</body>
+</html>

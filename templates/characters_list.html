@@ -20,7 +20,10 @@
                     Género: {{ character.gender }}<br>
                     Profesión: {{ character.profession }}<br>
                     Distrito: {{ character.district }}<br>
-                    <a href="/characters/delete/{{character.id}}">Eliminar</a>
+                    <a href="/characters/update/{{character.id}}">Editar</a>
+                    <form action="/characters/delete/{{ character.id }}" method="post">
+                        <button type="submit">Eliminar</button>
+                    </form>
                 </li>
             {% endfor %}
         </ul>
