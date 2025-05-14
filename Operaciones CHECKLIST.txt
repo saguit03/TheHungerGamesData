@@ -1,22 +1,8 @@
+- Obtener la alianza con más aliados
 
-Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
-
-MATCH (c:Character)-[r]->(g:Game_Year)
-WHERE type(r) IN ["PARTICIPATED_IN", "MENTORS", "RELATED_TO", "INVOLVED_IN"]
-WITH g, collect(DISTINCT c) AS charactersInvolved
-ORDER BY size(charactersInvolved) DESC
+MATCH (c:Character)-[:BELONGS_TO]->(a:Alliance)
+WITH a, count(c) AS population
+ORDER BY population DESC
 LIMIT 1
-
-MATCH (participant:Character)-[:PARTICIPATED_IN]->(g)
-MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[:PARTICIPATED_IN]->(g)
-RETURN g AS game, collect(DISTINCT participant) AS participants, collect(DISTINCT mentor) AS mentors
-
--------------------------------------------------------------------------------------------------------
-
-- Dados dos personajes, encontrar el camino más corto entre ellos (prioridades: relación directa, mismos juegos, mismo distrito, mismo libro)
-
-MATCH (a:Character {ID: 50}), (b:Character {ID: 11})
-MATCH path = shortestPath(
-  (a)-[:ALLY_OF|MENTORS|FAMILY|KILLED|PARTICIPATED_IN|FROM_DISTRICT|APPEARS_IN*]-(b)
-)
-RETURN path
+MATCH (c:Character)-[:BELONGS_TO]->(a)
+RETURN a AS mostPopularAlliance, collect(c) AS characters
