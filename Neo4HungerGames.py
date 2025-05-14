@@ -1,5 +1,5 @@
 from neo4j import GraphDatabase
-from Neo4Dataframes import relationship_weights
+from Neo4Dataframes import family_relationships_weights, inverse_relationships
 
 class Neo4HungerGames:
     def __init__(self, uri, user, password):
@@ -98,55 +98,59 @@ class Neo4HungerGames:
             )
 
     def create_family_links(self, id1, id2, relationship_type):
-        # Diccionario de pesos por tipo de relación
-        weights = {
-            "LOVER": 0.1,
-            "SIBLING": 0.5,
-            "PARENT": 0.5,
-            "CHILD": 0.5,
-            "COUSIN": 1.0,
-            "FRIEND": 0.3,
-            "OTHER": 1.0
-        }
-
         rel_type = relationship_type.upper()
-        weight = weights.get(rel_type, 1.0)  # Valor por defecto si no se encuentra
-
+        weight = family_relationships_weights.get(rel_type, 5.0)
+        inverse_type = inverse_relationships.get(rel_type, rel_type)
+        weight = family_relationships_weights.get(rel_type, 5.0)
+        inverse_weight = family_relationships_weights.get(inverse_type, 5.0)
         with self.driver.session() as session:
             session.run(
-                """
-                MATCH (a:Character {ID: $id1}), (b:Character {ID: $id2})
-                CREATE (a)-[r:FAMILY {type: $type, weight: $weight}]->(b)
+                f"""
+                MATCH (a:Character {{ID: $id1}}), (b:Character {{ID: $id2}})
+                MERGE (a)-[:{rel_type} {{weight: $weight}}]->(b)
+                MERGE (b)-[:{inverse_type} {{weight: $weight}}]->(a)
                 """,
                 {
                     "id1": int(id1),
                     "id2": int(id2),
                     "type": rel_type,
+                    "inverse_type": inverse_type,
                     "weight": weight
                 }
             )
 
     def get_all_family_links(self):
+        all_links = []
         with self.driver.session() as session:
-            result = session.run(
-                """
-                MATCH (a:Character)-[r:FAMILY]->(b:Character)
-                RETURN a.ID AS source_id, a.Name AS source_name,
-                    b.ID AS target_id, b.Name AS target_name,
-                    r.type AS type, r.weight AS weight
-                """
-            )
-            return [record.data() for record in result]
-        
+            for rel_type in family_relationships_weights.keys():
+                result = session.run(
+                    f"""
+                    MATCH (a:Character)-[r:{rel_type}]->(b:Character)
+                    RETURN a.ID AS source_id, a.Name AS source_name,
+                        b.ID AS target_id, b.Name AS target_name,
+                        r.weight AS weight
+                    """
+                )
+                for record in result:
+                    link = record.data()
+                    link["type"] = rel_type  # Añadimos el tipo explícitamente
+                    all_links.append(link)
+        return all_links
+
 
     def delete_family_link(self, id1, id2, relationship_type):
+        inverse_relationship = inverse_relationships.get(relationship_type, relationship_type)
         with self.driver.session() as session:
             session.run(
-                """
-                MATCH (a:Character {ID: $id1})-[r:FAMILY {type: $type}]->(b:Character {ID: $id2})
-                DELETE r
+                f"""
+                MATCH (a:Character {{ID: $id1}})-[r1:{relationship_type}]->(b:Character {{ID: $id2}})
+                MATCH (b)-[r2:{inverse_relationship}]->(a)
+                DELETE r1, r2
                 """,
-                {"id1": id1, "id2": id2, "type": relationship_type}
+                {
+                    "id1": int(id1),
+                    "id2": int(id2)
+                }
             )
 
 
@@ -518,34 +522,6 @@ class Neo4HungerGames:
                     "knownPeople": record["knownPeople"]
                 })
             return characters
-
-    def get_game_with_most_involved_characters(self):
-        with self.driver.session() as session:
-            result = session.run(
-                """
-                MATCH (g:Game_Year)
-                OPTIONAL MATCH (p:Character)-[:PARTICIPATED_IN]->(g)
-                OPTIONAL MATCH (m:Character)-[:MENTORS]->(p)
-                WITH g, collect(DISTINCT p) + collect(DISTINCT m) AS allCharacters
-                WITH g, allCharacters, size(allCharacters) AS totalPeople
-                ORDER BY totalPeople DESC
-                LIMIT 1
-                UNWIND allCharacters AS c
-                OPTIONAL MATCH (c)-[r]-(related:Character)
-                RETURN g.Year AS gameYear,
-                    collect(DISTINCT c.Name) AS involvedCharacters,
-                    collect(DISTINCT {from: c.Name, type: type(r), to: related.Name}) AS relationships
-                """
-            )
-            record = result.single()
-            if not record:
-                return {}
-
-            return {
-                "gameYear": record["gameYear"],
-                "characters": record["involvedCharacters"],
-                "relationships": record["relationships"]
-            }
         
     def get_game_with_most_involved_characters_detailed(self):
         with self.driver.session() as session:

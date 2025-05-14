@@ -145,6 +145,5 @@ class Controller:
         target_id = form["target_id"]
         target_label = form["target_label"]
         rel_type = form["rel_type"]
-        print("Eliminando relación:", source_id, source_label, target_id, target_label, rel_type)
         connection.delete_relationship(source_id, source_label, target_id, target_label, rel_type)
         return redirect("/links")

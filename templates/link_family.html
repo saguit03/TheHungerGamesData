@@ -22,25 +22,21 @@
                     </select>
                 </label><br><br>
 
+                <label>Tipo de vínculo:
+                    <select name="relationship_type" required>
+                        <option value="">-- Selecciona un tipo de vínculo --</option>
+                        {% for relationship in relation_types %}
+                            <option value="{{ relationship }}">{{ relationship }}</option>
+                        {% endfor %}
+                    </select>
+                </label><br><br>
+
                 <label>Personaje 2:
                     <select name="id2" required>
                         <option value="">-- Selecciona otro personaje --</option>
                         {% for character in characters %}
                             <option value="{{ character.id }}">{{ character.id }} - {{ character.name }}</option>
                         {% endfor %}
-                    </select>
-                </label><br><br>
-
-                <label>Tipo de vínculo:
-                    <select name="relationship_type" required>
-                        <option value="">-- Selecciona un tipo de vínculo --</option>
-                        <option value="LOVER">Lover</option>
-                        <option value="SIBLING">Sibling</option>
-                        <option value="PARENT">Parent</option>
-                        <option value="CHILD">Child</option>
-                        <option value="COUSIN">Cousin</option>
-                        <option value="FRIEND">Friend</option>
-                        <option value="OTHER">Other</option>
                     </select>
                 </label><br><br>
 

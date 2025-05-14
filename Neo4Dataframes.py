@@ -1,18 +1,6 @@
 from neo4j import GraphDatabase
 import pandas as pd
-
-# Define los pesos de las relaciones
-relationship_weights = {
-    "ALLY_OF": 5,
-    "APPEARS_IN": 100,
-    "BELONGS_TO": 10,
-    "DIED_FROM": 5,
-    "FROM_DISTRICT": 50,
-    "KILLED": 2,
-    "MENTORS": 1,
-    "MENTORED_BY": 1,
-    "PARTICIPATED_IN": 5
-}
+from Link_Weights import relationship_weights, family_examples, family_relationships_weights, inverse_relationships
 
 class Neo4Dataframes:
     def __init__(self, uri, user, password):
@@ -52,6 +40,7 @@ class Neo4Dataframes:
             self.create_character_alliance_links(df)
             self.create_neo4j_mentor_links(df)
             self.create_neo4j_death_links(df)
+            self.create_family_links()
         finally:
             self.close()
 
@@ -218,7 +207,6 @@ class Neo4Dataframes:
                             },
                         )
 
-
     def create_character_book_links(self, df):
         trilogy_books = ["The Hunger Games", "Catching Fire", "Mockingjay"]
 
@@ -317,6 +305,7 @@ class Neo4Dataframes:
                             "weight_by": relationship_weights["MENTORED_BY"]
                         }
                     )
+
     def create_neo4j_death_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
@@ -355,3 +344,28 @@ class Neo4Dataframes:
                             "died_weight": relationship_weights["DIED_FROM"]
                         }
                     )
+
+    def create_family_links(self):
+        for character, relationships in family_examples.items():
+            for relationship_type, related_characters in relationships.items():
+                for related_character in related_characters:
+                    if related_character != "None":
+                        rel_type = relationship_type.upper()
+                        inverse_type = inverse_relationships.get(rel_type, rel_type).upper()
+                        weight = family_relationships_weights.get(rel_type, 5.0)
+
+                        with self.driver.session() as session:
+                            session.run(
+                                f"""
+                                MATCH (a:Character {{Name: $name1}}), (b:Character {{Name: $name2}})
+                                MERGE (b)-[:{rel_type} {{weight: $weight}}]->(a)
+                                MERGE (a)-[:{inverse_type} {{weight: $weight}}]->(b)
+                                """,
+                                {
+                                    "name1": character,
+                                    "name2": related_character,
+                                    "type": rel_type,
+                                    "inverse_type": inverse_type,
+                                    "weight": weight
+                                }
+                            )
