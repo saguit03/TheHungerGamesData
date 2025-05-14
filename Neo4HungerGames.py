@@ -66,6 +66,7 @@ class Neo4HungerGames:
                 """
                 MATCH (c:Character {ID: $id})
                 DETACH DELETE c
+                DELETE c
                 """,
                 {"id": int(character_id)}
             )
