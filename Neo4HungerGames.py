@@ -7,13 +7,6 @@ class Neo4HungerGames:
     def close(self):
         self.driver.close()
 
-    def delete_all_links_and_nodes(self):
-        with self.driver.session() as session:
-            query = "MATCH (n)-[r]-() DELETE r, n"
-            session.run(query)
-            query = "MATCH (n) DELETE n"
-            session.run(query)
-
     def get_next_character_id(self):
         with self.driver.session() as session:
             result = session.run("MATCH (c:Character) RETURN MAX(c.ID) AS max_id")
@@ -248,16 +241,125 @@ class Neo4HungerGames:
 
     def get_all_districts(self):
         with self.driver.session() as session:
-            result = session.run("MATCH (d:District) RETURN DISTINCT d.Name AS name, d.Number AS number")
+            result = session.run("MATCH (d:District) RETURN DISTINCT d.ID as id, d.Name AS name, d.Number AS number")
             return [
                 {
+                    "id": record["id"],
                     "name": record["name"],
                     "number": record["number"]
                 }
                 for record in result
             ]
+    
+    def get_all_books(self):
+        with self.driver.session() as session:
+            result = session.run("MATCH (b:Book) RETURN DISTINCT b.ID as id, b.Order AS order, b.Title AS title")
+            return [
+                {
+                    "id": record["id"],
+                    "order": record["order"],
+                    "title": record["title"]
+                }
+                for record in result
+            ]
+        
         
     def get_all_games(self):
         with self.driver.session() as session:
-            result = session.run("MATCH (g:Game_Year) RETURN DISTINCT g.Year AS year ORDER BY year")
-            return [{"year": record["year"]} for record in result]
+            result = session.run("MATCH (g:Game_Year) RETURN DISTINCT g.ID as id, g.Year AS year ORDER BY year")
+            return [
+                {
+                "id": record["id"],
+                "year": record["year"]
+                } 
+                for record in result
+                ]
+        
+    def get_all_alliances(self):
+        with self.driver.session() as session:
+            result = session.run("MATCH (a:Alliance) RETURN DISTINCT a.ID as id, a.Name AS name")
+            return [
+                {
+                    "id": record["id"],
+                    "name": record["name"]
+                }
+                for record in result
+            ]
+
+    def get_character_counts_per_book(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)-[:APPEARS_IN]->(b:Book)
+                RETURN b.Title AS title, count(c) AS character_count
+                ORDER BY character_count DESC
+            """)
+            return [
+                {
+                    "title": record["title"],
+                    "count": record["character_count"]
+                }
+                for record in result
+            ]
+
+    def get_character_counts_per_district(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)-[:FROM_DISTRICT]->(d:District)
+                RETURN d.Name AS district, count(c) AS character_count
+                ORDER BY character_count DESC
+            """)
+            return [
+                {
+                    "district": record["district"],
+                    "count": record["character_count"]
+                }
+                for record in result
+            ]
+        
+    def get_character_counts_per_alliance(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)-[:ALLY_OF|:BELONGS_TO]->(a:Character|Alliance)
+                RETURN a.Name AS alliance, count(c) AS character_count
+                ORDER BY character_count DESC
+            """)
+            return [
+                {
+                    "alliance": record["alliance"],
+                    "count": record["character_count"]
+                }
+                for record in result
+            ]
+        
+    def get_character_counts_per_game(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (p:Character)-[:PARTICIPATED_IN]->(g:Game_Year)
+                OPTIONAL MATCH (p)-[:MENTORED_BY]->(m:Character)
+                RETURN g.Year AS game_year,
+                    count(DISTINCT p.Name) AS participants,
+                    count(DISTINCT m.Name) AS mentors
+                ORDER BY game_year DESC
+            """)
+            return [
+                {
+                    "game": record["game_year"],
+                    "count": record["participants"]+record["mentors"]
+                }
+                for record in result
+            ]
+        
+    def get_kills_per_cause(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (p)-[:KILLED]->(k:Character)
+                RETURN p.Name AS killer, count(DISTINCT k.Name) AS killed
+                ORDER BY killed DESC
+            """)
+            return [
+                {
+                    "killer": record["killer"],
+                    "killed": record["killed"]
+                }
+                for record in result
+            ]

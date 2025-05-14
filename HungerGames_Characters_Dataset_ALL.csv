@@ -1,23 +1,23 @@
 Name,District,Gender,Tribute,Game_Year,Winner,Mentor,Mentoree,Appearance,Alliance,Killed by,Profession
 Agrippina Sickle,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Professor
-Androcles Anderson,0,M,"No, Mentor",10,No,,Sheaf,The Ballad of Songbirds and Snakes,Academy,Rebels,Student
-Apollo Ring,0,M,"No, Mentor",10,No,,Otto,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
-Arachne Crane,0,F,"No, Mentor",10,No,,Brandy,The Ballad of Songbirds and Snakes,Academy,Brandy,Student
+Androcles Anderson,0,M,"No, Mentor",,No,,Sheaf,The Ballad of Songbirds and Snakes,Academy,Rebels,Student
+Apollo Ring,0,M,"No, Mentor",,No,,Otto,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
+Arachne Crane,0,F,"No, Mentor",,No,,Brandy,The Ballad of Songbirds and Snakes,Academy,Brandy,Student
 Atala,0,F,No,,,,,Trilogy,,,Head trainer
 Caesar Flickerman,0,M,No,,,,,"Trilogy, Sunrise on the Reaping",,,Commentator
 Casca Highbottom,0,M,No,,,,,The Ballad of Songbirds and Snakes,Academy,Coriolanus Snow,Creator of the Hunger Games
 Cassia,0,F,No,,,,,Sunrise on the Reaping,,,Camera crew
 Cinna,0,M,No,,,,,"The Hunger Games, Catching Fire, Mentioned","Katniss, Rebels",The Capitol,Katniss' stylist
 Claudius Templesmith,0,M,No,,,,,"The Hunger Games, Catching Fire, Mentioned",,,Announcer
-Clemensia Dovecote,0,F,"No, Mentor",10,No,,Reaper Ash,The Ballad of Songbirds and Snakes,Academy,Volumnia Gaul,Student
-Coriolanus Snow,0,M,"No, Mentor",10,Yes,,Lucy Gray Baird,"Sunrise on the Reaping, Trilogy, The Ballad of Songbirds and Snakes","Peacekeepers, Academy",Crowd,President of Panem
+Clemensia Dovecote,0,F,"No, Mentor",,No,,Reaper Ash,The Ballad of Songbirds and Snakes,Academy,Volumnia Gaul,Student
+Coriolanus Snow,0,M,"No, Mentor",,Yes,,Lucy Gray Baird,"Sunrise on the Reaping, Trilogy, The Ballad of Songbirds and Snakes","Peacekeepers, Academy",Crowd,President of Panem
 Crassus Snow,0,M,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",,Dark Days,"Father of Corionalus Snow, businessman"
 Cressida,0,F,No,,,,,Mockingjay,Rebels,,Film director
 Crispus Demigloss,0,M,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Professor
 Cyrus,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Musician, Pluribus' partner"
-Dennis Fling,0,M,"No, Mentor",10,No,,Hy,The Ballad of Songbirds and Snakes,Academy,,Student
-Diana Ring,0,F,"No, Mentor",10,No,,Ginnee,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
-Domitia Whimsiwick,0,F,"No, Mentor",10,No,,Tanner,The Ballad of Songbirds and Snakes,Academy,,Student
+Dennis Fling,0,M,"No, Mentor",,No,,Hy,The Ballad of Songbirds and Snakes,Academy,,Student
+Diana Ring,0,F,"No, Mentor",,No,,Ginnee,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
+Domitia Whimsiwick,0,F,"No, Mentor",,No,,Tanner,The Ballad of Songbirds and Snakes,Academy,,Student
 Dr. Aurelius,0,M,No,,,,,Mockingjay,Rebels,,Doctor
 Dr. Kay,0,F,No,,,,,The Ballad of Songbirds and Snakes,Academy,,Biologist
 Dr. Wane,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,Doctor
@@ -25,35 +25,35 @@ Drusilla Sickle,0,F,No,,,,,Sunrise on the Reaping,,,Escort
 Effie Trinket,0,F,No,,,,,"Trilogy, Sunrise on the Reaping",Katniss,,Escort
 Fabricia Whatnot,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Fashion designer
 Faustina Gripper,0,F,No,,,,,Sunrise on the Reaping,,,Head Gamemaker
-Felix Ravinstill,0,M,"No, Mentor",10,No,,Dill,The Ballad of Songbirds and Snakes,Academy,Bombing,"Student, President Ravinstill's nephew"
-Festus Creed,0,M,"No, Mentor",10,No,,Coral,The Ballad of Songbirds and Snakes,Academy,,Student
+Felix Ravinstill,0,M,"No, Mentor",,No,,Dill,The Ballad of Songbirds and Snakes,Academy,Bombing,"Student, President Ravinstill's nephew"
+Festus Creed,0,M,"No, Mentor",,No,,Coral,The Ballad of Songbirds and Snakes,Academy,,Student
 Flavius,0,M,No,,,,,Trilogy,,,Katniss' stylist
-Florus Friend,0,M,"No, Mentor",10,No,,Sabyn,The Ballad of Songbirds and Snakes,Academy,,Student
+Florus Friend,0,M,"No, Mentor",,No,,Sabyn,The Ballad of Songbirds and Snakes,Academy,,Student
 Fulvia Cardew,0,F,No,,,,,Mockingjay,Rebels,,Plutarch's Assistant
-Gaius Breen,0,M,"No, Mentor",10,No,,Panlo,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
+Gaius Breen,0,M,"No, Mentor",,No,,Panlo,The Ballad of Songbirds and Snakes,Academy,Bombing,Student
 Grandma'am,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Grandmother of Snow
 Hersilia,0,F,No,,,,,Sunrise on the Reaping,,,Trainer
-Hilarius Heavensbee,0,M,"No, Mentor",10,No,,Wovey,The Ballad of Songbirds and Snakes,Academy,,Student
+Hilarius Heavensbee,0,M,"No, Mentor",,No,,Wovey,The Ballad of Songbirds and Snakes,Academy,,Student
 Incitatus Loomy,0,M,No,,,,,Sunrise on the Reaping,,Coriolanus Snow,Parade master
-Io Jasper,0,F,"No, Mentor",10,No,,Circ,The Ballad of Songbirds and Snakes,Academy,,Student
-Iphigenia Moss,0,F,"No, Mentor",10,No,,Sol,The Ballad of Songbirds and Snakes,Academy,,Student
+Io Jasper,0,F,"No, Mentor",,No,,Circ,The Ballad of Songbirds and Snakes,Academy,,Student
+Iphigenia Moss,0,F,"No, Mentor",,No,,Sol,The Ballad of Songbirds and Snakes,Academy,,Student
 Jubilee,0,M,No,,,,,The Ballad of Songbirds and Snakes,,Depression,Depressed parrot
 Junius,0,M,No,,,,,The Ballad of Songbirds and Snakes,Peacekeepers,,Peacekeeper
-Juno Phipps,0,F,"No, Mentor",10,No,,Bobbin,The Ballad of Songbirds and Snakes,Academy,,Student
+Juno Phipps,0,F,"No, Mentor",,No,,Bobbin,The Ballad of Songbirds and Snakes,Academy,,Student
 Juvenia,0,F,No,,,,,Sunrise on the Reaping,,,Escort
 Lavinia,0,F,No,,,,,"The Hunger Games, Catching Fire, Mentioned",Katniss,The Capitol,Avox
 Lepidus Malmsey,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,News Reporter
-Livia Cardew,0,F,"No, Mentor",10,No,,Facet,The Ballad of Songbirds and Snakes,Academy,,Student
+Livia Cardew,0,F,"No, Mentor",,No,,Facet,The Ballad of Songbirds and Snakes,Academy,,Student
 "Lucretius ""Lucky"" Flickerman",0,M,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",,,"Weathercaster, commentator"
-Lysistrata Vickers,0,F,"No, Mentor",10,No,,Jessup Diggs,The Ballad of Songbirds and Snakes,Academy,,Student
+Lysistrata Vickers,0,F,"No, Mentor",,No,,Jessup Diggs,The Ballad of Songbirds and Snakes,Academy,,Student
 Magno Stift,0,M,No,,,,,Sunrise on the Reaping,,,Stylist
 Messalla,0,M,No,,,,,Mockingjay,Rebels,The Capitol,Film assistant
 Mrs. Plinth,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Ma
 Nero Price,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Railway tycoon, cannibal"
 Octavia,0,F,No,,,,,Trilogy,,,Katniss' stylist
-Palmyra Monty,0,F,"No, Mentor",10,No,,Velvereen,The Ballad of Songbirds and Snakes,Academy,,Student
-Persephone Price,0,F,"No, Mentor",10,No,,Mizzen,The Ballad of Songbirds and Snakes,Academy,,Student
-Pliny Harrington,0,M,"No, Mentor",10,No,,Lamina,The Ballad of Songbirds and Snakes,Academy,,Student
+Palmyra Monty,0,F,"No, Mentor",,No,,Velvereen,The Ballad of Songbirds and Snakes,Academy,,Student
+Persephone Price,0,F,"No, Mentor",,No,,Mizzen,The Ballad of Songbirds and Snakes,Academy,,Student
+Pliny Harrington,0,M,"No, Mentor",,No,,Lamina,The Ballad of Songbirds and Snakes,Academy,,Student
 Pluribus Bell,0,M,No,,,,,The Ballad of Songbirds and Snakes,,,"Musician, Cyrus' partner"
 Plutarch Heavensbee,0,M,No,,,,,"Trilogy, Sunrise on the Reaping",Rebels,,Head Gamemaker
 Pollux,0,M,No,,,,,Mockingjay,Rebels,The Capitol,Cameraman
@@ -68,10 +68,10 @@ Tax,0,M,No,,,,,Catching Fire,,,Trainer
 Tibby,0,M,No,,,,,Sunrise on the Reaping,,,Attendant
 Tigris,0,F,No,,,,,"Mockingjay, The Ballad of Songbirds and Snakes",Rebels,,Stylist
 Trajan Heavensbee,0,M,No,,,,,Mentioned,,,Father of Panem
-Urban Canville,0,M,"No, Mentor",10,No,,Teslee,The Ballad of Songbirds and Snakes,Academy,,Student
+Urban Canville,0,M,"No, Mentor",,No,,Teslee,The Ballad of Songbirds and Snakes,Academy,,Student
 Venia,0,F,No,,,,,Trilogy,,,Katniss' stylist
 Venus,0,F,No,,,,,The Ballad of Songbirds and Snakes,,,Smart child
-Vipsania Sickle,0,F,"No, Mentor",10,No,,Treech,The Ballad of Songbirds and Snakes,Academy,,Student
+Vipsania Sickle,0,F,"No, Mentor",,No,,Treech,The Ballad of Songbirds and Snakes,Academy,,Student
 Vitus,0,M,No,,,,,Sunrise on the Reaping,Academy,,Student
 Volumnia Gaul,0,F,No,,,,,"The Ballad of Songbirds and Snakes, Mentioned",Academy,,"Head Gamemaker, crazy scientist, professor"
 Augustus Braun,1,M,Reaped,67,Yes,,,Mentioned,Careers,War,
@@ -102,7 +102,7 @@ Male Victor D2,2,M,Reaped,73,Yes,,,Mentioned,Careers,War,
 Marcus,2,M,Rigged,10,No,Sejanus Plinth,,The Ballad of Songbirds and Snakes,,The Capitol,
 Nona,2,F,Volunteer,50,No,,,Sunrise on the Reaping,Careers,The Capitol,
 Sabyn,2,F,Reaped,10,No,Florus Friend,,The Ballad of Songbirds and Snakes,,Peacekeepers,
-Sejanus Plinth,2,M,"No, Mentor",10,No,,Marcus,The Ballad of Songbirds and Snakes,Academy,Coriolanus Snow,"Student, Snow's best friend"
+Sejanus Plinth,2,M,"No, Mentor",,No,,Marcus,The Ballad of Songbirds and Snakes,Academy,Coriolanus Snow,"Student, Snow's best friend"
 Ampert Latier,3,M,Rigged,50,No,Beetee Latier,,Sunrise on the Reaping,"Newcomers, Haymitch",The Capitol,
 Beetee Latier,3,M,"Reaped, Mentor","34, 75",Yes,,Ampert Latier,"Trilogy, Sunrise on the Reaping",Rebels,,Inventor
 Bomb child,3,M,Reaped,74,No,,,The Hunger Games,Careers,Careers,
