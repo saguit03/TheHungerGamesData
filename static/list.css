@@ -30,6 +30,47 @@ body {
     padding-bottom: 40px;
 }
 
+/* Contenedor para las estadísticas */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+/* Cajas individuales de estadísticas */
+.stat-box {
+    background-color: rgba(212, 175, 55, 0.2);
+    border: 2px solid var(--capitol-gold);
+    border-radius: 10px;
+    padding: 15px 30px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 120px;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* Número de estadística */
+.stat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--capitol-gold);
+    margin-bottom: 5px;
+}
+
+/* Etiqueta de estadística */
+.stat-label {
+    font-size: 18px;
+    color: var(--panem-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 /* Efecto de cenizas flotando */
 body::before {
     content: "";

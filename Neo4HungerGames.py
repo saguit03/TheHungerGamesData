@@ -519,6 +519,70 @@ class Neo4HungerGames:
                 })
             return characters
 
+    def get_game_with_most_involved_characters(self):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (g:Game_Year)
+                OPTIONAL MATCH (p:Character)-[:PARTICIPATED_IN]->(g)
+                OPTIONAL MATCH (m:Character)-[:MENTORS]->(p)
+                WITH g, collect(DISTINCT p) + collect(DISTINCT m) AS allCharacters
+                WITH g, allCharacters, size(allCharacters) AS totalPeople
+                ORDER BY totalPeople DESC
+                LIMIT 1
+                UNWIND allCharacters AS c
+                OPTIONAL MATCH (c)-[r]-(related:Character)
+                RETURN g.Year AS gameYear,
+                    collect(DISTINCT c.Name) AS involvedCharacters,
+                    collect(DISTINCT {from: c.Name, type: type(r), to: related.Name}) AS relationships
+                """
+            )
+            record = result.single()
+            if not record:
+                return {}
+
+            return {
+                "gameYear": record["gameYear"],
+                "characters": record["involvedCharacters"],
+                "relationships": record["relationships"]
+            }
+        
+    def get_game_with_most_involved_characters_detailed(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (g:Game_Year)
+                OPTIONAL MATCH (p:Character)-[part:PARTICIPATED_IN]->(g)
+                OPTIONAL MATCH (m:Character)-[:MENTORS]->(p)
+                WITH g, 
+                    collect(DISTINCT p) + collect(DISTINCT m) AS allCharacters, 
+                    collect(DISTINCT part) AS parts
+                WITH g, allCharacters, size(allCharacters) AS totalPeople
+                ORDER BY totalPeople DESC
+                LIMIT 1
+                WITH g
+                MATCH (p:Character)-[part:PARTICIPATED_IN]->(g)
+                OPTIONAL MATCH (m:Character)-[:MENTORS]->(p)
+                RETURN g.Year AS gameYear,
+                    collect(DISTINCT {name: p.Name, victor: part.victor}) AS tributes,
+                    collect(DISTINCT {name: m.Name, protege: p.Name, protegeVictor: part.victor}) AS mentors
+            """)
+            record = result.single()
+            if not record:
+                return {}
+            
+            # Eliminar tributos y mentores cuyo nombre esté a null
+            tributes = [t for t in record["tributes"] if t["name"] is not None]
+            mentors = [m for m in record["mentors"] if m["name"] is not None]
+            return {
+                "gameYear": record["gameYear"],
+                "tributes": tributes,
+                "number_of_tributes": len(tributes),
+                "mentors": mentors,
+                "number_of_mentors": len(mentors),
+            }
+
+
+
     def shortest_path(self, source_id, target_id):
         with self.driver.session() as session:
             result = session.run(
