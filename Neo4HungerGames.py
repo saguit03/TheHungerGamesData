@@ -479,21 +479,27 @@ class Neo4HungerGames:
                 """
                 MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
                 WHERE p.victor = true OR p.victor = "true"
-                RETURN mentor, 
-                    collect(DISTINCT tribute) AS victoriousTributes, 
-                    collect(DISTINCT game) AS winningGames, 
-                    count(DISTINCT tribute) AS victories
+                RETURN mentor, tribute, game
+                ORDER BY game.Year
                 """
             )
-            mentors = []
+            mentors_dict = {}
             for record in result:
                 mentor = dict(record["mentor"])
-                mentor["victorious_tributes"] = [dict(t) for t in record["victoriousTributes"]]
-                mentor["winning_games"] = [dict(g) for g in record["winningGames"]]
-                mentor["victories"] = record["victories"]
-                mentors.append(mentor)
+                tribute = dict(record["tribute"])
+                game = dict(record["game"])
+                mentor_name = mentor["Name"]
+                if mentor_name not in mentors_dict:
+                    mentors_dict[mentor_name] = {
+                        "mentor": mentor,
+                        "victories": []
+                    }
+                mentors_dict[mentor_name]["victories"].append({
+                    "tribute": tribute,
+                    "game": game
+                })
+            return list(mentors_dict.values())
 
-            return mentors
             
     def get_characters_and_their_known_people_from_other_districts(self):
         with self.driver.session() as session:

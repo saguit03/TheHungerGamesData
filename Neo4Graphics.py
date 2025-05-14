@@ -89,4 +89,39 @@ class Neo4Graphics:
         img.seek(0)
         return Response(img.getvalue(), mimetype='image/png')
 
+    def bubble_chart_districts_per_book(self):
+        data = self.connection.get_population_per_district_in_books()
+        df = pd.DataFrame(data)
+
+        book_titles = df.sort_values(by="order")["title"].unique()
+        districts = sorted(df["district"].unique())
+
+        book_map = {title: idx for idx, title in enumerate(book_titles)}
+        district_map = {district: idx for idx, district in enumerate(districts)}
+
+        df["book_idx"] = df["title"].map(book_map)
+        df["district_idx"] = df["district"].map(district_map)
+
+        plt.figure(figsize=(12, 8))
+        scatter = plt.scatter(
+            df["book_idx"], df["district_idx"], 
+            s=df["characterCount"] * 50,  # Escalar tamaño de burbuja
+            alpha=0.6, c=df["characterCount"], cmap='viridis', edgecolors='w', linewidths=0.5
+        )
+
+        plt.xticks(ticks=list(book_map.values()), labels=book_titles, rotation=45, ha='right')
+        plt.yticks(ticks=list(district_map.values()), labels=districts)
+        plt.xlabel("Libro")
+        plt.ylabel("Distrito")
+        plt.title("Distribución de personajes por distrito en cada libro")
+
+        cbar = plt.colorbar(scatter)
+        cbar.set_label("Número de personajes")
+
+        plt.tight_layout()
+        img = io.BytesIO()
+        plt.savefig(img, format='png')
+        plt.close()
+        img.seek(0)
+        return Response(img.getvalue(), mimetype='image/png')
 

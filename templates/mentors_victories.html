@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mentores con tributos victoriosos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='characters.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+    <p><a href="/">Volver al menú principal</a></p>
+    <h1>Mentores con tributos victoriosos</h1>
+    {% for mentor_entry in mentors %}
+            <h2>{{ mentor_entry.mentor.Name }}</h2>
+            <ul>
+                {% for v in mentor_entry.victories %}
+                <li>
+                    <p><strong>Tributo:</strong> {{ v.tribute.Name }}</p>
+                    <p><strong>Año:</strong> {{ v.game.Year }} </p>
+                </li>
+                {% endfor %}
+            </ul>
+    {% endfor %}
+</body>
+</html>
