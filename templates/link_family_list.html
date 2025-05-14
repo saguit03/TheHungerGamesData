@@ -6,12 +6,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
 </head>
 <body>
-    <h1>Relaciones familiares entre personajes</h1>
-    <p><a href="/">Volver al menú principal</a></p>
-    <p><a href="/characters/link_family">Crear una nueva relación familiar</a></p>
+    <div class="white_div">
+        <h1>Relaciones familiares entre personajes</h1>
+    </div>
+    <div>
+        <p><a href="/">Volver al menú principal</a></p>
+        <p><a href="/characters/link_family">Crear una nueva relación familiar</a></p>
+    </div>
 
-    {% if family_links %}
-        <ul>
+    <div>
+        {% if family_links %}
+            <ul>
                 {% for link in family_links %}
                     <li>
                         <p> ({{ link.source_id }}) {{ link.source_name }} <br>
@@ -24,11 +29,12 @@
                             <input type="hidden" name="type" value="{{ link.type }}">
                             <button type="submit">Eliminar</button>
                         </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No hay relaciones familiares registradas.</p>
-    {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay relaciones familiares registradas.</p>
+        {% endif %}
+    </div>
 </body>
 </html>

@@ -6,11 +6,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
 </head>
 <body>
-    <h2>Todas las relaciones entre nodos</h2>
-    <p><a href="/">Volver al menú principal</a></p>
+    <div class="white_div">
+        <h1>Relaciones entre nodos</h1>
+    </div>
+    <div>
+        <p><a href="/">Volver al menú principal</a></p>
+    </div>
     {% if links %}
         <ul>
-            
+
             {% for link in links %}
             <li>
                 <p>

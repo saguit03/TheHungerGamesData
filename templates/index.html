@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Juegos del Hambre</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <title>Juegos del Hambre</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-</head>
-<body>
-<div class="pretty_div">
-    <h1>Juegos del Hambre</h1>
-</div>
-<div>
-    <nav>
-        <h2> Nodos </h2>
-        <ul>
-            <li><a href="/characters">Ir a Personajes</a></li>
-            <li><a href="/characters/family/all">Ver enlaces de familia</a></li>
-            <li><a href="/links">Ver todos los enlaces</a></li>
-        </ul>
-    </nav>
-</div>
-
-</body>
+    </head>
+    <body>
+        <div class="white_div">
+            <h1>Juegos del Hambre</h1>
+        </div>
+        <div>
+            <nav>
+                <h2> Menú principal </h2>
+                <ul>
+                    <li><a href="/characters">Gestionar personajes</a></li>
+                    <li><a href="/links">Consultar enlaces</a></li>
+                    <li><a href="/characters/family/all">Ver enlaces de familia</a></li>
+                </ul>
+            </nav>
+        </div>
+    </body>
 </html>
