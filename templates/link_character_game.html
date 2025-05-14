@@ -9,15 +9,15 @@
 
 </head>
 <body>
-    <p><a href="/">Volver al menú principal</a></p>
+<p><a href="/">Volver al menú principal</a></p>
 <div>
     <h2>Relacionar personaje con juegos</h2>
     <form action="/characters/link_game" method="POST">
-        <label>ID del personaje*: 
+        <label>ID del personaje*:
             <input type="text" name="character_id" required>
         </label><br>
 
-        <label>Año del juego*: 
+        <label>Año del juego*:
             <select name="game_year" required>
                 {% for game in games %}
                     <option value="{{ game.year }}">{{ game.year }}</option>

@@ -1,9 +1,12 @@
 from neo4j import GraphDatabase
+
 from Neo4Dataframes import family_relationships_weights, inverse_relationships
+
 
 class Neo4HungerGames:
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
     def close(self):
         self.driver.close()
 
@@ -34,7 +37,7 @@ class Neo4HungerGames:
 
             props = ", ".join(props_list)
             session.run(f"CREATE (:Character {{{props}}});\n")
-    
+
     def update_neo4j_character_node(self, data):
         with self.driver.session() as session:
             session.run(
@@ -137,7 +140,6 @@ class Neo4HungerGames:
                     all_links.append(link)
         return all_links
 
-
     def delete_family_link(self, id1, id2, relationship_type):
         inverse_relationship = inverse_relationships.get(relationship_type, relationship_type)
         with self.driver.session() as session:
@@ -152,7 +154,6 @@ class Neo4HungerGames:
                     "id2": int(id2)
                 }
             )
-
 
     def get_all_relationships(self):
         with self.driver.session() as session:
@@ -181,15 +182,12 @@ class Neo4HungerGames:
                 }
             )
 
-
-
     # -------------------------------------------------------------------------------------
 
     def get_all_characters_id_and_name(self):
         with self.driver.session() as session:
             result = session.run("MATCH (c:Character) RETURN c.ID AS id, c.Name AS name ORDER BY c.ID")
             return [{"id": record["id"], "name": record["name"]} for record in result]
-
 
     def get_all_characters(self):
         with self.driver.session() as session:
@@ -216,7 +214,43 @@ class Neo4HungerGames:
                     })
                     seen_ids.add(record["id"])
             return characters
-    
+
+    def get_some_characters(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)-[*..1]-(other:Character)
+                MATCH (c)-[:FROM_DISTRICT]->(d:District)
+                MATCH (other)-[:FROM_DISTRICT]->(do:District)
+                WHERE c.ID <> other.ID AND d.Name <> do.Name
+                WITH c, d.Name AS district_name,
+                    collect(DISTINCT do.Name) AS knownDistricts,
+                    collect(DISTINCT {name: other.Name, district: do.Name}) AS knownPeople,
+                    count(DISTINCT other) AS peopleKnown
+                RETURN c.ID AS id,
+                    c.Name AS name,
+                    c.Gender AS gender,
+                    c.Profession AS profession,
+                    district_name,
+                    peopleKnown,
+                    knownDistricts,
+                    knownPeople
+                ORDER BY peopleKnown DESC
+                LIMIT 4
+            """)
+            characters = []
+            seen_ids = set()
+            for record in result:
+                if record["id"] not in seen_ids:
+                    characters.append({
+                        "id": record["id"],
+                        "name": record["name"],
+                        "gender": record["gender"],
+                        "profession": record["profession"],
+                        "district": record["district_name"] or "Sin distrito"
+                    })
+                    seen_ids.add(record["id"])
+            return characters
+
     # def get_character_by_id(self, character_id):
     #     with self.driver.session() as session:
     #         result = session.run(
@@ -241,7 +275,6 @@ class Neo4HungerGames:
     #             }
     #         else: return None
 
-
     def get_all_districts(self):
         with self.driver.session() as session:
             result = session.run("MATCH (d:District) RETURN DISTINCT d.ID as id, d.Name AS name, d.Number AS number")
@@ -253,7 +286,7 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-    
+
     def get_all_books(self):
         with self.driver.session() as session:
             result = session.run("MATCH (b:Book) RETURN DISTINCT b.ID as id, b.Order AS order, b.Title AS title")
@@ -265,19 +298,18 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-        
-        
+
     def get_all_games(self):
         with self.driver.session() as session:
             result = session.run("MATCH (g:Game_Year) RETURN DISTINCT g.ID as id, g.Year AS year ORDER BY year")
             return [
                 {
-                "id": record["id"],
-                "year": record["year"]
-                } 
+                    "id": record["id"],
+                    "year": record["year"]
+                }
                 for record in result
-                ]
-        
+            ]
+
     def get_all_alliances(self):
         with self.driver.session() as session:
             result = session.run("MATCH (a:Alliance) RETURN DISTINCT a.ID as id, a.Name AS name")
@@ -318,7 +350,7 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-        
+
     def get_character_counts_per_alliance(self):
         with self.driver.session() as session:
             result = session.run("""
@@ -333,7 +365,7 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-        
+
     def get_character_counts_per_game(self):
         with self.driver.session() as session:
             result = session.run("""
@@ -347,11 +379,11 @@ class Neo4HungerGames:
             return [
                 {
                     "game": record["game_year"],
-                    "count": record["participants"]+record["mentors"]
+                    "count": record["participants"] + record["mentors"]
                 }
                 for record in result
             ]
-        
+
     def get_count_kills_per_cause(self):
         with self.driver.session() as session:
             result = session.run("""
@@ -403,7 +435,7 @@ class Neo4HungerGames:
                     "name": record["name"],
                 })
             return characters
-        
+
     def get_dead_characters_from_a_cause(self, cause):
         with self.driver.session() as session:
             result = session.run(
@@ -437,7 +469,7 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-        
+
     def get_max_appearances(self):
         with self.driver.session() as session:
             result = session.run("""
@@ -453,7 +485,7 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-        
+
     def get_population_per_district_in_books(self):
         with self.driver.session() as session:
             result = session.run("""
@@ -471,7 +503,7 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
-        
+
     def get_mentors_with_victorious_tributes(self):
         with self.driver.session() as session:
             result = session.run(
@@ -499,7 +531,6 @@ class Neo4HungerGames:
                 })
             return list(mentors_dict.values())
 
-            
     def get_characters_and_their_known_people_from_other_districts(self):
         with self.driver.session() as session:
             # [*..1] busca cualquier relación de distancia 1
@@ -527,7 +558,7 @@ class Neo4HungerGames:
                     "knownPeople": record["knownPeople"]
                 })
             return characters
-        
+
     def get_game_with_most_involved_characters_detailed(self):
         with self.driver.session() as session:
             result = session.run("""
@@ -550,7 +581,7 @@ class Neo4HungerGames:
             record = result.single()
             if not record:
                 return {}
-            
+
             # Eliminar tributos y mentores cuyo nombre esté a null
             tributes = [t for t in record["tributes"] if t["name"] is not None]
             mentors = [m for m in record["mentors"] if m["name"] is not None]
@@ -561,8 +592,6 @@ class Neo4HungerGames:
                 "mentors": mentors,
                 "number_of_mentors": len(mentors),
             }
-
-
 
     def shortest_path(self, source_id, target_id):
         with self.driver.session() as session:
@@ -617,8 +646,6 @@ class Neo4HungerGames:
                 characters.append(character)
 
             return characters
-
-
 
     def get_character_by_name(self, name_fragment):
         with self.driver.session() as session:

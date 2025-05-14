@@ -10,9 +10,9 @@
 <body>
 
 <div class="white_div">
-    <h1>Juego con más personajes involucrados:  <br>
-    {{ data.gameYear }}.º Juegos del Hambre </h1>
-    
+    <h1>Juego con más personajes involucrados: <br>
+        {{ data.gameYear }}.º Juegos del Hambre </h1>
+
     <div class="stats-container">
         <div class="stat-box">
             <div class="stat-number">{{ data.number_of_tributes }}</div>
@@ -24,20 +24,21 @@
         </div>
     </div>
 </div>
-    <h2>Tributos</h2>
-    <ul>
-        {% for tribute in data.tributes %}
-            <li>{{ tribute.name }}{% if tribute.victor == "true" %} (GANADOR){% endif %}</li>
-        {% endfor %}
-    </ul>
+<h2>Tributos</h2>
+<ul>
+    {% for tribute in data.tributes %}
+        <li>{{ tribute.name }}{% if tribute.victor == "true" %} (GANADOR){% endif %}</li>
+    {% endfor %}
+</ul>
 
-    <h2>Mentores</h2>
-    <ul>
-        {% for mentor in data.mentors %}
-            <li>{{ mentor.name }} - mentor de {{ mentor.protege }}{% if mentor.protegeVictor == "true" %} (ganador){% endif %}</li>
-        {% endfor %}
-    </ul>
+<h2>Mentores</h2>
+<ul>
+    {% for mentor in data.mentors %}
+        <li>{{ mentor.name }} - mentor de
+            {{ mentor.protege }}{% if mentor.protegeVictor == "true" %} (ganador){% endif %}</li>
+    {% endfor %}
+</ul>
 
-    <p><a href="/">Volver al menú</a></p>
+<p><a href="/">Volver al menú</a></p>
 </body>
 </html>

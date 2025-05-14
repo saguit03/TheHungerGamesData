@@ -1,6 +1,7 @@
-import uuid
-from flask import Flask, render_template, redirect, url_for, session, request
+from flask import render_template, redirect
+
 from Neo4HungerGames import Neo4HungerGames
+
 
 class Controller:
     @staticmethod
@@ -21,7 +22,7 @@ class Controller:
             connection.create_character_district_link(character_id, district_number)
         print(character_data)
         return redirect("/characters/all")
-    
+
     @staticmethod
     def update_character(connection: Neo4HungerGames, request, character_id):
         if request.method == "GET":
@@ -30,7 +31,7 @@ class Controller:
             districts = connection.get_all_districts()
             return render_template("update_character.html", character=character, districts=districts)
         else:
-        # Recoger nuevos datos del formulario
+            # Recoger nuevos datos del formulario
             updated_data = {
                 "ID": character_id,
                 "Name": request.form.get("name"),
@@ -48,13 +49,13 @@ class Controller:
                 connection.create_character_district_link(character_id, district_number)
 
             return redirect("/characters/all")
-    
+
     @staticmethod
     def delete_character(connection: Neo4HungerGames, request):
         character_id = request.form.get("character_id")
         connection.delete_neo4j_character_and_relationships(character_id)
         return redirect("/characters")
-    
+
     @staticmethod
     def delete_character_by_id(connection: Neo4HungerGames, character_id):
         print("Eliminando personaje con ID:", character_id)
@@ -78,7 +79,7 @@ class Controller:
             # GET method: render form with available years
             games = connection.get_all_games()
             return render_template("link_character_game.html", games=games)
-        
+
         character_id = request.form.get("character_id").strip()
         game_year = request.form.get("game_year").strip()
         winner = request.form.get("winner").strip().lower()
@@ -109,12 +110,12 @@ class Controller:
 
         if id1 == id2:
             return "No se puede vincular un personaje consigo mismo.", 400
-        
+
         if not id1 or not id2:
             return "Faltan datos", 400
 
         try:
-            connection.create_family_links(int(id1), int(id2),relationship_type)
+            connection.create_family_links(int(id1), int(id2), relationship_type)
             return redirect("/characters/family/all")
         except Exception as e:
             print("Error creando vínculo familiar:", e)

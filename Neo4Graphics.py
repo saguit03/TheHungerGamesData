@@ -1,8 +1,11 @@
-from Neo4HungerGames import Neo4HungerGames
-from flask import Response
 import io
-import pandas as pd
+
 import matplotlib.pyplot as plt
+import pandas as pd
+from flask import Response
+
+from Neo4HungerGames import Neo4HungerGames
+
 
 class Neo4Graphics:
     def __init__(self, connection: Neo4HungerGames):
@@ -104,7 +107,7 @@ class Neo4Graphics:
 
         plt.figure(figsize=(12, 8))
         scatter = plt.scatter(
-            df["book_idx"], df["district_idx"], 
+            df["book_idx"], df["district_idx"],
             s=df["characterCount"] * 50,  # Escalar tamaño de burbuja
             alpha=0.6, c=df["characterCount"], cmap='viridis', edgecolors='w', linewidths=0.5
         )
@@ -124,4 +127,3 @@ class Neo4Graphics:
         plt.close()
         img.seek(0)
         return Response(img.getvalue(), mimetype='image/png')
-

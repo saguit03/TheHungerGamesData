@@ -1,4 +1,3 @@
-
 # Define los pesos de las relaciones
 relationship_weights = {
     "ALLY_OF": 5,
@@ -48,12 +47,12 @@ family_examples = {
         "Pet": ["Buttercup", "Lady"],
         "Child": ["None"],
         "Pet": ["Buttercup", "Lady"],
-        "Child":["Babyboy Mellark Everdeen", "Babygirl Mellark Everdeen"],
+        "Child": ["Babyboy Mellark Everdeen", "Babygirl Mellark Everdeen"],
     },
     "Peeta Mellark": {
         "Lover": ["Katniss Everdeen"],
         "Parent": ["Otho Mellark", "Mrs. Mellark"],
-        "Child":["Babyboy Mellark Everdeen", "Babygirl Mellark Everdeen"],
+        "Child": ["Babyboy Mellark Everdeen", "Babygirl Mellark Everdeen"],
     },
     "Haymitch Abernathy": {
         "Sibling": ["Sid Abernathy", "Maysilee Donner"],
@@ -131,6 +130,5 @@ family_examples = {
     "Diana Ring": {
         "Sibling": ["Apolo Ring"],
     },
-
 
 }

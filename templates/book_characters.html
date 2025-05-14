@@ -7,37 +7,38 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
 </head>
 <body>
-    <div class="white_div">
-        <h1>Personajes que aparecen en un libro</h1>
-    </div>
+<div class="white_div">
+    <h1>Personajes que aparecen en un libro</h1>
+</div>
 
-    <div class="button-container">
-        <p><a href="/">Volver al menú principal</a></p>
-    </div>
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
 
-    <nav>
-        <form method="POST">
-            <label for="title">Selecciona un libro:</label>
-            <select name="title" id="title" required>
-                <option value="">--Seleccionar--</option>
-                {% for book in books %}
-                    <option value="{{ book.title }}" {% if selected_title == book.title %}selected{% endif %}>{{ book.title }}</option>
-                {% endfor %}
-            </select>
-            <button class="form_button" type="submit">Buscar</button>
-        </form>
-    </nav>
-
-    {% if characters %}
-        <h2>Resultados para: "{{ selected_title }}"</h2>
-        <ul>
-            {% for c in characters %}
-                <li><strong>{{ c.name }}</strong></li>
+<nav>
+    <form method="POST">
+        <label for="title">Selecciona un libro:</label>
+        <select name="title" id="title" required>
+            <option value="">--Seleccionar--</option>
+            {% for book in books %}
+                <option value="{{ book.title }}"
+                        {% if selected_title == book.title %}selected{% endif %}>{{ book.title }}</option>
             {% endfor %}
-        </ul>
-    {% elif selected_title %}
-        <p>No se encontraron personajes en otros libros.</p>
-    {% endif %}
+        </select>
+        <button class="form_button" type="submit">Buscar</button>
+    </form>
+</nav>
+
+{% if characters %}
+    <h2>Resultados para: "{{ selected_title }}"</h2>
+    <ul>
+        {% for c in characters %}
+            <li><strong>{{ c.name }}</strong></li>
+        {% endfor %}
+    </ul>
+{% elif selected_title %}
+    <p>No se encontraron personajes en otros libros.</p>
+{% endif %}
 
 </body>
 </html>

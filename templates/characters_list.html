@@ -7,30 +7,30 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
 </head>
 <body>
-    <div class="white_div">
-        <h1>Lista de Personajes</h1>
-    </div>
-    <div>
-        <p><a href="/">Volver al menú principal</a></p>
-        <p><a href="/characters">Volver a la gestión de personajes</a></p>
-    </div>
+<div class="white_div">
+    <h1>Lista de Personajes</h1>
+</div>
+<div>
+    <p><a href="/">Volver al menú principal</a></p>
+    <p><a href="/characters">Volver a la gestión de personajes</a></p>
+</div>
 
-    {% if characters %}
-        <ul>
-            {% for character in characters %}
-                <li>
-                    <strong>{{ character.name }}</strong> (ID: {{ character.id }})<br>
-                    Género: {{ character.gender }}<br>
-                    Profesión: {{ character.profession }}<br>
-                    Distrito: {{ character.district }}<br>
-                    <form action="/characters/delete/{{ character.id }}" method="post">
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No se encontraron personajes.</p>
-    {% endif %}
+{% if characters %}
+    <ul>
+        {% for character in characters %}
+            <li>
+                <strong>{{ character.name }}</strong> (ID: {{ character.id }})<br>
+                Género: {{ character.gender }}<br>
+                Profesión: {{ character.profession }}<br>
+                Distrito: {{ character.district }}<br>
+                <form action="/characters/delete/{{ character.id }}" method="post">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No se encontraron personajes.</p>
+{% endif %}
 </body>
 </html>

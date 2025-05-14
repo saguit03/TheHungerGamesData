@@ -1,10 +1,13 @@
-from neo4j import GraphDatabase
 import pandas as pd
+from neo4j import GraphDatabase
+
 from Link_Weights import relationship_weights, family_examples, family_relationships_weights, inverse_relationships
+
 
 class Neo4Dataframes:
     def __init__(self, uri, user, password):
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
     def close(self):
         self.driver.close()
 
@@ -94,7 +97,8 @@ class Neo4Dataframes:
                         order = 6
 
                 if safe_name not in ["Trilogy"]:
-                    session.run(f"CREATE (:Book {{Title: '{safe_name}', Name: '{safe_name}',Order: {order}, ID: {order}}});\n")
+                    session.run(
+                        f"CREATE (:Book {{Title: '{safe_name}', Name: '{safe_name}',Order: {order}, ID: {order}}});\n")
 
     def create_neo4j_alliance_nodes(self, alliances):
         all_alliances = set()
@@ -158,7 +162,6 @@ class Neo4Dataframes:
                 )
                 cont += 1
 
-
     # -------------------------------------------------------------------------------------
 
     def create_character_district_links(self, df):
@@ -190,7 +193,7 @@ class Neo4Dataframes:
 
                 winner_flag = "true" if winner == "yes" else "false"
                 years = [g.strip() for g in str(games).split(",")]
-                weight = relationship_weights["PARTICIPATED_IN"] #Gets weight, defaults to 3
+                weight = relationship_weights["PARTICIPATED_IN"]  # Gets weight, defaults to 3
                 for year in years:
                     if year.isdigit():
                         year_int = int(year)
@@ -326,7 +329,7 @@ class Neo4Dataframes:
                     {"name": death_name}
                 ).single()
 
-                if result:                    
+                if result:
                     label = result["source_label"]
                     cypher = """
                         MATCH (c:Character {ID: $character_id}),
