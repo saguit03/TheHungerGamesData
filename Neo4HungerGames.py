@@ -400,3 +400,21 @@ class Neo4HungerGames:
                     "name": record["name"],
                 })
             return characters
+        
+    def get_dead_characters_from_a_cause(self, cause):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (p {Name: $cause})-[:KILLED]->(k:Character)
+                RETURN DISTINCT k.Name AS name
+                ORDER BY name
+                """,
+                {"cause": cause}
+            )
+            characters = []
+            for record in result:
+                characters.append({
+                    "name": record["name"],
+                })
+            return characters
+
