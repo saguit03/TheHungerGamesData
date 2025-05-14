@@ -217,30 +217,29 @@ class Neo4HungerGames:
                     seen_ids.add(record["id"])
             return characters
     
-    def get_character_by_id(self, character_id):
-        with self.driver.session() as session:
-            result = session.run(
-                """
-                MATCH (c:Character {ID: $id})
-                OPTIONAL MATCH (c)-[:FROM_DISTRICT]->(d:District)
-                RETURN c.ID AS id,
-                    c.Name AS name,
-                    c.Gender AS gender,
-                    c.Profession AS profession,
-                    d.Number AS district_number
-                """,
-                {"id": character_id}
-            )
-            record = result.single()
-            if record:
-                return {
-                    "id": record["id"],
-                    "name": record["name"],
-                    "gender": record["gender"],
-                    "profession": record["profession"],
-                    "district": record["district_number"]  # Puede ser None
-                }
-            else: return None
+    # def get_character_by_id(self, character_id):
+    #     with self.driver.session() as session:
+    #         result = session.run(
+    #             """
+    #             MATCH (c:Character {ID: $id})
+    #             OPTIONAL MATCH (c)-[:FROM_DISTRICT]->(d:District)
+    #             RETURN c.ID AS id,
+    #                 c.Name AS name,
+    #                 c.Gender AS gender,
+    #                 c.Profession AS profession,
+    #             """,
+    #             {"id": character_id}
+    #         )
+    #         record = result.single()
+    #         if record:
+    #             return {
+    #                 "id": record["id"],
+    #                 "name": record["name"],
+    #                 "gender": record["gender"],
+    #                 "profession": record["profession"],
+    #                 "district": record["district_number"] or "Sin distrito"
+    #             }
+    #         else: return None
 
 
     def get_all_districts(self):
@@ -595,3 +594,52 @@ class Neo4HungerGames:
 
             # Si no se encontró camino
             return []
+
+    def get_character_by_id(self, character_id):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character {ID: $id})
+                OPTIONAL MATCH (c)-[r]->(related)
+                RETURN c, collect(DISTINCT {type: type(r), properties: properties(r), node: related}) AS relations
+            """, {"id": int(character_id)})
+
+            characters = []
+            for record in result:
+                character = dict(record["c"])
+                character["relations"] = [
+                    {
+                        "type": rel["type"],
+                        "properties": rel["properties"],
+                        "related_node": dict(rel["node"])
+                    }
+                    for rel in record["relations"]
+                ]
+                characters.append(character)
+
+            return characters
+
+
+
+    def get_character_by_name(self, name_fragment):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)
+                WHERE toLower(c.Name) CONTAINS toLower($name)
+                OPTIONAL MATCH (c)-[r]->(related)
+                RETURN c, collect(DISTINCT {type: type(r), properties: properties(r), node: related}) AS relations
+            """, {"name": name_fragment})
+
+            characters = []
+            for record in result:
+                character = dict(record["c"])
+                character["relations"] = [
+                    {
+                        "type": rel["type"],
+                        "properties": rel["properties"],
+                        "related_node": dict(rel["node"])
+                    }
+                    for rel in record["relations"]
+                ]
+                characters.append(character)
+
+            return characters

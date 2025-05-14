@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del Personaje</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='characters.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+    <div class="white_div">
+        <div class="button-container">
+            <p><a href="/">Volver al menú principal</a></p>
+        </div>
+        <h1>Detalle de Personaje</h1>
+    </div>
+
+    {% if characters is defined %}
+        <p class="button-container">Se encontraron {{ characters|length }} personajes</p>
+        {% for character in characters %}
+            <hr>
+            <h2>
+                {{ loop.index }}. 
+                <a href="{{ url_for('get_character_by_id', character_id=character.get('ID')) }}">
+                    {{ character.get('Name', 'Sin nombre') }}
+                </a>
+            </h2>
+            <ul>
+                {% for key, value in character.items() if key != 'relations' %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3 class="button-container">Relaciones directas</h3>
+            {% if character.relations %}
+                <ul>
+                    {% for rel in character.relations %}
+                        <li>
+                            <strong>Tipo:</strong> {{ rel.type }}
+                            <ul>
+                                <li><strong>Propiedades de la relación:</strong>
+                                    {% if rel.properties %}
+                                        <ul>
+                                            {% for prop, val in rel.properties.items() %}
+                                                <li>{{ prop }}: {{ val }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% else %}
+                                        Ninguna
+                                    {% endif %}
+                                </li>
+                                <li><strong>Nodo relacionado:</strong>
+                                    <ul>
+                                        {% for prop, val in rel.related_node.items() %}
+                                            <li>{{ prop }}: {{ val }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No hay relaciones registradas.</p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron personajes.</p>
+    {% endif %}
+</body>
+</html>
