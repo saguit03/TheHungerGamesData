@@ -358,8 +358,8 @@ class Neo4Dataframes:
                             session.run(
                                 f"""
                                 MATCH (a:Character {{Name: $name1}}), (b:Character {{Name: $name2}})
-                                MERGE (b)-[:{rel_type} {{weight: $weight}}]->(a)
-                                MERGE (a)-[:{inverse_type} {{weight: $weight}}]->(b)
+                                MERGE (a)-[:{rel_type} {{weight: $weight}}]->(b)
+                                MERGE (b)-[:{inverse_type} {{weight: $weight}}]->(a)
                                 """,
                                 {
                                     "name1": character,
