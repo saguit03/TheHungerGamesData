@@ -23,14 +23,18 @@ RETURN mentor, collect(DISTINCT tribute) AS victoriousTributes, collect(DISTINCT
 
 - Obtener los personajes que conocen a más personas de distritos diferentes
 
-MATCH (c:Character)-[r:ALLY_OF|MENTORS]-(other:Character)
+MATCH (c:Character)-[*..1]-(other:Character)
 MATCH (c)-[:FROM_DISTRICT]->(dc:District)
 MATCH (other)-[:FROM_DISTRICT]->(do:District)
 WHERE c.ID <> other.ID AND dc.Name <> do.Name
-WITH c, collect(DISTINCT do.Name) AS knownDistricts, count(DISTINCT other) AS peopleKnown
-RETURN c.Name AS character, size(knownDistricts) AS differentDistricts, peopleKnown, knownDistricts
-ORDER BY differentDistricts DESC, peopleKnown DESC
-LIMIT 3
+WITH c.Name AS characterName,
+     collect(DISTINCT do.Name) AS knownDistricts,
+     collect(DISTINCT {name: other.Name, district: do.Name}) AS knownPeople,
+     count(DISTINCT other) AS peopleKnown
+ORDER BY peopleKnown DESC
+LIMIT 5
+RETURN characterName, knownDistricts, knownPeople
+
 
 -------------------------------------------------------------------------------------------------------
 
