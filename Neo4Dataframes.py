@@ -20,6 +20,14 @@ class Neo4Dataframes:
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
     def close(self):
         self.driver.close()
+
+    def delete_all_links_and_nodes(self):
+        with self.driver.session() as session:
+            query = "MATCH (n)-[r]-() DELETE r, n"
+            session.run(query)
+            query = "MATCH (n) DELETE n"
+            session.run(query)
+
     def create_nodes_links_from_df(self, df):
         try:
             districts = df['District'].unique()
@@ -140,28 +148,27 @@ class Neo4Dataframes:
                 session.run(f"CREATE (:Character {{{props}}});\n")
 
     def create_neo4j_death_nodes(self, df):
-        unique_deaths = set()
         cont = 1
+        death_causes = {
+            "Asthma": "Asthma",
+            "Birth labor": "Birth labor",
+            "Black lung": "Black lung",
+            "Bombing": "Bombing",
+            "Crowd": "Crowd",
+            "Dark Days": "Dark Days",
+            "Depression": "Depression",
+            "Mine explosion": "Mine explosion",
+            "Nightlock": "Nightlock",
+            "Tuberculosis": "Tuberculosis",
+            "Unknown": "Unknown",
+            "War": "War"
+        }
         with self.driver.session() as session:
-            for _, row in df.iterrows():
-                character_id = row.get("ID", None)
-                death = row.get("Killed by", None)
-
-                # Verifica que character_id no sea NaN y sea convertible a entero
-                if pd.isna(character_id) or pd.isna(death):
-                    continue
-                try:
-                    character_id = int(character_id)
-                except ValueError:
-                    continue
-
-                death_str = str(death).strip()
-                if death_str not in unique_deaths:
-                    unique_deaths.add(death_str)
-                    safe_death = death_str.replace("'", "`")
-                    # Añadir ID y nombre a la creación del nodo
-                    session.run(f"CREATE (:Death {{Name: '{safe_death}', ID: {cont}}});\n")
-                    cont += 1
+            for death_cause in death_causes.values():
+                session.run(
+                    f"CREATE (:Death {{Name: '{death_cause}', ID: {cont}}});"
+                )
+                cont += 1
 
 
     # -------------------------------------------------------------------------------------
@@ -302,14 +309,15 @@ class Neo4Dataframes:
                         """
                         MATCH (c:Character {ID: $character_id}), (m:Character {Name: $mentor_name})
                         MERGE (m)-[:MENTORS {weight: $weight}]->(c)
+                        MERGE (c)-[:MENTORED_BY {weight: $weight_by}]->(m)
                         """,
                         {
                             "character_id": int(character_id),
                             "mentor_name": mentor_name,
-                            "weight": relationship_weights["MENTORS"]
+                            "weight": relationship_weights["MENTORS"],
+                            "weight_by": relationship_weights["MENTORED_BY"]
                         }
                     )
-
     def create_neo4j_death_links(self, df):
         with self.driver.session() as session:
             for _, row in df.iterrows():
@@ -318,34 +326,33 @@ class Neo4Dataframes:
                 if pd.isna(character_id) or pd.isna(death):
                     continue
                 death_name = str(death).strip().replace("'", "`")
+
                 result = session.run(
-                    "MATCH (killer:Character {Name: $name}) RETURN killer LIMIT 1",
+                    """
+                    MATCH (killer)
+                    WHERE killer.Name = $name 
+                    RETURN labels(killer)[0] AS source_label, killer.Name AS name
+                    LIMIT 1
+                    """,
+                    # AND (killer:Character OR killer:Alliance OR killer:District OR killer:Death)
                     {"name": death_name}
                 ).single()
-                if result:
+
+                if result:                    
+                    label = result["source_label"]
+                    cypher = """
+                        MATCH (c:Character {ID: $character_id}),
+                              (k) WHERE k.Name = $killer_name AND $label IN labels(k)
+                        MERGE (k)-[:KILLED {weight: $killed_weight}]->(c)
+                        MERGE (c)-[:DIED_FROM {weight: $died_weight}]->(k)
+                    """
                     session.run(
-                        """
-                        MATCH (c:Character {ID: $character_id}), (k:Character {Name: $killer_name})
-                        MERGE (k)-[:KILLED {weight: $weight}]->(c)
-                        """,
+                        cypher,
                         {
                             "character_id": int(character_id),
                             "killer_name": death_name,
-                            "weight": relationship_weights["KILLED"]
+                            "label": label,
+                            "killed_weight": relationship_weights["KILLED"],
+                            "died_weight": relationship_weights["DIED_FROM"]
                         }
                     )
-                else:
-                    session.run(
-                        """
-                        MATCH (c:Character {ID: $character_id}), (d:Death {Name: $death_name})
-                        MERGE (c)-[:DIED_FROM {weight: $weight}]->(d)
-                        """,
-                        {
-                            "character_id": int(character_id),
-                            "death_name": death_name,
-                            "weight": relationship_weights["DIED_FROM"]
-                        }
-                    )
-
-
-# -------------------------------------------------------------------------------------
