@@ -277,6 +277,21 @@ button:hover {
     transform: translateY(-2px);
 }
 
+.menu-container {
+    display: flex;
+    justify-content: center;
+}
+.menu-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    list-style-type: none;
+    padding: 0;
+}
+.menu-columns li {
+    margin-bottom: 0.5rem;
+}
+
 /* Responsive design para móviles */
 @media (max-width: 600px) {
     h1 {
