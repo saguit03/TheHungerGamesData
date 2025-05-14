@@ -451,7 +451,7 @@ class Neo4HungerGames:
                 for record in result
             ]
         
-    def get_population_per_district(self):
+    def get_population_per_district_in_books(self):
         with self.driver.session() as session:
             result = session.run("""
                 MATCH (c:Character)-[:FROM_DISTRICT]->(d:District),
@@ -469,6 +469,56 @@ class Neo4HungerGames:
                 for record in result
             ]
         
+    def get_mentors_with_victorious_tributes(self):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
+                WHERE p.victor = true OR p.victor = "true"
+                RETURN mentor, 
+                    collect(DISTINCT tribute) AS victoriousTributes, 
+                    collect(DISTINCT game) AS winningGames, 
+                    count(DISTINCT tribute) AS victories
+                """
+            )
+            mentors = []
+            for record in result:
+                mentor = dict(record["mentor"])
+                mentor["victorious_tributes"] = [dict(t) for t in record["victoriousTributes"]]
+                mentor["winning_games"] = [dict(g) for g in record["winningGames"]]
+                mentor["victories"] = record["victories"]
+                mentors.append(mentor)
+
+            return mentors
+            
+    def get_characters_and_their_known_people_from_other_districts(self):
+        with self.driver.session() as session:
+            # [*..1] busca cualquier relación de distancia 1
+            # entre dos nodos, sin importar el tipo de relación
+            result = session.run(
+                """
+                MATCH (c:Character)-[*..1]-(other:Character)
+                MATCH (c)-[:FROM_DISTRICT]->(dc:District)
+                MATCH (other)-[:FROM_DISTRICT]->(do:District)
+                WHERE c.ID <> other.ID AND dc.Name <> do.Name
+                WITH c.Name AS characterName,
+                    collect(DISTINCT do.Name) AS knownDistricts,
+                    collect(DISTINCT {name: other.Name, district: do.Name}) AS knownPeople,
+                    count(DISTINCT other) AS peopleKnown
+                ORDER BY peopleKnown DESC
+                LIMIT 5
+                RETURN characterName, knownDistricts, knownPeople
+                """
+            )
+            characters = []
+            for record in result:
+                characters.append({
+                    "name": record["characterName"],
+                    "knownDistricts": record["knownDistricts"],
+                    "knownPeople": record["knownPeople"]
+                })
+            return characters
+
     def shortest_path(self, source_id, target_id):
         with self.driver.session() as session:
             result = session.run(

@@ -1,28 +1,5 @@
--------------------------------------------------------------------------------------------------------
 
-- Obtener todos los mentores que han llevado a la victoria a sus tributos
-
-MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
-WHERE p.victor = true
-RETURN mentor, collect(DISTINCT tribute) AS victoriousTributes, collect(DISTINCT game) AS winningGames, count(DISTINCT tribute) AS victories
-
--------------------------------------------------------------------------------------------------------
-
-- Obtener los personajes que conocen a más personas de distritos diferentes
-
-MATCH (c:Character)-[r:ALLY_OF|MENTORS]-(other:Character)
-MATCH (c)-[:FROM_DISTRICT]->(dc:District)
-MATCH (other)-[:FROM_DISTRICT]->(do:District)
-WHERE c.ID <> other.ID AND dc.Name <> do.Name
-WITH c, collect(DISTINCT do.Name) AS knownDistricts, count(DISTINCT other) AS peopleKnown
-RETURN c.Name AS character, size(knownDistricts) AS differentDistricts, peopleKnown, knownDistricts
-ORDER BY differentDistricts DESC, peopleKnown DESC
-LIMIT 3
-
--------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------
-
-- Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
+Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
 
 MATCH (c:Character)-[r]->(g:Game_Year)
 WHERE type(r) IN ["PARTICIPATED_IN", "MENTORS", "RELATED_TO", "INVOLVED_IN"]
