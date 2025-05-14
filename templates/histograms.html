@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Histogramas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Histogramas de Personajes</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Histogramas</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="white_div">
+            <h1>Histogramas de Personajes</h1>
+        </div>
 
-    <h2>Personajes por libro</h2>
-    <img src="data:image/png;base64,{{ books }}" alt="Personajes por libro">
+        <div class="button-container">
+            <p><a class="menu_link" href="/">Volver al menú</a></p>
+        </div>
 
-    <h2>Personajes por distrito</h2>
-    <img src="data:image/png;base64,{{ districts }}" alt="Personajes por distrito">
+        <div class="histogram_grid">
+            <nav class="histogram_nav">
+                <h2>Personajes por libro</h2>
+                <img src="data:image/png;base64,{{ books }}" alt="Personajes por libro">
+            </nav>
 
-    <h2>Personajes por alianza</h2>
-    <img src="data:image/png;base64,{{ alliances }}" alt="Personajes por alianza">
+            <nav class="histogram_nav">
+                <h2>Personajes por distrito</h2>
+                <img src="data:image/png;base64,{{ districts }}" alt="Personajes por distrito">
+            </nav>
 
-    <h2>Personajes por juegos</h2>
-    <img src="data:image/png;base64,{{ games }}" alt="Participantes (tributos y mentores) por juegos">
+            <nav class="histogram_nav">
+                <h2>Personajes por alianza</h2>
+                <img src="data:image/png;base64,{{ alliances }}" alt="Personajes por alianza">
+            </nav>
 
-    <h2>Bajas por causa</h2>
-    <img src="data:image/png;base64,{{ kills }}" alt="Muertes por causa">
+            <nav class="histogram_nav">
+                <h2>Personajes por juegos</h2>
+                <img src="data:image/png;base64,{{ games }}" alt="Participantes (tributos y mentores) por juegos">
+            </nav>
 
-    <p><a href="/">Volver al menú</a></p>
-</body>
+            <nav class="histogram_nav">
+                <h2>Bajas por causa</h2>
+                <img src="data:image/png;base64,{{ kills }}" alt="Muertes por causa">
+            </nav>
+        </div>
+    </body>
 </html>

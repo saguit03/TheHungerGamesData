@@ -112,6 +112,35 @@ nav {
     box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
+.histogram_nav {
+    max-width: 1000px;
+}
+
+.histogram_nav:hover {
+    box-shadow: 0 0 20px var(--capitol-gold);
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+.histogram_nav img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.histogram_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.histogram_grid > :last-child:nth-child(odd) {
+    grid-column: span 2;
+    justify-self: center;
+}
+
 h2 {
     font-family: 'Cinzel', serif;
     color: var(--capitol-gold);
@@ -192,6 +221,37 @@ a:hover {
     color: var(--capitol-gold);
     border-left: 4px solid var(--fire-red);
     text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+}
+
+/* Contenedores de botones */
+.button-container {
+    margin: 20px 0 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Enlaces y botones */
+.menu_link {
+    display: inline-block;
+    padding: 10px 18px;
+    color: var(--panem-white);
+    text-decoration: none;
+    background-color: rgba(68, 68, 68, 0.5);
+    border: 1px solid var(--capitol-dark-gold);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-weight: bolder;
+}
+
+.menu_link:hover {
+    background-color: rgba(226, 88, 34, 0.3);
+    color: var(--capitol-gold);
+    border-color: var(--fire-red);
+    text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+    border: 1px solid var(--capitol-dark-gold);
+    transform: translateY(-2px);
 }
 
 button {

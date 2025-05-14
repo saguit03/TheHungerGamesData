@@ -83,6 +83,17 @@ body::before {
     animation: flicker 3s infinite alternate;
 }
 
+/* Estilo para la navegación */
+nav {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(17, 17, 17, 0.8);
+    border: 1px solid var(--district-gray);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
 @keyframes flicker {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
@@ -148,7 +159,7 @@ h3 {
 /* Enlaces y botones */
 a {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 10px 18px;
     color: var(--panem-white);
     text-decoration: none;
     background-color: rgba(68, 68, 68, 0.5);
@@ -188,6 +199,10 @@ button:hover {
     border-color: var(--fire-red);
     box-shadow: 0 0 10px rgba(226, 88, 34, 0.3);
     transform: translateY(-2px);
+}
+
+.form_button {
+    margin-top: 15px;
 }
 
 /* Listas */
