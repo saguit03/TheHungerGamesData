@@ -1,5 +1,6 @@
 neo4j
 pandas
+matplotlib
 Flask
 flask-cors
 requests
