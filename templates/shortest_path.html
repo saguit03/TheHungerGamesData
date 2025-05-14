@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Ruta más corta entre personajes</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='characters.css') }}">
 </head>
 <body>
-    <h1>Ruta más corta entre personajes</h1>
+    <div class="white_div">
+        <h1>Ruta más corta entre personajes</h1>
+    </div>
 
-    <form method="POST" onsubmit="return validarFormulario();">
-        <label>Personaje origen:
-            <select name="source_id" id="source_id" required>
-                {% for char in characters %}
-                    <option value="{{ char.id }}">{{ char.name }} (ID {{ char.id }})</option>
-                {% endfor %}
-            </select>
-        </label>
-        <br>
-        <label>Personaje destino:
-            <select name="target_id" id="target_id" required>
-                {% for char in characters %}
-                    <option value="{{ char.id }}">{{ char.name }} (ID {{ char.id }})</option>
-                {% endfor %}
-            </select>
-        </label>
-        <br>
-        <button type="submit">Calcular ruta</button>
-    </form>
+    <div class="button-container">
+        <p><a href="/">Volver al menú de gestión</a></p>
+    </div>
+
+    <nav>
+        <form method="POST" onsubmit="return validarFormulario();">
+            <label>Personaje origen:
+                <select name="source_id" id="source_id" required>
+                    {% for char in characters %}
+                        <option value="{{ char.id }}">{{ char.name }} (ID {{ char.id }})</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <br>
+            <label>Personaje destino:
+                <select name="target_id" id="target_id" required>
+                    {% for char in characters %}
+                        <option value="{{ char.id }}">{{ char.name }} (ID {{ char.id }})</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <br>
+            <button type="submit">Calcular ruta</button>
+        </form>
+    </nav>
 
     {% if path_data %}
         <h2>Camino más corto:</h2>
-        <p>
-            {% for i in range(path_data|length) %}
-                {% set rel = path_data[i] %}
-                <strong>{{ rel[0] }}</strong> --<em>{{ rel[1] }}</em>--> 
-                {% if i + 1 == path_data|length %}
-                    <strong>{{ rel[2] }}</strong>
-                {% endif %}
-            {% endfor %}
-        </p>
+        <nav id="shortest_path">
+            <p>
+                {% for i in range(path_data|length) %}
+                    {% set rel = path_data[i] %}
+                    <strong>{{ rel[0] }}</strong> — <em style="color:#d4af37">{{ rel[1] }}</em> →
+                    {% if i + 1 == path_data|length %}
+                        <strong>{{ rel[2] }}</strong>
+                    {% endif %}
+                {% endfor %}
+            </p>
+        </nav>
     {% elif path_data is defined %}
-        <p>No se encontró una ruta entre los personajes seleccionados.</p>
+        <nav id="shortest_path">
+            <p>No se encontró una ruta entre los personajes seleccionados.</p>
+        </nav>
     {% endif %}
 
     <script>
@@ -54,7 +66,5 @@
             return true;
         }
     </script>
-
-    <p><a href="/">Volver al menú de gestión</a></p>
 </body>
 </html>
