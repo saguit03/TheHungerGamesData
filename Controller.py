@@ -148,5 +148,3 @@ class Controller:
         print("Eliminando relación:", source_id, source_label, target_id, target_label, rel_type)
         connection.delete_relationship(source_id, source_label, target_id, target_label, rel_type)
         return redirect("/links")
-
-

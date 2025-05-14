@@ -12,12 +12,10 @@ class Neo4Graphics:
         book_data = self.connection.get_character_counts_per_book()
         titles = [entry["title"] for entry in book_data]
         counts = [entry["count"] for entry in book_data]
-        plt.figure(figsize=(10, 6))
-        plt.bar(titles, counts, color='skyblue', edgecolor='black')
-        plt.title('Número de personajes por libro')
-        plt.xlabel('Libro')
-        plt.ylabel('Cantidad de personajes')
-        plt.xticks(rotation=45, ha='right')
+        plt.figure(figsize=(8, 8))
+        plt.pie(counts, labels=titles, autopct='%1.1f%%', startangle=140)
+        plt.title('Distribución de personajes por libro')
+        plt.axis('equal')  # Para que el círculo no salga ovalado
         plt.tight_layout()
         img = io.BytesIO()
         plt.savefig(img, format='png')
@@ -25,17 +23,14 @@ class Neo4Graphics:
         img.seek(0)
         return Response(img.getvalue(), mimetype='image/png')
 
-
     def characters_per_district(self):
         district_data = self.connection.get_character_counts_per_district()
         districts = [entry["district"] for entry in district_data]
         counts = [entry["count"] for entry in district_data]
-        plt.figure(figsize=(10, 6))
-        plt.bar(districts, counts, color='salmon', edgecolor='black')
-        plt.title('Número de personajes por libro')
-        plt.xlabel('Libro')
-        plt.ylabel('Cantidad de personajes')
-        plt.xticks(rotation=45, ha='right')
+        plt.figure(figsize=(8, 8))
+        plt.pie(counts, labels=districts, autopct='%1.1f%%', startangle=140)
+        plt.title('Distribución de personajes por distrito')
+        plt.axis('equal')
         plt.tight_layout()
         img = io.BytesIO()
         plt.savefig(img, format='png')

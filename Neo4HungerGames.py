@@ -418,3 +418,84 @@ class Neo4HungerGames:
                 })
             return characters
 
+    def get_max_death_cause(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (p)-[:KILLED]->(k:Character)
+                RETURN p.Name AS killer, count(DISTINCT k.Name) as killed, collect(DISTINCT k.Name) AS victims
+                ORDER BY killed DESC
+                LIMIT 1
+            """)
+            return [
+                {
+                    "killer": record["killer"],
+                    "killed": record["killed"],
+                    "victims": record["victims"]
+                }
+                for record in result
+            ]
+        
+    def get_max_appearances(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)-[:APPEARS_IN]->(b:Book)
+                RETURN c.Name AS character, count(b) AS appearances
+                ORDER BY appearances DESC
+                LIMIT 1
+            """)
+            return [
+                {
+                    "character": record["character"],
+                    "appearances": record["appearances"]
+                }
+                for record in result
+            ]
+        
+    def get_population_per_district(self):
+        with self.driver.session() as session:
+            result = session.run("""
+                MATCH (c:Character)-[:FROM_DISTRICT]->(d:District),
+                (c)-[:APPEARS_IN]->(b:Book)
+                RETURN b.Title AS title, b.Order as order, d.Name AS district, count(DISTINCT c) AS characterCount
+                ORDER BY b.Order, district
+            """)
+            return [
+                {
+                    "title": record["title"],
+                    "order": record["order"],
+                    "district": record["district"],
+                    "characterCount": record["characterCount"]
+                }
+                for record in result
+            ]
+        
+    def shortest_path(self, source_id, target_id):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH p = shortestPath((a:Character {ID: $source_id})-[*]-(b:Character {ID: $target_id}))
+                RETURN p
+                """,
+                {"source_id": int(source_id), "target_id": int(target_id)}
+            )
+
+            for record in result:
+                path = record["p"]
+                path_data = []
+
+                # Recorrer nodos y relaciones como secuencia
+                for i in range(len(path.relationships)):
+                    start_node = path.nodes[i]
+                    end_node = path.nodes[i + 1]
+                    rel = path.relationships[i]
+
+                    start_name = start_node.get("Name", f"ID {start_node['ID']}")
+                    end_name = end_node.get("Name", f"ID {end_node['ID']}")
+                    rel_type = rel.type
+
+                    path_data.append((start_name, rel_type, end_name))
+
+                return path_data
+
+            # Si no se encontró camino
+            return []

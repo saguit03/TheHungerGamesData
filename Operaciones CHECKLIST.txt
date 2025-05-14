@@ -20,58 +20,6 @@ ORDER BY differentDistricts DESC, peopleKnown DESC
 LIMIT 3
 
 -------------------------------------------------------------------------------------------------------
-
-- Obtener el personaje que más muertes ha provocado
-
-MATCH (killer:Character)-[:KILLED]->(victim:Character)
-WITH killer, count(victim) AS kills, collect(victim) AS victims
-ORDER BY kills DESC
-RETURN killer, kills, victims
-LIMIT 1
-
--------------------------------------------------------------------------------------------------------
-
-- Obtener los personajes que más veces han aparecido en los libros
-
-MATCH (c:Character)-[:APPEARS_IN]->(b:Book)
-WITH c, count(b) AS appearances, collect(DISTINCT b) AS books
-ORDER BY appearances DESC
-LIMIT 3
-RETURN c, appearances, books
-
--------------------------------------------------------------------------------------------------------
-
-- Obtener el distrito más poblado
-
-MATCH (c:Character)-[:FROM_DISTRICT]->(d:District)
-WITH d, count(c) AS population
-ORDER BY population DESC
-LIMIT 1
-MATCH (c:Character)-[:FROM_DISTRICT]->(d)
-RETURN d AS mostPopulatedDistrict, collect(c) AS characters
-
--------------------------------------------------------------------------------------------------------
-
-- Obtener la alianza con más aliados
-
-MATCH (c:Character)-[:BELONGS_TO]->(a:Alliance)
-WITH a, count(c) AS population
-ORDER BY population DESC
-LIMIT 1
-MATCH (c:Character)-[:BELONGS_TO]->(a)
-RETURN a AS mostPopularAlliance, collect(c) AS characters
-
--------------------------------------------------------------------------------------------------------
-
-- Obtener el libro con más personajes
-
-MATCH (c:Character)-[:APPEARS_IN]->(b:Book)
-WITH b, count(c) AS population
-ORDER BY population DESC
-LIMIT 1
-MATCH (c:Character)-[:APPEARS_IN]->(b)
-RETURN b AS mostPopulatedBook, collect(c) AS characters
-
 -------------------------------------------------------------------------------------------------------
 
 - Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
@@ -88,18 +36,9 @@ RETURN g AS game, collect(DISTINCT participant) AS participants, collect(DISTINC
 
 -------------------------------------------------------------------------------------------------------
 
-- Obtener el número de personajes de cada distrito por cada libro
-
-MATCH (c:Character)-[:FROM_DISTRICT]->(d:District),
-      (c)-[:APPEARS_IN]->(b:Book)
-RETURN b.Title AS bookTitle, b.Order, d.Name AS districtName, count(DISTINCT c) AS characterCount
-ORDER BY b.Order, districtName
-
--------------------------------------------------------------------------------------------------------
-
 - Dados dos personajes, encontrar el camino más corto entre ellos (prioridades: relación directa, mismos juegos, mismo distrito, mismo libro)
 
-MATCH (a:Character {ID: "1"}), (b:Character {ID: "2"})
+MATCH (a:Character {ID: 50}), (b:Character {ID: 11})
 MATCH path = shortestPath(
   (a)-[:ALLY_OF|MENTORS|FAMILY|KILLED|PARTICIPATED_IN|FROM_DISTRICT|APPEARS_IN*]-(b)
 )

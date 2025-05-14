@@ -3,16 +3,15 @@ import pandas as pd
 
 # Define los pesos de las relaciones
 relationship_weights = {
-    "ALLY_OF": 2,
-    "APPEARS_IN": 10,
-    "BELONGS_TO": 2,
-    "DIED_FROM": 2,
-    "FROM_DISTRICT": 5,
+    "ALLY_OF": 5,
+    "APPEARS_IN": 100,
+    "BELONGS_TO": 10,
+    "DIED_FROM": 5,
+    "FROM_DISTRICT": 50,
     "KILLED": 2,
     "MENTORS": 1,
     "MENTORED_BY": 1,
-    "PARTICIPATED_IN": 3,
-    "FAMILY": 0.5,
+    "PARTICIPATED_IN": 5
 }
 
 class Neo4Dataframes:
@@ -76,7 +75,7 @@ class Neo4Dataframes:
 
         with self.driver.session() as session:
             for year in sorted(all_years):
-                session.run(f"CREATE (:Game_Year {{Year: {year}, ID: {year}}});\n")
+                session.run(f"CREATE (:Game_Year {{Year: {year}, Name: '{year}th Hunger Games', ID: {year}}});\n")
 
     def create_neo4j_book_nodes(self, books):
         all_books = set()
@@ -106,7 +105,7 @@ class Neo4Dataframes:
                         order = 6
 
                 if safe_name not in ["Trilogy"]:
-                    session.run(f"CREATE (:Book {{Title: '{safe_name}', Order: {order}, ID: {order}}});\n")
+                    session.run(f"CREATE (:Book {{Title: '{safe_name}', Name: '{safe_name}',Order: {order}, ID: {order}}});\n")
 
     def create_neo4j_alliance_nodes(self, alliances):
         all_alliances = set()

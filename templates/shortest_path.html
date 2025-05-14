@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ruta más corta entre personajes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Ruta más corta entre personajes</h1>
+
+    <form method="POST" onsubmit="return validarFormulario();">
+        <label>Personaje origen:
+            <select name="source_id" id="source_id" required>
+                {% for char in characters %}
+                    <option value="{{ char.id }}">{{ char.name }} (ID {{ char.id }})</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+        <label>Personaje destino:
+            <select name="target_id" id="target_id" required>
+                {% for char in characters %}
+                    <option value="{{ char.id }}">{{ char.name }} (ID {{ char.id }})</option>
+                {% endfor %}
+            </select>
+        </label>
+        <br>
+        <button type="submit">Calcular ruta</button>
+    </form>
+
+    {% if path_data %}
+        <h2>Camino más corto:</h2>
+        <p>
+            {% for i in range(path_data|length) %}
+                {% set rel = path_data[i] %}
+                <strong>{{ rel[0] }}</strong> --<em>{{ rel[1] }}</em>--> 
+                {% if i + 1 == path_data|length %}
+                    <strong>{{ rel[2] }}</strong>
+                {% endif %}
+            {% endfor %}
+        </p>
+    {% elif path_data is defined %}
+        <p>No se encontró una ruta entre los personajes seleccionados.</p>
+    {% endif %}
+
+    <script>
+        function validarFormulario() {
+            const source = document.getElementById("source_id").value;
+            const target = document.getElementById("target_id").value;
+            if (source === target) {
+                alert("Debe seleccionar dos personajes distintos.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <p><a href="/">Volver al menú de gestión</a></p>
+</body>
+</html>
