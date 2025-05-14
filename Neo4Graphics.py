@@ -80,7 +80,7 @@ class Neo4Graphics:
         return Response(img.getvalue(), mimetype='image/png')
 
     def kills_per_cause(self):
-        cause_data = self.connection.get_kills_per_cause()
+        cause_data = self.connection.get_count_kills_per_cause()
         causes = [entry["killer"] for entry in cause_data]
         counts = [entry["killed"] for entry in cause_data]
         plt.figure(figsize=(10, 6))

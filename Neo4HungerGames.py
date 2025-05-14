@@ -349,7 +349,7 @@ class Neo4HungerGames:
                 for record in result
             ]
         
-    def get_kills_per_cause(self):
+    def get_count_kills_per_cause(self):
         with self.driver.session() as session:
             result = session.run("""
                 MATCH (p)-[:KILLED]->(k:Character)
@@ -363,3 +363,40 @@ class Neo4HungerGames:
                 }
                 for record in result
             ]
+
+    def get_characters_from_other_books(self, title):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (c:Character)-[:APPEARS_IN]->(b:Book {Title: $title})
+                MATCH (c)-[:APPEARS_IN]->(otherBook:Book)
+                WHERE otherBook.Title <> $title
+                RETURN DISTINCT c.Name AS name, collect(DISTINCT otherBook.Title) AS other_books
+                ORDER BY name
+                """,
+                {"title": title}
+            )
+            characters = []
+            for record in result:
+                characters.append({
+                    "name": record["name"],
+                    "other_books": record["other_books"]
+                })
+            return characters
+
+    def get_characters_from_a_book(self, title):
+        with self.driver.session() as session:
+            result = session.run(
+                """
+                MATCH (c:Character)-[:APPEARS_IN]->(b:Book {Title: $title})
+                RETURN DISTINCT c.Name AS name
+                ORDER BY name
+                """,
+                {"title": title}
+            )
+            characters = []
+            for record in result:
+                characters.append({
+                    "name": record["name"],
+                })
+            return characters
