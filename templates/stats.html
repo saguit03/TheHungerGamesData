@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Estadísticas</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+    </head>
+    <body>
+        <div class="white_div">
+            <h1>Estadísticas de Personajes</h1>
+        </div>
+
+        <div class="button-container">
+            <p><a href="/">Volver al menú principal</a></p>
+        </div>
+
+        <div class="histogram_grid">
+            <nav class="histogram_nav">
+                <h2>Número de personajes por alianza o afinidad</h2>
+                <img src="data:image/png;base64,{{ alliances }}" alt="Personajes por alianza">
+            </nav>
+
+            <nav class="histogram_nav">
+                <h2>Número de participantes por juego</h2>
+                <img src="data:image/png;base64,{{ games }}" alt="Participantes (tributos y mentores) por juegos">
+            </nav>
+
+            <nav class="histogram_nav">
+                <h2>Número de bajas por causa de muerte</h2>
+                <img src="data:image/png;base64,{{ kills }}" alt="Muertes por causa">
+            </nav>
+
+            <nav class="histogram_nav">
+                <h2>Número de personajes de los distritos por libro</h2>
+                <img src="data:image/png;base64,{{ districts_per_book }}" alt="Personajes de los distritos por libro">
+            </nav>
+        </div>
+        
+        {% if max_appearances %}
+        <div class="white_div">
+            <h2>
+                {{ max_appearances.character }} es el personaje que más veces aparece en la saga, <br>
+                con {{ max_appearances.appearances }} apariciones.
+            </h2>
+        </div>
+        {% endif %}
+        
+        <div class="histogram_grid">
+            <nav class="histogram_nav">
+                <h2>Número de personajes por libro</h2>
+                <img src="data:image/png;base64,{{ books }}" alt="Personajes por libro">
+            </nav>
+
+            <nav class="histogram_nav">
+                <h2>Número de personajes por distrito</h2>
+                <img src="data:image/png;base64,{{ districts }}" alt="Personajes por distrito">
+            </nav>
+        </div>
+
+
+    </body>
+</html>
