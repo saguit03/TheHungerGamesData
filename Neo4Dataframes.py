@@ -339,7 +339,6 @@ class Neo4Dataframes:
                         MATCH (c:Character {ID: $character_id}),
                               (k) WHERE k.Name = $killer_name AND $label IN labels(k)
                         MERGE (k)-[:KILLED {weight: $killed_weight}]->(c)
-                        MERGE (c)-[:DIED_FROM {weight: $died_weight}]->(k)
                     """
                     session.run(
                         cypher,
@@ -348,7 +347,6 @@ class Neo4Dataframes:
                             "killer_name": death_name,
                             "label": label,
                             "killed_weight": relationship_weights["KILLED"],
-                            "died_weight": relationship_weights["DIED_FROM"]
                         }
                     )
 

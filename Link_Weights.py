@@ -3,7 +3,6 @@ relationship_weights = {
     "ALLY_OF": 5,
     "APPEARS_IN": 10000,
     "BELONGS_TO": 50,
-    "DIED_FROM": 5,
     "FROM_DISTRICT": 80,
     "KILLED": 2,
     "MENTOR": 1,
