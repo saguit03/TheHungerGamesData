@@ -7,8 +7,9 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
 </head>
 <body>
-<p><a href="/">Volver al menú principal</a></p>
-<h1>Personajes que conocen a más personas de distritos distintos</h1>
+<div class="white_div">
+    <h1>Personajes que conocen a más personas de distritos distintos</h1>
+</div>
 <ul>
     {% for character in characters %}
         <li>
@@ -28,6 +29,8 @@
         </li>
     {% endfor %}
 </ul>
-<p><a href="/">Volver al menú principal</a></p>
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
 </body>
 </html>

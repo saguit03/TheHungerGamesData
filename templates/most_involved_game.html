@@ -24,14 +24,18 @@
         </div>
     </div>
 </div>
-<h2>Tributos</h2>
+<div class="white_div">
+    <h2>Tributos</h2>
+</div>
 <ul>
     {% for tribute in data.tributes %}
         <li>{{ tribute.name }}{% if tribute.victor == "true" %} (GANADOR){% endif %}</li>
     {% endfor %}
 </ul>
 
-<h2>Mentores</h2>
+<div class="white_div">
+    <h2>Mentores</h2>
+</div>
 <ul>
     {% for mentor in data.mentors %}
         <li>{{ mentor.name }} - mentor de
@@ -39,6 +43,9 @@
     {% endfor %}
 </ul>
 
-<p><a href="/">Volver al menú</a></p>
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
+
 </body>
 </html>

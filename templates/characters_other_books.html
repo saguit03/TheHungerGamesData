@@ -11,10 +11,6 @@
     <h1>Personajes que aparecen en otros libros</h1>
 </div>
 
-<div class="button-container">
-    <p><a href="/">Volver al menú principal</a></p>
-</div>
-
 <nav>
     <form method="POST">
         <label for="title">Selecciona un libro:</label>
@@ -39,5 +35,10 @@
 {% elif selected_title %}
     <p>No se encontraron personajes en otros libros.</p>
 {% endif %}
+
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
+
 </body>
 </html>

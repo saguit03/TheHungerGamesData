@@ -8,129 +8,127 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
 </head>
 <body>
-<div class="white_div">
-    <h1>Gestión de personajes</h1>
-</div>
+    <div class="white_div">
+        <h1>Gestión de personajes</h1>
+    </div>
 
-<!-- Obtener todos los personajes -->
-<form action="/characters/all" method="GET" class="white_div">
-    <div class="button-container">
+    <!-- Obtener todos los personajes -->
+    <form action="/characters/all" method="GET" class="white_div">
         <button type="submit">Ver todos los personajes</button>
-    </div>
-</form>
+    </form>
 
 
-<div>
-    <div style="display: flex; gap: 40px;">
-        <!-- Añadir personaje -->
-        <div style="flex: 1;" class="white_div">
-            <div class="header_div">
-                <h2>Añadir personaje</h2>
-            </div>
-            <form action="/characters/create" method="POST">
-                <p style="font-style: italic;">Nota: Los parámetros con <span>*</span> son obligatorios</p>
-                <label>Nombre <span>*</span>:
-                    <input name="name" required type="text" placeholder="Ej.: Katniss Everdeen"></label><br>
-                <label>Género <span>*</span>:
-                    <select name="gender" required>
-                        <option value="">--Seleccione un género--</option>
-                        <option value="M">Hombre</option>
-                        <option value="F">Mujer</option>
-                        <option value="Other">Otro</option>
-                    </select>
-                </label><br>
-                <label>Distrito <span>*</span>:
-                    <select name="district" required>
-                        <option value="">--Seleccione un distrito--</option>
-                        {% for d in districts %}
-                            <option value="{{ d.number }}">{{ d.name }}</option>
-                        {% endfor %}
-                    </select>
-                </label><br>
-                <label>Profesión: <input name="profession" type="text"></label><br>
-
-                <div class="button-container">
-                    <button type="submit">Añadir</button>
+    <div>
+        <div style="display: flex; gap: 40px;">
+            <!-- Añadir personaje -->
+            <div style="flex: 1;" class="white_div">
+                <div class="header_div">
+                    <h2>Añadir personaje</h2>
                 </div>
-            </form>
-        </div>
+                <form action="/characters/create" method="POST">
+                    <p style="font-style: italic;">Nota: Los parámetros con <span>*</span> son obligatorios</p>
+                    <label>Nombre <span>*</span>:
+                        <input name="name" required type="text" placeholder="Ej.: Katniss Everdeen"></label><br>
+                    <label>Género <span>*</span>:
+                        <select name="gender" required>
+                            <option value="">--Seleccione un género--</option>
+                            <option value="M">Hombre</option>
+                            <option value="F">Mujer</option>
+                            <option value="Other">Otro</option>
+                        </select>
+                    </label><br>
+                    <label>Distrito <span>*</span>:
+                        <select name="district" required>
+                            <option value="">--Seleccione un distrito--</option>
+                            {% for d in districts %}
+                                <option value="{{ d.number }}">{{ d.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label><br>
+                    <label>Profesión: <input name="profession" type="text"></label><br>
 
-        <!-- Eliminar personaje -->
-        <div style="flex: 1;" class="white_div">
-            <div class="header_div">
-                <h2>Eliminar personaje</h2>
+                    <div class="button-container">
+                        <button type="submit">Añadir</button>
+                    </div>
+                </form>
             </div>
-            <form action="/characters/delete" method="POST">
-                <label>ID <span style="color: red; font-weight: bold;">*</span>: <input name="character_id" required
-                                                                                        type="text"></label><br>
-                <div class="button-container">
-                    <button type="submit">Eliminar</button>
+
+            <!-- Eliminar personaje -->
+            <div style="flex: 1;" class="white_div">
+                <div class="header_div">
+                    <h2>Eliminar personaje</h2>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div style="display: flex; gap: 40px; margin-top: 20px;">
-        <!-- Obtener personaje por ID -->
-        <div style="flex: 1;" class="white_div">
-            <div class="header_div">
-                <h2>Obtener personaje por ID</h2>
-            </div>
-            <form action="/characters" method="GET" onsubmit="event.preventDefault(); getCharacterById();">
-                <label>ID <span style="color: red; font-weight: bold;">*</span>: <input id="character_id"
-                                                                                        name="character_id" required
-                                                                                        type="text"></label><br>
-                <div class="button-container">
-                    <button type="submit">Buscar</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Obtener personaje por nombre -->
-        <div style="flex: 1;" class="white_div">
-            <div class="header_div">
-                <h2>Obtener personaje por nombre</h2>
-            </div>
-            <form action="/characters/name" method="GET">
-                <label>Nombre <span style="color: red; font-weight: bold;">*</span>: <input name="name" required
+                <form action="/characters/delete" method="POST">
+                    <label>ID <span style="color: red; font-weight: bold;">*</span>: <input name="character_id" required
                                                                                             type="text"></label><br>
-                <div class="button-container">
-                    <button type="submit">Buscar</button>
+                    <div class="button-container">
+                        <button type="submit">Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 40px; margin-top: 20px;">
+            <!-- Obtener personaje por ID -->
+            <div style="flex: 1;" class="white_div">
+                <div class="header_div">
+                    <h2>Obtener personaje por ID</h2>
                 </div>
-            </form>
+                <form action="/characters" method="GET" onsubmit="event.preventDefault(); getCharacterById();">
+                    <label>ID <span style="color: red; font-weight: bold;">*</span>: <input id="character_id"
+                                                                                            name="character_id" required
+                                                                                            type="text"></label><br>
+                    <div class="button-container">
+                        <button type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Obtener personaje por nombre -->
+            <div style="flex: 1;" class="white_div">
+                <div class="header_div">
+                    <h2>Obtener personaje por nombre</h2>
+                </div>
+                <form action="/characters/name" method="GET">
+                    <label>Nombre <span style="color: red; font-weight: bold;">*</span>: <input name="name" required
+                                                                                                type="text"></label><br>
+                    <div class="button-container">
+                        <button type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<div>
-    <h2>Algunos personajes</h2>
-    <ul>
-        {% for character in characters %}
-            <li>
-                <h3> {{ character.name }} </h3>
-                ID: {{ character.id }},
-                Género: {{ character.gender }},
-                Profesión: {{ character.profession }}
-                <a href="/characters/{{ character.id }}">
-                    Ver más
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-<div class="button-container">
-    <p><a href="/">Volver al menú principal</a></p>
-</div>
-<script>
-    function getCharacterById() {
-        const idCharacter = document.getElementById('character_id').value;
-        if (idCharacter) {
-            window.location.href = `/characters/${idCharacter}`;
-        } else {
-            alert('Por favor, introduce un ID válido.');
+    <div>
+        <h2>Algunos personajes</h2>
+        <ul>
+            {% for character in characters %}
+                <li>
+                    <h3> {{ character.name }} </h3>
+                    ID: {{ character.id }},
+                    Género: {{ character.gender }},
+                    Profesión: {{ character.profession }}
+                    <a href="/characters/{{ character.id }}">
+                        Ver más
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="button-container">
+        <p><a href="/">Volver al menú principal</a></p>
+    </div>
+
+    <script>
+        function getCharacterById() {
+            const idCharacter = document.getElementById('character_id').value;
+            if (idCharacter) {
+                window.location.href = `/characters/${idCharacter}`;
+            } else {
+                alert('Por favor, introduce un ID válido.');
+            }
         }
-    }
-</script>
-
+    </script>
 </body>
 </html>

@@ -8,16 +8,13 @@
 </head>
 <body>
 <div class="white_div">
-    <div class="button-container">
-        <p><a href="/">Volver al menú principal</a></p>
-    </div>
     <h1>Detalle de Personaje</h1>
 </div>
 
 {% if characters is defined %}
     <p class="button-container">Se encontraron {{ characters|length }} personajes</p>
     {% for character in characters %}
-        <hr>
+        <hr style="margin: 20px 0;">
         <h2>
             {{ loop.index }}.
             <a href="{{ url_for('get_character_by_id', character_id=character.get('ID')) }}">
@@ -66,5 +63,8 @@
 {% else %}
     <p>No se encontraron personajes.</p>
 {% endif %}
+    <div class="button-container">
+        <p><a href="/">Volver al menú principal</a></p>
+    </div>
 </body>
 </html>

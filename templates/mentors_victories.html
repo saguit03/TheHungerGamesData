@@ -7,8 +7,9 @@
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
 </head>
 <body>
-<p><a href="/">Volver al menú principal</a></p>
-<h1>Mentores con tributos victoriosos</h1>
+<div class="white_div">
+    <h1>Mentores con tributos victoriosos</h1>
+</div>
 {% for mentor_entry in mentors %}
     <h2>{{ mentor_entry.mentor.Name }}</h2>
     <ul>
@@ -20,5 +21,8 @@
         {% endfor %}
     </ul>
 {% endfor %}
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
 </body>
 </html>
