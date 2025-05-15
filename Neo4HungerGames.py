@@ -563,9 +563,8 @@ class Neo4HungerGames:
             # entre dos nodos, sin importar el tipo de relación
             result = session.run(
                 """
-                MATCH (c:Character)-[*..1]-(other:Character)
+                MATCH (c:Character)-[*..1]-(other:Character)-[:FROM_DISTRICT]->(do:District)
                 MATCH (c)-[:FROM_DISTRICT]->(dc:District)
-                MATCH (other)-[:FROM_DISTRICT]->(do:District)
                 WHERE c.ID <> other.ID AND dc.Name <> do.Name
                 WITH c.Name AS characterName,
                     collect(DISTINCT do.Name) AS knownDistricts,
