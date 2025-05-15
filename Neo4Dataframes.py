@@ -1,7 +1,7 @@
 import pandas as pd
 from neo4j import GraphDatabase
-
 from Link_Weights import relationship_weights, family_examples, family_relationships_weights, inverse_relationships
+from Links_Handmade import handmake_links
 
 
 class Neo4Dataframes:
@@ -44,8 +44,14 @@ class Neo4Dataframes:
             self.create_neo4j_mentor_links(df)
             self.create_neo4j_death_links(df)
             self.create_family_links()
+            handmake_links(self.driver)
         finally:
             self.close()
+
+    # def create_neo4j_static_links(self):
+    #     with self.driver.session() as session:
+    #             session.run()
+
 
     def create_neo4j_district_nodes(self, values):
         with self.driver.session() as session:
@@ -298,14 +304,12 @@ class Neo4Dataframes:
                     session.run(
                         """
                         MATCH (c:Character {ID: $character_id}), (m:Character {Name: $mentor_name})
-                        MERGE (m)-[:MENTORS {weight: $weight}]->(c)
-                        MERGE (c)-[:MENTORED_BY {weight: $weight_by}]->(m)
+                        MERGE (m)-[:MENTOR {weight: $weight}]->(c)
                         """,
                         {
                             "character_id": int(character_id),
                             "mentor_name": mentor_name,
-                            "weight": relationship_weights["MENTORS"],
-                            "weight_by": relationship_weights["MENTORED_BY"]
+                            "weight": relationship_weights["MENTOR"],
                         }
                     )
 
@@ -353,22 +357,35 @@ class Neo4Dataframes:
             for relationship_type, related_characters in relationships.items():
                 for related_character in related_characters:
                     if related_character != "None":
-                        rel_type = relationship_type.upper()
-                        inverse_type = inverse_relationships.get(rel_type, rel_type).upper()
-                        weight = family_relationships_weights.get(rel_type, 5.0)
-
                         with self.driver.session() as session:
-                            session.run(
-                                f"""
-                                MATCH (a:Character {{Name: $name1}}), (b:Character {{Name: $name2}})
-                                MERGE (a)-[:{rel_type} {{weight: $weight}}]->(b)
-                                MERGE (b)-[:{inverse_type} {{weight: $weight}}]->(a)
-                                """,
-                                {
-                                    "name1": character,
-                                    "name2": related_character,
-                                    "type": rel_type,
-                                    "inverse_type": inverse_type,
-                                    "weight": weight
-                                }
-                            )
+                            rel_type = relationship_type.upper()
+                            weight = family_relationships_weights.get(rel_type, 5.0)
+                            inverse_type = inverse_relationships.get(rel_type, rel_type)
+                            if inverse_type is not None:
+                                inverse_type = inverse_type.upper()
+                                session.run(
+                                    f"""
+                                    MATCH (a:Character {{Name: $name1}}), (b:Character {{Name: $name2}})
+                                    MERGE (a)-[:{rel_type} {{weight: $weight}}]->(b)
+                                    MERGE (b)-[:{inverse_type} {{weight: $weight}}]->(a)
+                                    """,
+                                    {
+                                        "name1": character,
+                                        "name2": related_character,
+                                        "inverse_type": inverse_type,
+                                        "weight": weight
+                                    }
+                                )
+                            else:
+                                session.run(
+                                    f"""
+                                    MATCH (a:Character {{Name: $name1}}), (b:Character {{Name: $name2}})
+                                    MERGE (a)-[:{rel_type} {{weight: $weight}}]-(b)
+                                    """,
+                                    {
+                                        "name1": character,
+                                        "name2": related_character,
+                                        "type": rel_type,
+                                        "weight": weight
+                                    }
+                                )

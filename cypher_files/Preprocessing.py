@@ -267,7 +267,7 @@ def create_neo4j_mentor_links(df, filename="cypher_files/link_characters_mentors
                 safe_mentor = mentor.replace("'", "`")
                 file.write(
                     f"MATCH (c:Character {{ID: {character_id}}}), (m:Character {{Name: '{safe_mentor}'}})\n"
-                    f"CREATE (m)-[:MENTORS]->(c);\n"
+                    f"CREATE (m)-[:MENTOR]->(c);\n"
                 )
 
 # -------------------------------------------------------------------------------------

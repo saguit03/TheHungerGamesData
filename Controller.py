@@ -7,19 +7,16 @@ class Controller:
     @staticmethod
     def create_character(connection: Neo4HungerGames, request):
         character_id = connection.get_next_character_id()
-
         character_data = {
             "ID": character_id,
             "Name": request.form.get("name"),
             "Gender": request.form.get("gender"),
             "Profession": request.form.get("profession")
         }
-        district_number = request.form.get("district")
-
+        district_number = int(request.form.get("district"))
         connection.create_neo4j_character_node(character_data)
-
         if district_number:
-            connection.create_character_district_link(character_id, district_number)
+            connection.create_character_district_link(int(character_id), district_number)
         print(character_data)
         return redirect("/characters/all")
 

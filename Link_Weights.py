@@ -1,14 +1,16 @@
 # Define los pesos de las relaciones
 relationship_weights = {
     "ALLY_OF": 5,
-    "APPEARS_IN": 100,
-    "BELONGS_TO": 10,
+    "APPEARS_IN": 10000,
+    "BELONGS_TO": 50,
     "DIED_FROM": 5,
-    "FROM_DISTRICT": 50,
+    "FROM_DISTRICT": 80,
     "KILLED": 2,
-    "MENTORS": 1,
-    "MENTORED_BY": 1,
-    "PARTICIPATED_IN": 5
+    "MENTOR": 1,
+    "PARTICIPATED_IN": 5,
+    "HANDMADE": 10,
+    "GOVERNS": 10,
+    "CONTROLS": 10
 }
 family_relationships_weights = {
     "LOVER": 0.1,
@@ -22,16 +24,20 @@ family_relationships_weights = {
     "PET": 0.1
 }
 
+def build_relationship_string():
+    all_rels = list(relationship_weights.keys()) + list(family_relationships_weights.keys())
+    return '|'.join(all_rels)
+
 inverse_relationships = {
     "PARENT": "CHILD",
     "CHILD": "PARENT",
-    "LOVER": "LOVER",
-    "SIBLING": "SIBLING",
-    "COUSIN": "COUSIN",
-    "FRIEND": "FRIEND",
-    "OTHER": "OTHER",
-    "ACQUAINTANCE": "ACQUAINTANCE",
-    "PET": "PET"
+    "LOVER": None,
+    "SIBLING": None,
+    "COUSIN": None,
+    "FRIEND": None,
+    "OTHER": None,
+    "ACQUAINTANCE": None,
+    "PET": "OWNER"
 }
 
 family_examples = {
@@ -40,7 +46,7 @@ family_examples = {
         "Sibling": ["Primrose Everdeen"],
         "Parent": ["Asterid Everdeen", "Burdock Everdeen"],
         "Child": ["None"],
-        "Cousin": ["None"],
+        "Cousin": ["Gale Hawthorne"],
         "Friend": ["Cinna", "Madge Undersee", "Gale Hawthorne", "Finnick Odair", "Rue"],
         "Other": ["Boggs", "Greasy Sae", "Castor"],
         "ACQUAINTANCE": ["Plutarch Heavensbee"],
@@ -61,6 +67,9 @@ family_examples = {
         "Lover": ["Lenore Dove Baird"],
         "Other": ["Hattie Meeney"],
         "ACQUAINTANCE": ["Plutarch Heavensbee"]
+    },
+    "Willamae Abernathy": {
+        "Child": ["Haymitch Abernathy", "Sid Abernathy"],
     },
     "Lenore Dove Baird": {
         "Sibling": ["None"],
@@ -98,7 +107,8 @@ family_examples = {
         "Cousin": ["Tigris"],
         "Friend": ["Sejanus Plinth"],
         "Lover": ["Lucy Gray Baird", "Livia Cardew"],
-        "Other": ["Dr. Gaul", "Grandma'am"]
+        "Other": ["Volumnia Gaul", "Grandma'am"],
+        "Acquaintance": ["Plutarch Heavensbee"]
     },
     "Seneca Crane": {
         "Other": ["Arachne Crane"]
@@ -130,5 +140,4 @@ family_examples = {
     "Diana Ring": {
         "Sibling": ["Apolo Ring"],
     },
-
 }

@@ -15,7 +15,7 @@ MATCH p=()-[r:KILLED]->() RETURN p
 
 - Obtener todos los mentores que han llevado a la victoria a sus tributos
 
-MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
+MATCH (mentor:Character)-[:MENTOR]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
 WHERE p.victor = true
 RETURN mentor, collect(DISTINCT tribute) AS victoriousTributes, collect(DISTINCT game) AS winningGames, count(DISTINCT tribute) AS victories
 
@@ -94,13 +94,13 @@ RETURN b AS mostPopulatedBook, collect(c) AS characters
 - Obtener el Juego con más personajes involucrados (los participantes, mentores y sus relaciones directas)
 
 MATCH (c:Character)-[r]->(g:Game_Year)
-WHERE type(r) IN ["PARTICIPATED_IN", "MENTORS", "RELATED_TO", "INVOLVED_IN"]
+WHERE type(r) IN ["PARTICIPATED_IN", "MENTOR", "RELATED_TO", "INVOLVED_IN"]
 WITH g, collect(DISTINCT c) AS charactersInvolved
 ORDER BY size(charactersInvolved) DESC
 LIMIT 1
 
 MATCH (participant:Character)-[:PARTICIPATED_IN]->(g)
-MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[:PARTICIPATED_IN]->(g)
+MATCH (mentor:Character)-[:MENTOR]->(tribute:Character)-[:PARTICIPATED_IN]->(g)
 RETURN g AS game, collect(DISTINCT participant) AS participants, collect(DISTINCT mentor) AS mentors
 
 -------------------------------------------------------------------------------------------------------

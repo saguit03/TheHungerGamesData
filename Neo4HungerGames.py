@@ -1,6 +1,6 @@
 from neo4j import GraphDatabase
-
 from Neo4Dataframes import family_relationships_weights, inverse_relationships
+from Link_Weights import build_relationship_string
 
 
 class Neo4HungerGames:
@@ -32,8 +32,16 @@ class Neo4HungerGames:
                     if not value and col == "Profession":
                         value = "None"
                     if value:
-                        safe_value = str(value).replace("'", "`")  # proteger apóstrofes
-                        props_list.append(f"{col}: '{safe_value}'")
+                        if col == "ID":
+                            # Asegurarse de que sea un entero
+                            try:
+                                int_value = int(value)
+                                props_list.append(f"{col}: {int_value}")  # sin comillas
+                            except ValueError:
+                                continue  # O manejar error si no es convertible a int
+                        else:
+                            safe_value = str(value).replace("'", "`")
+                            props_list.append(f"{col}: '{safe_value}'")  # con comillas
 
             props = ", ".join(props_list)
             session.run(f"CREATE (:Character {{{props}}});\n")
@@ -108,20 +116,38 @@ class Neo4HungerGames:
         weight = family_relationships_weights.get(rel_type, 5.0)
         inverse_weight = family_relationships_weights.get(inverse_type, 5.0)
         with self.driver.session() as session:
-            session.run(
-                f"""
-                MATCH (a:Character {{ID: $id1}}), (b:Character {{ID: $id2}})
-                MERGE (a)-[:{rel_type} {{weight: $weight}}]->(b)
-                MERGE (b)-[:{inverse_type} {{weight: $weight}}]->(a)
-                """,
-                {
-                    "id1": int(id1),
-                    "id2": int(id2),
-                    "type": rel_type,
-                    "inverse_type": inverse_type,
-                    "weight": weight
-                }
-            )
+            rel_type = relationship_type.upper()
+            weight = family_relationships_weights.get(rel_type, 5.0)
+            inverse_type = inverse_relationships.get(rel_type, rel_type)
+            if inverse_type is not None:
+                inverse_type = inverse_type.upper()
+                session.run(
+                    f"""
+                    MATCH (a:Character {{ID: $id1}}), (b:Character {{ID: $id2}})
+                    MERGE (a)-[:{rel_type} {{weight: $weight}}]->(b)
+                    MERGE (b)-[:{inverse_type} {{weight: $weight}}]->(a)
+                    """,
+                    {
+                        "id1": int(id1),
+                        "id2": int(id2),
+                        "inverse_type": inverse_type,
+                        "weight": weight
+                    }
+                )
+            else:
+                session.run(
+                    f"""
+                    MATCH (a:Character {{ID: $id1}}), (b:Character {{ID: $id2}})
+                    MERGE (a)-[:{rel_type} {{weight: $weight}}]-(b)
+                    """,
+                    {
+                        "id1": int(id1),
+                        "id2": int(id2),
+                        "type": rel_type,
+                        "weight": weight
+                    }
+                )
+
 
     def get_all_family_links(self):
         all_links = []
@@ -182,7 +208,6 @@ class Neo4HungerGames:
                     "target_id": int(target_id)
                 }
             )
-
     # -------------------------------------------------------------------------------------
 
     def get_all_characters_id_and_name(self):
@@ -371,7 +396,7 @@ class Neo4HungerGames:
         with self.driver.session() as session:
             result = session.run("""
                 MATCH (p:Character)-[:PARTICIPATED_IN]->(g:Game_Year)
-                OPTIONAL MATCH (p)-[:MENTORED_BY]->(m:Character)
+                OPTIONAL MATCH (m:Character)-[:MENTOR]->(p)
                 RETURN g.Year AS game_year,
                     count(DISTINCT p.Name) AS participants,
                     count(DISTINCT m.Name) AS mentors
@@ -509,7 +534,7 @@ class Neo4HungerGames:
         with self.driver.session() as session:
             result = session.run(
                 """
-                MATCH (mentor:Character)-[:MENTORS]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
+                MATCH (mentor:Character)-[:MENTOR]->(tribute:Character)-[p:PARTICIPATED_IN]->(game:Game_Year)
                 WHERE p.victor = true OR p.victor = "true"
                 RETURN mentor, tribute, game
                 ORDER BY game.Year
@@ -565,7 +590,7 @@ class Neo4HungerGames:
             result = session.run("""
                 MATCH (g:Game_Year)
                 OPTIONAL MATCH (p:Character)-[part:PARTICIPATED_IN]->(g)
-                OPTIONAL MATCH (m:Character)-[:MENTORS]->(p)
+                OPTIONAL MATCH (m:Character)-[:MENTOR]->(p)
                 WITH g, 
                     collect(DISTINCT p) + collect(DISTINCT m) AS allCharacters, 
                     collect(DISTINCT part) AS parts
@@ -574,7 +599,7 @@ class Neo4HungerGames:
                 LIMIT 1
                 WITH g
                 MATCH (p:Character)-[part:PARTICIPATED_IN]->(g)
-                OPTIONAL MATCH (m:Character)-[:MENTORS]->(p)
+                OPTIONAL MATCH (m:Character)-[:MENTOR]->(p)
                 RETURN g.Year AS gameYear,
                     collect(DISTINCT {name: p.Name, victor: part.victor}) AS tributes,
                     collect(DISTINCT {name: m.Name, protege: p.Name, protegeVictor: part.victor}) AS mentors
@@ -593,8 +618,40 @@ class Neo4HungerGames:
                 "mentors": mentors,
                 "number_of_mentors": len(mentors),
             }
+        
+    def shortest_path_dijkstra(self, source_id, target_id):
+        relationship_types = build_relationship_string()
 
-    def shortest_path(self, source_id, target_id):
+        with self.driver.session() as session:
+            result = session.run(
+                f"""
+                MATCH (source:Character {{ID: $source_id}}), (target:Character {{ID: $target_id}})
+                CALL apoc.algo.dijkstra(source, target, '{relationship_types}', 'weight')
+                YIELD path, weight
+                RETURN path, weight
+                """,
+                {"source_id": int(source_id), "target_id": int(target_id)}
+            )
+
+            for record in result:
+                path = record["path"]
+                path_data = []
+
+                for i in range(len(path.relationships)):
+                    start_node = path.nodes[i]
+                    end_node = path.nodes[i + 1]
+                    rel = path.relationships[i]
+
+                    start_name = start_node.get("Name", f"ID {start_node['ID']}")
+                    end_name = end_node.get("Name", f"ID {end_node['ID']}")
+                    rel_type = rel.type
+
+                    path_data.append((start_name, rel_type, end_name))
+
+                return path_data
+            return []
+
+    def shortest_path_jumps(self, source_id, target_id):
         with self.driver.session() as session:
             result = session.run(
                 """
@@ -619,10 +676,7 @@ class Neo4HungerGames:
                     rel_type = rel.type
 
                     path_data.append((start_name, rel_type, end_name))
-
                 return path_data
-
-            # Si no se encontró camino
             return []
 
     def get_character_by_id(self, character_id):
