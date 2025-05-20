@@ -1,8 +1,0 @@
-- Obtener la alianza con más aliados
-
-MATCH (c:Character)-[:BELONGS_TO]->(a:Alliance)
-WITH a, count(c) AS population
-ORDER BY population DESC
-LIMIT 1
-MATCH (c:Character)-[:BELONGS_TO]->(a)
-RETURN a AS mostPopularAlliance, collect(c) AS characters
