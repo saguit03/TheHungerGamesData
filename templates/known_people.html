@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conexiones entre Distritos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='characters.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+<div class="white_div">
+    <h1>Personajes que conocen a más personas de distritos distintos</h1>
+</div>
+<ul>
+    {% for character in characters %}
+        <li>
+            <h2>{{ character.name }}</h2>
+            <h3>Distritos conocidos</h3>
+            <ul>
+                {% for district in character.knownDistricts %}
+                    <li>{{ district }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Personas conocidas</h3>
+            <ul>
+                {% for person in character.knownPeople %}
+                    <li>{{ person.name }} (from {{ person.district }})</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
+</body>
+</html>

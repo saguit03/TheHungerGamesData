@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego con más personajes involucrados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+
+</head>
+<body>
+
+<div class="white_div">
+    <h1>Juego con más personajes involucrados: <br>
+        {{ data.gameYear }}.º Juegos del Hambre </h1>
+
+    <div class="stats-container">
+        <div class="stat-box">
+            <div class="stat-number">{{ data.number_of_tributes }}</div>
+            <div class="stat-label">Tributos</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">{{ data.number_of_mentors }}</div>
+            <div class="stat-label">Mentores</div>
+        </div>
+    </div>
+</div>
+<div class="white_div">
+    <h2>Tributos</h2>
+</div>
+<ul>
+    {% for tribute in data.tributes %}
+        <li>{{ tribute.name }}{% if tribute.victor == "true" %} (GANADOR){% endif %}</li>
+    {% endfor %}
+</ul>
+
+<div class="white_div">
+    <h2>Mentores</h2>
+</div>
+<ul>
+    {% for mentor in data.mentors %}
+        <li>{{ mentor.name }} - mentor de
+            {{ mentor.protege }}{% if mentor.protegeVictor == "true" %} (ganador){% endif %}</li>
+    {% endfor %}
+</ul>
+
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
+
+</body>
+</html>

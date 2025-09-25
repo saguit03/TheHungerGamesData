@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear vínculo familiar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+<div class="white_div">
+    <h1>Crear vínculo entre personajes</h1>
+</div>
+<div>
+    <nav>
+        <form action="/characters/link_family" method="post">
+            <label>Personaje 1:
+                <select name="id1" required>
+                    <option value="">-- Selecciona un personaje --</option>
+                    {% for character in characters %}
+                        <option value="{{ character.id }}">{{ character.id }} - {{ character.name }}</option>
+                    {% endfor %}
+                </select>
+            </label><br><br>
+
+            <label>Tipo de vínculo:
+                <select name="relationship_type" required>
+                    <option value="">-- Selecciona un tipo de vínculo --</option>
+                    {% for relationship in relation_types %}
+                        <option value="{{ relationship }}">{{ relationship }}</option>
+                    {% endfor %}
+                </select>
+            </label><br><br>
+
+            <label>Personaje 2:
+                <select name="id2" required>
+                    <option value="">-- Selecciona otro personaje --</option>
+                    {% for character in characters %}
+                        <option value="{{ character.id }}">{{ character.id }} - {{ character.name }}</option>
+                    {% endfor %}
+                </select>
+            </label><br><br>
+            <button type="submit">Crear vínculo</button>
+        </form><br>
+
+        <a href="/">Volver al menú principal</a>
+    </nav>
+</div>
+
+</body>
+</html>

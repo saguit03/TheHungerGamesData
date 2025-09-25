@@ -1,0 +1,14 @@
+CREATE (:District {Name: 'The Capitol', Number: 0});
+CREATE (:District {Name: 'District 1', Number: 1});
+CREATE (:District {Name: 'District 2', Number: 2});
+CREATE (:District {Name: 'District 3', Number: 3});
+CREATE (:District {Name: 'District 4', Number: 4});
+CREATE (:District {Name: 'District 5', Number: 5});
+CREATE (:District {Name: 'District 6', Number: 6});
+CREATE (:District {Name: 'District 7', Number: 7});
+CREATE (:District {Name: 'District 8', Number: 8});
+CREATE (:District {Name: 'District 9', Number: 9});
+CREATE (:District {Name: 'District 10', Number: 10});
+CREATE (:District {Name: 'District 11', Number: 11});
+CREATE (:District {Name: 'District 12', Number: 12});
+CREATE (:District {Name: 'District 13', Number: 13});

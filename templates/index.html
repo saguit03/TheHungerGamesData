@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Juegos del Hambre</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+
+</head>
+<body>
+<div class="white_div">
+    <h1>Juegos del Hambre</h1>
+</div>
+<nav>
+    <h2> Menú principal </h2>
+    <div class="menu-container">
+        <ul class="menu-columns">
+            <li><a href="/characters">Gestionar personajes</a></li>
+            <li><a href="/stats">Ver estadísticas</a></li>
+            <li><a href="/most_involved_game">Consultar el juego con más personajes relacionados</a></li>
+            <li><a href="/mentor_victories">Consultar mentores que han llevado a la victoria a sus tributos</a></li>
+            <li><a href="/links">Consultar todos los enlaces</a></li>
+            <li><a href="/characters/family/all">Consultar enlaces de familia</a></li>
+            <li><a href="/characters/all">Consultar todos los personajes</a></li>
+            <li><a href="/deaths">Consultar muertes</a></li>
+            <li><a href="/books">Consultar libros y sus personajes</a></li>
+            <li><a href="/characters/other_books">Consultar personajes de varios libros</a></li>
+            <li><a href="/shortest_path">Consultar ruta más corta entre personajes</a></li>
+            <li><a href="/characters/other_districts">Consultar personajes que conocen a más personas de distritos
+                distintos</a></li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Relaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='list.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+<div class="white_div">
+    <h1>Relaciones entre nodos</h1>
+</div>
+<div>
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
+{% if links %}
+    <ul>
+
+        {% for link in links %}
+            <li>
+                <p>
+                    <strong>{{ link.source_label }}</strong>: {{ link.source }} <br>
+                    <strong>{{ link.rel_type }}</strong> <br>
+                    <strong>{{ link.target_label }}</strong>: {{ link.target }}
+                </p>
+                <p> Peso de la relación: {{ link.weight }}</p>
+
+                <form method="POST" action="/links/delete">
+                    <input type="hidden" name="source_id" value="{{ link.source_id }}">
+                    <input type="hidden" name="source_label" value="{{ link.source_label }}">
+                    <input type="hidden" name="target_id" value="{{ link.target_id }}">
+                    <input type="hidden" name="target_label" value="{{ link.target_label }}">
+                    <input type="hidden" name="rel_type" value="{{ link.rel_type }}">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay relaciones registradas.</p>
+{% endif %}
+</body>
+</html>

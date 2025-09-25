@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Personajes en Otros Libros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='characters.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+</head>
+<body>
+<div class="white_div">
+    <h1>Personajes muertos</h1>
+</div>
+
+<nav>
+    <form method="POST">
+        <label for="cause">Selecciona la causa de muerte:</label>
+        <select name="cause" id="cause" required>
+            <option value="">--Seleccionar--</option>
+            {% for cause in death_causes %}
+                <option value="{{ cause.killer }}"
+                        {% if selected_cause == cause.killer %}selected{% endif %}>{{ cause.killer }}
+                    ({{ cause.killed }})
+                </option>
+            {% endfor %}
+        </select>
+        <button class="form_button" type="submit">Buscar</button>
+    </form>
+</nav>
+
+{% if characters %}
+    <h2>Resultados para: "{{ selected_cause }}"</h2>
+    <ul>
+        {% for c in characters %}
+            <li><strong>{{ c.name }}</strong></li>
+        {% endfor %}
+    </ul>
+{% elif selected_cause %}
+    <p>No se encontraron personajes.</p>
+{% endif %}
+
+<div class="button-container">
+    <p><a href="/">Volver al menú principal</a></p>
+</div>
+
+</body>
+</html>
